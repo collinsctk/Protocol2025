@@ -6,7 +6,7 @@ import os
 
 tzutc_8 = datetime.timezone(datetime.timedelta(hours=8))  # 设置时区为东八区
 
-db_file_name = 'sqlalchemy_device_config_sqlite3.db'
+db_file_name = '../db_file/sqlalchemy_device_config_sqlite3.db'
 
 # 如果希望删除老的数据就取消注释
 # if os.path.exists(db_file_name):

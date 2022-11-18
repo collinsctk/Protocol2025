@@ -6,7 +6,7 @@
 # 教主技术进化论拓展你的技术新边疆
 # https://ke.qq.com/course/271956?tuin=24199d8a
 
-from net_12_ssh.ssh_sftp.ssh_client_netmiko import netmiko_show_cred
+from net_8_ssh.ssh_sftp.ssh_client_netmiko import netmiko_show_cred
 import re
 import hashlib
 from datetime import datetime

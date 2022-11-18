@@ -6,7 +6,7 @@
 # 教主技术进化论拓展你的技术新边疆
 # https://ke.qq.com/course/271956?tuin=24199d8a
 import sqlite3
-from net_12_ssh.practice_homework.practice_2_get_config_and_compare.practice_2_0_diff_conf import diff_txt
+from net_8_ssh.practice_homework.practice_2_get_config_and_compare.practice_2_0_diff_conf import diff_txt
 
 
 def def_config_id(dbname):
