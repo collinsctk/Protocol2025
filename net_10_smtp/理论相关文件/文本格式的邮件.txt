@@ -1,0 +1,35 @@
+X-QQ-mid: esmtp3t1532567261t0nhg3mfr
+Received: from [10.1.1.100] (unknown [36.110.69.203])
+	by esmtp4.qq.com (ESMTP) with 
+	id ; Thu, 26 Jul 2018 09:07:40 +0800 (CST)
+X-QQ-SSF: A00000000000001004F200000000001
+X-QQ-FEAT: abApE3BLcR5+IAVHygADDGXx/NYYt6pweQ0YkP6yzgZp4MsoFJ6NlGBZa+NfU
+	eF+iAKd8ByhAtDQzuxKHJURC7NpWL0QSYKM9uWSsuIYzYf7LineS1IZlfEFhtanLcGdxWjI
+	pllr6uQXz2XL+ng7U/e2Bz/1fRXRIOaBu/PHf9V+lS4gCBq56M8nQgdTrb5SglEysznv7tf
+	Hea0oFm6B2iorLyaKtECOf/eM/IPufGRl0fE9Tj5IyviLdpxPMMqtMasAt9P7zG0=
+X-QQ-GoodBg: 0
+Content-Type: multipart/mixed; boundary="===============8113999728806723926=="
+MIME-Version: 1.0
+Subject: =?utf-8?b?6ZmE5Lu25rWL6K+VX+S4u+mimA==?=
+From: 3348326959@qq.com
+To: 3348326959@qq.com;collinsctk@qytang.com
+Date: Thu, 26 Jul 2018 01:07:38 -0000
+
+--===============8113999728806723926==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+
+6ZmE5Lu25rWL6K+VX+ato+aWhw==
+
+--===============8113999728806723926==
+Content-Type: application/octet-stream
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="Logo.jpg"
+
+/9j/4AAQSkZJRgABAQEAYABgAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAEAAAAAAAD/
+2wBDAAIBAQIBAQICAgICAgICAwUDAwMDAwYEBAMFBwYHBwcGBwcICQsJCAgKCAcHCg0KCgsMDAwM
+~~~忽略大量图片的二进制内容~~~
+
+--===============8113999728806723926==--
