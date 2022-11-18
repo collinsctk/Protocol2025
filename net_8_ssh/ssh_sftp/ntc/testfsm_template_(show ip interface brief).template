@@ -1,0 +1,7 @@
+Value INTER (\D+\d+((/\d+)+(\.\d+)?)?)
+Value IPADD (\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b)
+Value STATUS (up|down|administratively down)
+Value PSTATUS (up|down)
+
+Start
+ ^${INTER}\s+${IPADD}\s+\w+\s+\w+\s+${STATUS}\s+${PSTATUS} -> Record
