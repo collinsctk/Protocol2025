@@ -11,7 +11,7 @@ import socketserver
 import re
 from dateutil import parser
 from sqlalchemy.orm import sessionmaker
-from orm_1_syslog_create_table import Syslog, engine
+from net_5_syslog.syslog_write_db.orm_1_syslog_create_table import Syslog, engine
 
 
 Session = sessionmaker(bind=engine)

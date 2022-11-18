@@ -6,7 +6,8 @@ import os
 
 tzutc_8 = datetime.timezone(datetime.timedelta(hours=8))  # 设置时区为东八区
 
-db_file_name = 'sqlalchemy_syslog_sqlite3.db'
+# os.path.dirname(os.path.realpath(__file__) 当前文件目录
+db_file_name = f'{os.path.dirname(os.path.realpath(__file__))}/sqlalchemy_syslog_sqlite3.db'
 
 # 如果希望删除老的数据就取消注释
 # if os.path.exists(db_file_name):
