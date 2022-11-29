@@ -362,7 +362,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT DERIVATIVE(mean(\"in_bytes\"),1s) * 8 FROM \"if_monitor\" WHERE $timeFilter GROUP BY time($interval), \"device_ip\", \"interface_name\" fill(none)",
+          "query": "SELECT DERIVATIVE(mean(\"in_bytes\"),1s) * 8 FROM \"if_monitor\" WHERE $timeFilter GROUP BY time($interval), \"device_ip\", \"interface_name\" ",
           "rawQuery": true,
           "refId": "B",
           "resultFormat": "time_series",
