@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 1,
-  "iteration": 1669705620696,
+  "iteration": 1669730082291,
   "links": [],
   "panels": [
     {
@@ -80,7 +80,7 @@
           "placement": "bottom"
         },
         "tooltipOptions": {
-          "mode": "multi"
+          "mode": "single"
         }
       },
       "pluginVersion": "7.5.11",
@@ -104,7 +104,7 @@
           "measurement": "router_monitor",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"cpu_usage\") FROM \"router_monitor\" WHERE $timeFilter GROUP BY time($interval), \"device_ip\" fill(none)",
+          "query": "SELECT mean(\"cpu_usage\") FROM \"router_monitor\" WHERE $timeFilter GROUP BY time($__interval), \"device_ip\"",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -191,7 +191,7 @@
           "placement": "bottom"
         },
         "tooltipOptions": {
-          "mode": "multi"
+          "mode": "single"
         }
       },
       "pluginVersion": "7.5.11",
@@ -301,7 +301,7 @@
           "placement": "bottom"
         },
         "tooltipOptions": {
-          "mode": "multi"
+          "mode": "single"
         }
       },
       "pluginVersion": "7.5.11",
@@ -324,7 +324,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT DERIVATIVE(mean(\"out_bytes\"),1s)*8 FROM \"if_monitor\" WHERE $timeFilter GROUP BY time($interval), \"device_ip\", \"interface_name\"",
+          "query": "SELECT DERIVATIVE(mean(\"out_bytes\"),1s) * 8 FROM \"if_monitor\" WHERE $timeFilter GROUP BY time($interval), \"device_ip\", \"interface_name\" ",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
