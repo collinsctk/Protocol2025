@@ -20,9 +20,9 @@ s.bind(address)
 print('UDP服务器就绪!等待客户数据!')
 while True:
     try:
-        # 接收UDP套接字的数据,2048为接收的最大数据量,多的直接丢弃!
+        # 接收UDP套接字的数据,512为接收的最大数据量,多的直接丢弃!
         # 不推荐使用UDP传大量数据
-        aa = s.recvfrom(2048)
+        aa = s.recvfrom(512)
         print(aa)
         data, addr = aa
         # 如果客户发来空数据,就退出循环
