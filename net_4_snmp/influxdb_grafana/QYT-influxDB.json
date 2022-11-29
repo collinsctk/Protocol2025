@@ -99,12 +99,6 @@
                 "device_ip"
               ],
               "type": "tag"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
             }
           ],
           "measurement": "router_monitor",
@@ -220,7 +214,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT (mean(\"mem_usage\") / (mean(\"mem_free\") + mean(\"mem_usage\"))) * 100 as mem_percent FROM \"router_monitor\" WHERE $timeFilter GROUP BY time($interval), \"device_ip\" fill(none)",
+          "query": "SELECT (mean(\"mem_usage\") / (mean(\"mem_free\") + mean(\"mem_usage\"))) * 100 as mem_percent FROM \"router_monitor\" WHERE $timeFilter GROUP BY time($interval), \"device_ip\"",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -330,7 +324,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT DERIVATIVE(mean(\"out_bytes\"),1s)*8 FROM \"if_monitor\" WHERE $timeFilter GROUP BY time($interval), \"device_ip\", \"interface_name\" fill(none)",
+          "query": "SELECT DERIVATIVE(mean(\"out_bytes\"),1s)*8 FROM \"if_monitor\" WHERE $timeFilter GROUP BY time($interval), \"device_ip\", \"interface_name\"",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -493,5 +487,5 @@
   "timezone": "",
   "title": "QYT-influxDB",
   "uid": "y4-huYoMksdf",
-  "version": 3
+  "version": 5
 }
