@@ -33,4 +33,5 @@ if __name__ == '__main__':
     # print(no_shutdown_oid)
     # from net_7_snmp.snmp_v2.snmpv2_set import snmpv2_set
     # snmpv2_set("10.1.1.253", "tcpiprw", no_shutdown_oid, 1, port=161)
-    shutdown_if('10.1.1.253', 'tcpiprw', 'GigabitEthernet2', op=1)
+    print(get_if_oid('10.1.1.253', 'tcpiprw', 'Loopback0'))
+    # shutdown_if('10.1.1.253', 'tcpiprw', 'GigabitEthernet2', op=1)
