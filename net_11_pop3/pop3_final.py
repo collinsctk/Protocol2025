@@ -33,7 +33,7 @@ def decode_subject_base64(need_decode_str):
     return str(make_header(decode_header(need_decode_str)))
 
 
-def qyt_rec_mail(mailserver, mailuser, mailpasswd, save_file=False, delete_email=False):
+def qyt_rec_mail(mailserver, mailuser, mailpasswd, if_write_dict=False, save_file=False, delete_email=False):
     print('Connecting...')
     server = poplib.POP3_SSL(mailserver, 995)  # 连接到邮件服务器
     server.user(mailuser)  # 邮件服务器用户名
@@ -87,8 +87,9 @@ def qyt_rec_mail(mailserver, mailuser, mailpasswd, save_file=False, delete_email
                         attack_filename = part_list[part_no].get_filename()  # 获取附件文件名
                         # 获取文件内容, 需要使用base64解码为二进制
                         attack_file_bit = base64.b64decode(part_list[part_no].get_payload())
-                        # 添加到Attachment清单, 内容为(文件名, 二进制)
-                        attach.append((attack_filename, attack_file_bit))
+                        if if_write_dict:
+                            # 添加到Attachment清单, 内容为(文件名, 二进制)
+                            attach.append((attack_filename, attack_file_bit))
                         # mail_dict['Attachment'] = attach  # 把附件列表添加到邮件字典
                         # 下面是保存附件
                         if save_file:
@@ -109,8 +110,9 @@ def qyt_rec_mail(mailserver, mailuser, mailpasswd, save_file=False, delete_email
                         image_name = part_list[part_no].get('Content-ID') + '.' + content_type.split('/')[1]  # 拼接得到文件名
                         # 获取文件内容, 需要使用base64解码为二进制
                         image_bit = base64.b64decode(part_list[part_no].get_payload())
-                        # 添加到Images清单, 内容为(图片名, 二进制)
-                        images.append((image_name, image_bit))
+                        if if_write_dict:
+                            # 添加到Images清单, 内容为(图片名, 二进制)
+                            images.append((image_name, image_bit))
                         # mail_dict['Images'] = images
                         # 下面是保存附件
                         if save_file:
