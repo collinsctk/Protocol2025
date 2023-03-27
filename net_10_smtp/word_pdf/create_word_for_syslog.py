@@ -17,6 +17,7 @@ def create_word_for_syslog(add_img, save_word_name):
     # 设置文档的基础字体
     document.styles['Normal'].font.name = u'微软雅黑'
     document.styles['Normal'].font.size = Pt(14)
+
     # 设置文档的基础样式
     document.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), u'微软雅黑')
     # 在文件最上头插入图，宽度为6英寸
@@ -29,7 +30,7 @@ def create_word_for_syslog(add_img, save_word_name):
 
     # 设置标题
     run1 = p1.add_run('乾颐堂Python强化班Syslog分析')
-    # 设置西文字体
+    # 设置字体font
     run1.font.name = '微软雅黑'
     # 设置中文字体
     run1._element.rPr.rFonts.set(qn('w:eastAsia'), u'微软雅黑')

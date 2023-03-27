@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding=utf-8 -*-
-# 本脚由亁颐堂现任明教教主编写，用于乾颐盾Python课程！
+# 本脚由亁颐堂现任明教教主编写，用于亁颐堂NetDevOps课程！
 # 教主QQ:605658506
 # 亁颐堂官网www.qytang.com
-# 教主技术进化论拓展你的技术新边疆
-# https://ke.qq.com/course/271956?tuin=24199d8a
+# 教主VIP, 让我们聊点高级的
+# https://vip.qytang.com/
 
 from tools.get_ip_netifaces import get_ip_address
 import socket
@@ -20,9 +20,9 @@ s.bind(address)
 print('UDP服务器就绪!等待客户数据!')
 while True:
     try:
-        # 接收UDP套接字的数据,2048为接收的最大数据量,多的直接丢弃!
+        # 接收UDP套接字的数据,512为接收的最大数据量,多的直接丢弃!
         # 不推荐使用UDP传大量数据
-        aa = s.recvfrom(2048)
+        aa = s.recvfrom(512)
         print(aa)
         data, addr = aa
         # 如果客户发来空数据,就退出循环

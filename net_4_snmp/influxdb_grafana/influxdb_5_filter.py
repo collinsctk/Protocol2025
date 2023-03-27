@@ -1,3 +1,12 @@
+#!/usr/bin/env python3
+# -*- coding=utf-8 -*-
+# 本脚由亁颐堂现任明教教主编写，用于亁颐堂NetDevOps课程！
+# 教主QQ:605658506
+# 亁颐堂官网www.qytang.com
+# 教主VIP, 让我们聊点高级的
+# https://vip.qytang.com/
+
+
 from dateutil import parser
 from influxdb import InfluxDBClient
 from datetime import timedelta, timezone

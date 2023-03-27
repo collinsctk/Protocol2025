@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding=utf-8 -*-
-# 本脚由亁颐堂现任明教教主编写，用于乾颐盾Python课程！
+# 本脚由亁颐堂现任明教教主编写，用于亁颐堂NetDevOps课程！
 # 教主QQ:605658506
 # 亁颐堂官网www.qytang.com
-# 教主技术进化论拓展你的技术新边疆
-# https://ke.qq.com/course/271956?tuin=24199d8a
+# 教主VIP, 让我们聊点高级的
+# https://vip.qytang.com/
 
 
 from pysnmp.entity.rfc3413.oneliner import cmdgen
@@ -51,4 +51,4 @@ if __name__ == "__main__":
     snmpv2_set("10.1.1.253", "tcpiprw", "1.3.6.1.2.1.1.5.0", "R1", port=161)
     # shutdown G2
     # 1 为up , 2 为down
-    snmpv2_set("10.1.1.253", "tcpiprw", "1.3.6.1.2.1.2.2.1.7.2", 2, port=161)
+    snmpv2_set("10.1.1.253", "tcpiprw", "1.3.6.1.2.1.2.2.1.7.4", 1, port=161)  # 这个是环回口

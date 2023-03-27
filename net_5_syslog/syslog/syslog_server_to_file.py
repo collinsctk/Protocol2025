@@ -33,7 +33,8 @@ class SyslogUDPHandler(socketserver.BaseRequestHandler):
             community = "tcpiprw"
             shutdown_if(device_ip, community, if_name, 1)
 
-        logging.info(f"source_ip: {self.client_address[0]} - message: {str(data)}")     # 把信息logging到本地, logging level为INFO
+        # 把信息logging到本地, logging level为INFO
+        logging.info(f"source_ip: {self.client_address[0]} - message: {str(data)}")
 
 
 if __name__ == "__main__":

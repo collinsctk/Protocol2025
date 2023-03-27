@@ -1,3 +1,12 @@
+#!/usr/bin/env python3
+# -*- coding=utf-8 -*-
+# 本脚由亁颐堂现任明教教主编写，用于亁颐堂NetDevOps课程！
+# 教主QQ:605658506
+# 亁颐堂官网www.qytang.com
+# 教主VIP, 让我们聊点高级的
+# https://vip.qytang.com/
+
+
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, Integer, DateTime
@@ -31,5 +40,8 @@ class RouterMonitor(Base):
 
 
 if __name__ == '__main__':
+    import os
+    if os.path.exists('sqlalchemy_sqlite3.db'):
+        os.remove('sqlalchemy_sqlite3.db')
     # checkfirst=True，表示创建表前先检查该表是否存在，如同名表已存在则不再创建。其实默认就是True
     Base.metadata.create_all(engine, checkfirst=True)
