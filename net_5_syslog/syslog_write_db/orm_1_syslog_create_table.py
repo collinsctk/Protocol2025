@@ -4,14 +4,10 @@ from sqlalchemy import Column, String, Integer, DateTime
 import datetime
 import os
 
-tzutc_8 = datetime.timezone(datetime.timedelta(hours=8))  # 设置时区为东八区
+filename = "sqlalchemy_syslog_sqlite3.db"
 
 # os.path.dirname(os.path.realpath(__file__) 当前文件目录
-db_file_name = f'{os.path.dirname(os.path.realpath(__file__))}/sqlalchemy_syslog_sqlite3.db'
-
-engine = create_engine(f'sqlite:///{db_file_name}?check_same_thread=False',
-                       # echo=True
-                       )
+db_file_name = f'{os.path.dirname(os.path.realpath(__file__))}/{filename}'
 
 Base = declarative_base()
 
@@ -41,5 +37,10 @@ if __name__ == '__main__':
     # 如果希望删除老的数据就取消注释
     if os.path.exists(db_file_name):
         os.remove(db_file_name)
+
+    engine = create_engine(f'sqlite:///{db_file_name}?check_same_thread=False',
+                           # echo=True
+                           )
+
     # checkfirst=True，表示创建表前先检查该表是否存在，如同名表已存在则不再创建。其实默认就是True
     Base.metadata.create_all(engine, checkfirst=True)

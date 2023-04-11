@@ -8,8 +8,13 @@
 
 from matplotlib import pyplot as plt
 from sqlalchemy.orm import sessionmaker
-from net_5_syslog.syslog_write_db.orm_1_syslog_create_table import Syslog, engine
+from sqlalchemy import create_engine
+from net_5_syslog.syslog_write_db.orm_1_syslog_create_table import Syslog, db_file_name
 from sqlalchemy import func
+
+engine = create_engine(f'sqlite:///{db_file_name}?check_same_thread=False',
+                       # echo=True
+                       )
 
 Session = sessionmaker(bind=engine)
 session = Session()
