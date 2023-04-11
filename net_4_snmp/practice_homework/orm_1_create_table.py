@@ -12,8 +12,6 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, Integer, DateTime
 import datetime
 
-tzutc_8 = datetime.timezone(datetime.timedelta(hours=8))  # 设置时区为东八区
-
 db_filename = 'sqlalchemy_sqlite3.db'
 
 Base = declarative_base()
