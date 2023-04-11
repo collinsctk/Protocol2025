@@ -10,14 +10,19 @@
 import time
 from net_4_snmp.snmp_v2.snmpv2_get import snmpv2_get
 from sqlalchemy.orm import sessionmaker
-from orm_1_create_table import RouterMonitor, engine
+from orm_1_create_table import RouterMonitor, db_filename
+from sqlalchemy import create_engine
 
+
+engine = create_engine(f'sqlite:///{db_filename}?check_same_thread=False',
+                       # echo=True
+                       )
 
 Session = sessionmaker(bind=engine)
 session = Session()
 
 
-def get_info_writedb(ip, rocommunity, dbname, seconds):
+def get_info_writedb(ip, rocommunity, seconds):
     while seconds > 0:
         # cpmCPUTotal5sec
         cpu_info = snmpv2_get(ip, rocommunity, "1.3.6.1.4.1.9.9.109.1.1.1.1.3.7", port=161)[1]
@@ -39,6 +44,6 @@ def get_info_writedb(ip, rocommunity, dbname, seconds):
 
 
 if __name__ == '__main__':
-    get_info_writedb("10.1.1.253", "tcpipro", "deviceinfo.sqlite", 60)
+    get_info_writedb("10.1.1.253", "tcpipro", 60)
     for i in session.query(RouterMonitor).all():
         print(i)

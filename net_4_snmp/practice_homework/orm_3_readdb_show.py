@@ -8,19 +8,25 @@
 
 
 from sqlalchemy.orm import sessionmaker
-from orm_1_create_table import RouterMonitor, engine
+from orm_1_create_table import RouterMonitor, db_filename
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdate
 import matplotlib.ticker as mtick
+from sqlalchemy import create_engine
 
 plt.rcParams['font.sans-serif'] = ['SimHei']  # 设置中文
 plt.rcParams['font.family'] = 'sans-serif'
+
+
+engine = create_engine(f'sqlite:///{db_filename}?check_same_thread=False',
+                       # echo=True
+                       )
 
 Session = sessionmaker(bind=engine)
 session = Session()
 
 
-def cpu_show(dbname):
+def cpu_show():
     time_list = []
     cpu_list = []
 
@@ -59,7 +65,7 @@ def cpu_show(dbname):
     plt.show()
 
 
-def mem_show(dbname):
+def mem_show():
     time_list = []
     mem_list = []
 
@@ -99,5 +105,5 @@ def mem_show(dbname):
 
 
 if __name__ == '__main__':
-    cpu_show("deviceinfo.sqlite")
-    mem_show("deviceinfo.sqlite")
+    cpu_show()
+    mem_show()
