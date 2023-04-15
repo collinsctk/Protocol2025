@@ -8,8 +8,13 @@
 import sqlite3
 from net_8_ssh.practice_homework.practice_2_get_config_and_compare.practice_2_0_diff_conf import diff_txt
 from sqlalchemy.orm import sessionmaker
-from practice_2_0_create_table import RouterConfig, engine
+from practice_2_0_create_table import RouterConfig, db_file_name
 from sqlalchemy import func
+from sqlalchemy import create_engine
+
+engine = create_engine(f'sqlite:///{db_file_name}?check_same_thread=False',
+                           # echo=True
+                           )
 
 Session = sessionmaker(bind=engine)
 session = Session()

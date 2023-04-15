@@ -35,8 +35,12 @@ def get_md5_config(host, username, password):
 
 if __name__ == '__main__':
     from sqlalchemy.orm import sessionmaker
-    from practice_2_0_create_table import RouterConfig, engine
+    from practice_2_0_create_table import RouterConfig, db_file_name
+    from sqlalchemy import create_engine
 
+    engine = create_engine(f'sqlite:///{db_file_name}?check_same_thread=False',
+                           # echo=True
+                           )
     Session = sessionmaker(bind=engine)
     session = Session()
 
