@@ -6,7 +6,8 @@
 # 教主VIP, 让我们聊点高级的
 # https://vip.qytang.com/
 
-
+# pyasn1==0.4.8
+# pysnmp==4.4.12
 from pysnmp.hlapi import *
 
 
@@ -41,6 +42,8 @@ def snmpv2_get(ip, community, oid, port=161):
 
 
 if __name__ == "__main__":
+    # pyasn1==0.4.8
+    # pysnmp==4.4.12
     # 使用Linux解释器 & WIN解释器
     # 系统描述
     print(snmpv2_get("10.1.1.253", "tcpipro", "1.3.6.1.2.1.1.1.0", port=161))
