@@ -11,7 +11,9 @@ def netmiko_show_cred_use_textfsm(host, username, password, cmd, enable='Cisc012
     }
     try:
         net_connect = Netmiko(**device_info)
-        return net_connect.send_command(cmd, use_textfsm=True)  # 关键是这个设置
+        return net_connect.send_command(cmd,
+                                        use_textfsm=True  # 关键是这个设置
+                                        )
 
     except Exception as e:
         print(f'connection error ip: {host} error: {str(e)}')
