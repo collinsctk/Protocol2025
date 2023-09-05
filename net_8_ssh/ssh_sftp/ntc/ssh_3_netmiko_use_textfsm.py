@@ -12,7 +12,7 @@ def netmiko_show_cred_use_textfsm(host, username, password, cmd, enable='Cisc012
     try:
         net_connect = Netmiko(**device_info)
         return net_connect.send_command(cmd,
-                                        use_textfsm=True  # 关键是这个设置
+                                        use_textfsm=True  # 关键操作, 使用NTC-Template解析
                                         )
 
     except Exception as e:
@@ -27,8 +27,8 @@ if __name__ == '__main__':
     parsed_result = netmiko_show_cred_use_textfsm('10.1.1.253',
                                                   'admin',
                                                   'Cisc0123',
-                                                  # 'show ip inter brie',
+                                                  'show ip inter brie',
                                                   # 'show ip route',
-                                                  'show version',
+                                                  # 'show version',
                                                   )
     pprint(parsed_result)
