@@ -14,7 +14,9 @@ def netmiko_show_cred_use_genie(host, username, password, cmd, enable='Cisc0123'
     }
     try:
         net_connect = Netmiko(**device_info)
-        return net_connect.send_command(cmd, use_genie=True)
+        return net_connect.send_command(cmd,
+                                        use_genie=True  # 关键操作, 使用PyATS解析
+                                        )
 
     except Exception as e:
         print(f'connection error ip: {host} error: {str(e)}')
@@ -30,8 +32,8 @@ if __name__ == '__main__':
     parsed_result = netmiko_show_cred_use_genie('10.1.1.253',
                                                 'admin',
                                                 'Cisc0123',
-                                                'show ip inter brief',
-                                                # 'show ip route'
+                                                # 'show ip inter brief',
+                                                'show ip route'
                                                 # 'show version',
                                                 )
     pprint(parsed_result)
