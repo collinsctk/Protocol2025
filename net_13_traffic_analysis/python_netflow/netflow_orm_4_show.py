@@ -68,7 +68,7 @@ print(protocol_bytes)
 
 plt.rcParams['font.sans-serif'] = ['SimHei']  # 设置中文
 # 调节图形大小，宽，高
-plt.figure(figsize=(6, 6))
+plt.figure(figsize=(10, 10))
 
 # 使用count_list的比例来绘制饼图
 # 使用level_list作为注释
@@ -90,6 +90,7 @@ for t in l_text:
 for t in p_text:
     t.set_size = 20
 # 设置x，y轴刻度一致，这样饼图才能是圆的
+plt.title('NetFlow流量分布')  # 主题
 plt.axis('equal')
 plt.legend(loc='upper left')
 plt.show()
