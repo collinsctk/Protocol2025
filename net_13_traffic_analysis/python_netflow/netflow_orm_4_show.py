@@ -20,8 +20,8 @@ session = Session()
 # 协议名称映射表
 protocol_map = {'6/22': 'SSH',
                 '6/23': 'Telnet',
-                '17/137': 'UDP NETBIOS Name Service',
-                '17/138': 'UDP NETBIOS Datagram Service',
+                '17/137': 'UDP NETBIOS NS',
+                '17/138': 'UDP NETBIOS DS',
                 '17/5353': 'MDNS',
                 '17/53': 'DNS',
                 '17/514': 'Syslog',
@@ -68,13 +68,17 @@ print(protocol_bytes)
 
 plt.rcParams['font.sans-serif'] = ['SimHei']  # 设置中文
 # 调节图形大小，宽，高
-plt.figure(figsize=(10, 10))
+plt.figure(figsize=(6, 6))
 
 # 使用count_list的比例来绘制饼图
 # 使用level_list作为注释
-patches, l_text, p_text = plt.pie(protocol_bytes, labels=protocol_list,
-                                  labeldistance=1.1, autopct='%3.1f%%', shadow=False,
-                                  startangle=90, pctdistance=0.6)
+patches, l_text, p_text = plt.pie(protocol_bytes,
+                                  labels=protocol_list,
+                                  labeldistance=1.1,
+                                  autopct='%3.1f%%',
+                                  shadow=False,
+                                  startangle=90,
+                                  pctdistance=0.6)
 
 # labeldistance，文本的位置离远点有多远，1.1指1.1倍半径的位置
 # autopct，圆里面的文本格式，%3.1f%%表示小数有三位，整数有一位的浮点数
