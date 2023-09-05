@@ -72,45 +72,31 @@ if __name__ == '__main__':
                         main_body_txt,
                         ['./attachment_dir/Logo.jpg'])
 
+    # ---------------------------- 案例二: 更加负载的HTML ----------------------------
+    # 产生饼状图，后续嵌入到网页
     from net_10_smtp.modules.syslog_bing import syslog_bing
-
     syslog_result = syslog_bing('syslog.png')
 
-    td_str = ''
+    # 导入jinja2模块，并且定义模块所在目录
+    from jinja2 import Template
+    tem_path = './templates/'
+
     # x为级别名字(例如:ALERT), y为数量
     total = sum([y for x, y in syslog_result])
-    for x, y in syslog_result:
-        td_str += f'<tr><td>{x}</td><td>{y}</td><td>{(y/total)*100:.1f}</td></tr>'
+    # 产生替换模板的数据severity_list
+    severity_list = [{'severity': x, 'count': y, 'percent': f"{(y/total)*100:.1f}"} for x, y in syslog_result]
+    # 模板替换产生email的html
+    with open(tem_path + 'email.jinja2', encoding='utf-8') as f:
+        email_template = Template(f.read())
+    email_html = email_template.render(severity_list=severity_list)
 
-    main_body_txt = f"""
-    <img src="cid:logo"><br>
-    <h3>乾颐堂Python强化班Syslog分析</h3>
-    <p>下面是最近一个小时的Syslog的数据统计! 显示排前三的Syslog严重级别与数量</p><br>
-        <table border="1" cellspacing="0">
-                <thead class="thead-dark">
-                    <tr>
-                      <th class="text-center">严重级别</th>
-                      <th class="text-center">数量</th>
-                      <th class="text-center">百分比</th>
-                    </tr>
-                </thead>
-                <tbody class="text-center">
-                    {td_str}
-                </tbody>
-    </table>
-    <p>下面是最近一个小时的Syslog的数据统计饼状图分析!</p>
-    <p>
-    <br><img src="cid:syslog"></br>
-    </p>
-    <p>
-    """
     qyt_smtp_attachment('smtp.qq.com',
                         '3348326959@qq.com',
                         'dmyymagcazklcjie',
                         '3348326959@qq.com',
                         '3348326959@qq.com;collinsctk@qytang.com',
                         '乾颐堂Python强化班Syslog分析',
-                        main_body_txt,
+                        email_html,
                         ['./word_pdf/src_img/logo.png', 'syslog.png'])
     import os
     os.remove('syslog.png')
