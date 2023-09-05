@@ -7,8 +7,9 @@
 # https://ke.qq.com/course/271956?tuin=24199d8a
 
 import logging
-
+import warnings
 logging.getLogger("kamene.runtime").setLevel(logging.ERROR)  # 清除报错
+warnings.filterwarnings("ignore")
 import re
 from kamene.all import *
 import hexdump
