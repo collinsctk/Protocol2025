@@ -55,6 +55,7 @@ def qyt_smtp_attachment(mailserver, username, password, from_mail, to_mail, subj
 if __name__ == '__main__':
     # 使用Linux解释器 & WIN解释器
     # 注意cid:Logo 对应头部里边的Content-ID的名称
+    # ---------------------------- 案例一: 简单的图文 ----------------------------
     main_body_txt = """
     <h3>图片测试</h3>
     <p>这是乾颐堂公司LOGO图片。</p>
@@ -90,6 +91,7 @@ if __name__ == '__main__':
         email_template = Template(f.read())
     email_html = email_template.render(severity_list=severity_list)
 
+    # 发送邮件
     qyt_smtp_attachment('smtp.qq.com',
                         '3348326959@qq.com',
                         'dmyymagcazklcjie',
@@ -98,6 +100,7 @@ if __name__ == '__main__':
                         '乾颐堂Python强化班Syslog分析',
                         email_html,
                         ['./word_pdf/src_img/logo.png', 'syslog.png'])
+    # 删除没有用的图片
     import os
     os.remove('syslog.png')
 
