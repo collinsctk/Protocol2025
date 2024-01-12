@@ -35,8 +35,10 @@ if __name__ == '__main__':
     devices_cmd_list = [[d, 'admin', 'Cisc0123', 'show run'] for d in devices_list]
     # 多参数使用*device来传
 
-    # 协程部分
+    # ============================记录开始时间================================
     start_time = datetime.now()
+
+    # -------------------------------协程部分---------------------------------
 
     # 循环任务计数号
     task_no = 1
@@ -61,15 +63,13 @@ if __name__ == '__main__':
             print('='*40 + s.result()[0] + '='*40)
             print(s.result()[1])
 
-    # 打印结束时间
-    end_time = datetime.now()
-    print((end_time - start_time).seconds)
+    # -------------------------------普通操作-------------------------------
 
-    # 普通操作
-    # start_time = datetime.now()
     # for d in devices_cmd_list:
     #     cmd_result = netmiko_show_cred(*d)
     #     print('=' * 40 + d[0] + '=' * 40)
     #     print(cmd_result)
-    # end_time = datetime.now()
-    # print((end_time - start_time).seconds)
+
+    # ==========================记录结束时间，并打印耗时=======================
+    end_time = datetime.now()
+    print((end_time - start_time).seconds)
