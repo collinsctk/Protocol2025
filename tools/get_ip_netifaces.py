@@ -6,6 +6,8 @@
 # 教主技术进化论拓展你的技术新边疆
 # https://ke.qq.com/course/271956?tuin=24199d8a
 
+# windows安装netifaces需要安装 Build Tools for Visual Studio 2019
+# https://visualstudio.microsoft.com/zh-hant/visual-cpp-build-tools/
 
 from netifaces import interfaces, ifaddresses, AF_INET, AF_INET6
 import platform
@@ -50,8 +52,8 @@ def get_ipv6_address(ifname):
 
 if __name__ == "__main__":
     if platform.system() == "Linux":
-        print(get_ip_address('ens192'))
-        print(get_ipv6_address('ens192'))
+        print(get_ip_address('ens224'))
+        print(get_ipv6_address('ens224'))
     elif platform.system() == "Windows":
-        print(get_ip_address('Net1'))
-        print(get_ipv6_address('Net1'))
+        print(get_ip_address('VMware Network Adapter VMnet1'))
+        print(get_ipv6_address('VMware Network Adapter VMnet1'))

@@ -45,6 +45,6 @@ def get_mac_address(ifname):
 if __name__ == '__main__':
     import platform
     if platform.system() == "Linux":
-        print(get_mac_address('ens192'))
+        print(get_mac_address('ens224'))
     elif platform.system() == "Windows":
-        print(get_mac_address('Net1'))
+        print(get_mac_address('VMware Network Adapter VMnet1'))
