@@ -13,6 +13,8 @@ from tools.get_ifname import get_ifname
 import platform
 
 
+# VMware Network Adapter VMnet1 ---- 显示的网卡名字（名字可以改）
+# VMware Virtual Ethernet Adapter for VMnet1 ---- Kamene需要这个名字（不能改）
 def scapy_iface(os_name):
     if platform.system() == "Linux":
         return os_name
