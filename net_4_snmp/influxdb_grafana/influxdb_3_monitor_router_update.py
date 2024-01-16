@@ -11,9 +11,16 @@ from net_4_snmp.snmp_v2.snmpv2_getall import snmpv2_getall
 import time
 import datetime
 from influxdb import InfluxDBClient
-from net_4_snmp.influxdb_grafana.influxdb_1_connect import influx_host, router_ip, snmp_community
+from net_4_snmp.influxdb_grafana.influxdb_1_connect import (influx_host,
+                                                            router_ip,
+                                                            snmp_community,
+                                                            influx_db,
+                                                            influx_port,
+                                                            influx_user,
+                                                            influx_password,
+                                                            )
 
-client = InfluxDBClient(influx_host, 8086, 'qytdbuser', 'Cisc0123', 'qytdb')
+client = InfluxDBClient(influx_host, influx_port, influx_user, influx_password, influx_db)
 # client.query("drop measurement router_monitor")  # 删除表
 # client.query("drop measurement if_monitor")  # 删除表
 

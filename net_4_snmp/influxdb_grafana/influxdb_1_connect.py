@@ -8,12 +8,18 @@
 
 from influxdb import InfluxDBClient
 
-influx_host = '10.1.1.180'
-router_ip = "10.1.1.253"
+influx_host = '10.10.1.200'
+router_ip = "10.10.1.1"
 snmp_community = "tcpipro"
+influx_db = "qytdb"
+influx_port = 8086
+influx_measurement = "router_monitor"
+influx_admin = "admin"
+influx_user = "qytdbuser"
+influx_password = "Cisc0123"
 
 if __name__ == '__main__':
-    client = InfluxDBClient(influx_host, 8086, 'admin', 'Cisc0123')
+    client = InfluxDBClient(influx_host, influx_port, influx_admin, influx_password)
 
     # 查看数据库 
     print(client.get_list_database())
@@ -24,7 +30,7 @@ if __name__ == '__main__':
     print(client.drop_database('testdb'))
     print(client.get_list_database())
 
-    client = InfluxDBClient(influx_host, 8086, 'qytdbuser', 'Cisc0123', 'qytdb')
+    client = InfluxDBClient(influx_host, 8086, influx_user, influx_password, influx_db)
     measurements_result = client.query('show measurements;')  # 显示数据库中的表
     print(f"Result: {format(measurements_result)}")
 
