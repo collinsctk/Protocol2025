@@ -15,7 +15,7 @@ import json
 
 while True:
     try:
-        cpu_percent = int(snmpv2_get("10.1.1.253", "tcpipro", "1.3.6.1.4.1.9.9.109.1.1.1.1.3.7", port=161)[1])
+        cpu_percent = int(snmpv2_get("10.10.1.1", "tcpipro", "1.3.6.1.4.1.9.9.109.1.1.1.1.3.7", port=161)[1])
         router_name = 'R1'
         cpu_timestamp = str(datetime.now().timestamp())
         post_dict = {'cpu_percent': cpu_percent,

@@ -44,6 +44,10 @@ def get_info_writedb(ip, rocommunity, seconds):
 
 
 if __name__ == '__main__':
-    get_info_writedb("10.1.1.253", "tcpipro", 60)
+    # ip地址与snmp community字符串
+    ip_address = "10.10.1.1"
+    community = "tcpipro"
+
+    get_info_writedb(ip_address, community, 60)
     for i in session.query(RouterMonitor).all():
         print(i)
