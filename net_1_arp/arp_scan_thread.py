@@ -37,7 +37,11 @@ if __name__ == '__main__':
     if platform.system() == "Linux":
         input_ifname = 'ens224'
     elif platform.system() == "Windows":
-        input_ifname = 'VMware Network Adapter VMnet1'
+        # 注意网卡有两个名字
+        # 名称1: VMware Network Adapter VMnet1 ---- 显示的网卡名字（名字可以改）
+        # 名称2: VMware Virtual Ethernet Adapter for VMnet1 ---- Kamene需要这个名字（不能改）
+        # 可以使用函数get_ifname()从名称1得到名称2, 但是速度很慢，建议直接手动输入名称2
+        input_ifname = 'VMware Virtual Ethernet Adapter for VMnet1'
     for ip, mac in scapy_arp_scan("10.10.1.0/24",
                                   input_ifname
                                   ).items():
