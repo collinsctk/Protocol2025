@@ -93,43 +93,54 @@ def snmpv3_getnext(ip='', user='', hash_meth=None, hash_key=None, cry_meth=None,
 
 if __name__ == '__main__':
     # 使用Linux解释器 & WIN解释器
+    ip_address = "10.10.1.1"
+    snmpv3_user = 'qytanguser'
+    hash_meth = 'sha'
+    hash_key = 'Cisc0123'
+    cry_meth = 'aes128'
+    cry_key = 'Cisc0123'
+
     # 接口信息
-    for item in snmpv3_getnext('10.1.1.253',
-                               'qytanguser',
-                               'sha',
-                               'Cisc0123',
-                               'des',
-                               'Cisc0123',
+    print('-' * 80 + '\n' + '接口信息' + '\n' + '-' * 80)
+    for item in snmpv3_getnext(ip_address,
+                               snmpv3_user,
+                               hash_meth,
+                               hash_key,
+                               cry_meth,
+                               cry_key,
                                '1.3.6.1.2.1.2.2.1.2',
                                5):
         print('OID: ', item[0], 'VALUE: ', item[1])  # 从oid_list读取并且打印信息
     # 接口速率
-    for item in snmpv3_getnext('10.1.1.253',
-                               'qytanguser',
-                               'sha',
-                               'Cisc0123',
-                               'des',
-                               'Cisc0123',
+    print('-' * 80 + '\n' + '接口速率' + '\n' + '-' * 80)
+    for item in snmpv3_getnext(ip_address,
+                               snmpv3_user,
+                               hash_meth,
+                               hash_key,
+                               cry_meth,
+                               cry_key,
                                '1.3.6.1.2.1.2.2.1.5',
                                5):
         print('OID: ', item[0], 'VALUE: ', item[1])  # 从oid_list读取并且打印信息
-    # 进接口字节数
-    for item in snmpv3_getnext('10.1.1.253',
-                               'qytanguser',
-                               'sha',
-                               'Cisc0123',
-                               'des',
-                               'Cisc0123',
+    # 入接口字节数
+    print('-' * 80 + '\n' + '入接口字节数' + '\n' + '-' * 80)
+    for item in snmpv3_getnext(ip_address,
+                               snmpv3_user,
+                               hash_meth,
+                               hash_key,
+                               cry_meth,
+                               cry_key,
                                '1.3.6.1.2.1.2.2.1.10',
                                5):
         print('OID: ', item[0], 'VALUE: ', item[1])  # 从oid_list读取并且打印信息
     # 出接口字节数
-    for item in snmpv3_getnext('10.1.1.253',
-                               'qytanguser',
-                               'sha',
-                               'Cisc0123',
-                               'des',
-                               'Cisc0123',
+    print('-' * 80 + '\n' + '出接口字节数' + '\n' + '-' * 80)
+    for item in snmpv3_getnext(ip_address,
+                               snmpv3_user,
+                               hash_meth,
+                               hash_key,
+                               cry_meth,
+                               cry_key,
                                '1.3.6.1.2.1.2.2.1.10',
                                5):
         print('OID: ', item[0], 'VALUE: ', item[1])  # 从oid_list读取并且打印信息

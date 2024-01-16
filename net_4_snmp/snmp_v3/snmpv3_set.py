@@ -115,7 +115,27 @@ def snmpv3_set(ip='', user='', hash_meth=None, hash_key=None, cry_meth=None, cry
 
 if __name__ == '__main__':
     # 使用Linux解释器 & WIN解释器
+    ip_address = "10.10.1.1"
+    snmpv3_user = 'qytanguser'
+    hash_meth = 'sha'
+    hash_key = 'Cisc0123'
+    cry_meth = 'aes128'
+    cry_key = 'Cisc0123'
+
     # 配置主机名
-    snmpv3_set('10.1.1.253', 'qytanguser', 'sha', 'Cisc0123', 'des', 'Cisc0123', '1.3.6.1.2.1.1.5.0', 'R1')
+    snmpv3_set(ip_address,
+               snmpv3_user,
+               hash_meth,
+               hash_key,
+               cry_meth,
+               cry_key,
+               '1.3.6.1.2.1.1.5.0', 'R1')
     # shutdown G2
-    snmpv3_set('10.1.1.253', 'qytanguser', 'sha', 'Cisc0123', 'des', 'Cisc0123', '1.3.6.1.2.1.2.2.1.7.2', 1)
+    # 1 为up , 2 为down
+    snmpv3_set(ip_address,
+               snmpv3_user,
+               hash_meth,
+               hash_key,
+               cry_meth,
+               cry_key,
+               '1.3.6.1.2.1.2.2.1.7.2', 2)

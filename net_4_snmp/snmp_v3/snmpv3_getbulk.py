@@ -11,7 +11,6 @@ from pysnmp.entity.rfc3413 import cmdgen
 from pysnmp.carrier.asynsock.dgram import udp
 
 
-oid_list = []
 max_repetitions = 0
 # Create SNMP engine instance
 snmp_engine = engine.SnmpEngine()  # 添加SNMP引擎实例
@@ -24,7 +23,7 @@ config.addSocketTransport(snmp_engine, udp.domainName, udp.UdpSocketTransport().
 
 # Error/response reciever
 def cb_fun(send_request_handle, error_indication, error_status, error_index, var_bind_table, cb_ctx):
-    global oid_list
+    oid_list = cb_ctx  # 全局清单
     global max_repetitions
     if error_indication:
         print(error_indication)
@@ -53,6 +52,7 @@ def snmpv3_getbulk(ip='', user='', hash_meth=None, hash_key=None, cry_meth=None,
     # usmAesCfb192Protocol - AES encryption, 192-bit
     # usmAesCfb256Protocol - AES encryption, 256-bit
     # usmNoPrivProtocol - no encryption
+    oid_list = []
     global max_repetitions
     max_repetitions = num
 
@@ -112,7 +112,7 @@ def snmpv3_getbulk(ip='', user='', hash_meth=None, hash_key=None, cry_meth=None,
 
     # Prepare initial request to be sent
     # 创建'yourDevice'，有OID和处理方法cbFun
-    cmdgen.BulkCommandGenerator().sendReq(snmp_engine, 'yourDevice', 0, 1, ((oid, None),), cb_fun)
+    cmdgen.BulkCommandGenerator().sendReq(snmp_engine, 'yourDevice', 0, 1, ((oid, None),), cb_fun, oid_list)
 
     # Run I/O dispatcher which would send pending queries and process responses
     snmp_engine.transportDispatcher.runDispatcher()  # 运行实例
@@ -121,46 +121,58 @@ def snmpv3_getbulk(ip='', user='', hash_meth=None, hash_key=None, cry_meth=None,
 
 if __name__ == '__main__':
     # 使用Linux解释器 & WIN解释器
+
+    ip_address = "10.10.1.1"
+    snmpv3_user = 'qytanguser'
+    hash_meth = 'sha'
+    hash_key = 'Cisc0123'
+    cry_meth = 'aes128'
+    cry_key = 'Cisc0123'
+
     # 接口信息
-    for item in snmpv3_getbulk('10.1.1.253',
-                               'qytanguser',
-                               'sha',
-                               'Cisc0123',
-                               'des',
-                               'Cisc0123',
+    print('-' * 80 + '\n' + '接口信息' + '\n' + '-' * 80)
+    for item in snmpv3_getbulk(ip_address,
+                               snmpv3_user,
+                               hash_meth,
+                               hash_key,
+                               cry_meth,
+                               cry_key,
                                '1.3.6.1.2.1.2.2.1.2',
                                5):
         print('OID: ', item[0], 'VALUE: ', item[1])  # 从oid_list读取并且打印信息
 
-    # # 接口速率
-    # for item in snmpv3_getbulk('10.1.1.253',
-    #                            'qytanguser',
-    #                            'sha',
-    #                            'Cisc0123',
-    #                            'des',
-    #                            'Cisc0123',
-    #                            '1.3.6.1.2.1.2.2.1.5',
-    #                            5):
-    #     print('OID: ', item[0], 'VALUE: ', item[1])  # 从oid_list读取并且打印信息
+    # 接口速率
+    print('-' * 80 + '\n' + '接口速率' + '\n' + '-' * 80)
+    for item in snmpv3_getbulk(ip_address,
+                               snmpv3_user,
+                               hash_meth,
+                               hash_key,
+                               cry_meth,
+                               cry_key,
+                               '1.3.6.1.2.1.2.2.1.5',
+                               5):
+        print('OID: ', item[0], 'VALUE: ', item[1])  # 从oid_list读取并且打印信息
 
-    # # 进接口字节数
-    # for item in snmpv3_getbulk('10.1.1.253',
-    #                            'qytanguser',
-    #                            'sha',
-    #                            'Cisc0123',
-    #                            'des',
-    #                            'Cisc0123',
-    #                            '1.3.6.1.2.1.2.2.1.10',
-    #                            5):
-    #     print('OID: ', item[0], 'VALUE: ', item[1])  # 从oid_list读取并且打印信息
+    # 入接口字节数
+    print('-' * 80 + '\n' + '入接口字节数' + '\n' + '-' * 80)
+    for item in snmpv3_getbulk(ip_address,
+                               snmpv3_user,
+                               hash_meth,
+                               hash_key,
+                               cry_meth,
+                               cry_key,
+                               '1.3.6.1.2.1.2.2.1.10',
+                               5):
+        print('OID: ', item[0], 'VALUE: ', item[1])  # 从oid_list读取并且打印信息
 
-    # # 出接口字节数
-    # for item in snmpv3_getbulk('10.1.1.253',
-    #                            'qytanguser',
-    #                            'sha',
-    #                            'Cisc0123',
-    #                            'des',
-    #                            'Cisc0123',
-    #                            '1.3.6.1.2.1.2.2.1.16',
-    #                            5):
-    #     print('OID: ', item[0], 'VALUE: ', item[1])  # 从oid_list读取并且打印信息
+    # 出接口字节数
+    print('-' * 80 + '\n' + '出接口字节数' + '\n' + '-' * 80)
+    for item in snmpv3_getbulk(ip_address,
+                               snmpv3_user,
+                               hash_meth,
+                               hash_key,
+                               cry_meth,
+                               cry_key,
+                               '1.3.6.1.2.1.2.2.1.16',
+                               5):
+        print('OID: ', item[0], 'VALUE: ', item[1])  # 从oid_list读取并且打印信息
