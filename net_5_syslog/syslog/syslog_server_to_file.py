@@ -39,6 +39,7 @@ class SyslogUDPHandler(socketserver.BaseRequestHandler):
 
 if __name__ == "__main__":
     # 使用Linux解释器 & WIN解释器
+    # -------------------注意如果是WINDOWS, 需要关闭防火墙, 或者开放514端口-------------------
     try:
         HOST, PORT = "0.0.0.0", 514                                         # 本地地址与端口
         server = socketserver.UDPServer((HOST, PORT), SyslogUDPHandler)     # 绑定本地地址，端口和syslog处理方法

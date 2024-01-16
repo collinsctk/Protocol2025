@@ -55,6 +55,6 @@ class Syslog:
 
 if __name__ == "__main__":
     # 使用Linux解释器 & WIN解释器
-    log = Syslog("10.1.1.180")
+    log = Syslog("10.10.1.100")
     log.send("qytang syslog test", Level.NOTICE)
     log.notice("qytang syslog test")

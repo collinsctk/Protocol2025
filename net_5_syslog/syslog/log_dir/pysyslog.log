@@ -1,36 +1,10 @@
-2022/07/26 19:19:38 - source_ip: 10.1.1.253 - message: <189>70543: *Jul 26 11:19:20.815: %SYS-5-CONFIG_I: Configured from console by admin on vty0 (10.1.1.100)
-2022/07/26 19:19:50 - source_ip: 10.1.1.253 - message: <187>70544: *Jul 26 11:19:32.853: %LINK-3-UPDOWN: Interface GigabitEthernet2, changed state to up
-2022/07/26 19:19:51 - source_ip: 10.1.1.253 - message: <189>70545: *Jul 26 11:19:33.854: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2, changed state to up
-2022/07/26 19:19:56 - source_ip: 10.1.1.253 - message: <189>70546: *Jul 26 11:19:38.624: %LINK-5-CHANGED: Interface GigabitEthernet2, changed state to administratively down
-2022/07/26 19:19:56 - source_ip: 10.1.1.253 - message: <189>70547: *Jul 26 11:19:39.624: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2, changed state to down
-2022/07/26 19:20:30 - source_ip: 10.1.1.253 - message: <187>70548: *Jul 26 11:20:12.855: %LINK-3-UPDOWN: Interface GigabitEthernet2, changed state to up
-2022/07/26 19:20:30 - source_ip: 10.1.1.253 - message: <189>70549: *Jul 26 11:20:13.856: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2, changed state to up
-2022/07/26 19:26:29 - source_ip: 10.1.1.253 - message: <189>70550: *Jul 26 11:26:11.954: %SYS-5-CONFIG_I: Configured from 10.1.1.100 by snmp
-2022/07/26 19:26:31 - source_ip: 10.1.1.253 - message: <189>70551: *Jul 26 11:26:13.952: %LINK-5-CHANGED: Interface GigabitEthernet2, changed state to administratively down
-2022/07/26 19:26:33 - source_ip: 10.1.1.253 - message: <189>70552: *Jul 26 11:26:14.953: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2, changed state to down
-2022/07/26 19:26:34 - source_ip: 10.1.1.253 - message: <189>70553: *Jul 26 11:26:17.094: %SYS-5-CONFIG_I: Configured from 10.1.1.100 by snmp
-2022/07/26 19:26:41 - source_ip: 10.1.1.253 - message: <189>70554: *Jul 26 11:26:23.858: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2, changed state to up
-2022/07/26 19:26:44 - source_ip: 10.1.1.253 - message: <189>70555: *Jul 26 11:26:27.027: %SYS-5-CONFIG_I: Configured from 10.1.1.100 by snmp
-2022/07/26 19:29:44 - source_ip: 10.1.1.253 - message: <189>70556: *Jul 26 11:29:26.940: %LINK-5-CHANGED: Interface GigabitEthernet2, changed state to administratively down
-2022/07/26 19:29:47 - source_ip: 10.1.1.253 - message: <189>70557: *Jul 26 11:29:27.941: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2, changed state to down
-2022/07/26 19:29:48 - source_ip: 10.1.1.253 - message: <189>70558: *Jul 26 11:29:30.678: %SYS-5-CONFIG_I: Configured from 10.1.1.100 by snmp
-2022/07/26 19:29:51 - source_ip: 10.1.1.253 - message: <189>70559: *Jul 26 11:29:33.862: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2, changed state to up
-2022/07/26 19:30:04 - source_ip: 10.1.1.253 - message: <189>70560: *Jul 26 11:29:46.449: %LINK-5-CHANGED: Interface GigabitEthernet2, changed state to administratively down
-2022/07/26 19:30:04 - source_ip: 10.1.1.253 - message: <189>70561: *Jul 26 11:29:47.450: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2, changed state to down
-2022/07/26 19:30:05 - source_ip: 10.1.1.253 - message: <189>70562: *Jul 26 11:29:48.008: %SYS-5-CONFIG_I: Configured from 10.1.1.100 by snmp
-2022/07/26 19:30:11 - source_ip: 10.1.1.253 - message: <189>70563: *Jul 26 11:29:53.862: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2, changed state to up
-2022/11/18 18:00:16 - source_ip: 10.1.1.100 - message: <189>qytang syslog test
-2022/11/18 18:01:25 - source_ip: 10.1.1.253 - message: <190>871: *Nov 18 10:01:24.539: %SYS-6-LOGGINGHOST_STARTSTOP: Logging to host 10.1.1.180 port 0 CLI Request Triggered
-2022/11/18 18:01:26 - source_ip: 10.1.1.253 - message: <190>872: *Nov 18 10:01:25.539: %SYS-6-LOGGINGHOST_STARTSTOP: Logging to host 10.1.1.180 port 514 started - CLI initiated
-2022/11/18 18:01:28 - source_ip: 10.1.1.253 - message: <189>873: *Nov 18 10:01:27.548: %SYS-5-CONFIG_I: Configured from console by admin on vty1 (10.1.1.100)
-2022/11/18 18:02:51 - source_ip: 10.1.1.100 - message: <189>qytang syslog test
-2022/11/18 18:04:33 - source_ip: 10.1.1.253 - message: <189>874: *Nov 18 10:04:32.689: %SYS-5-CONFIG_I: Configured from console by admin on vty0 (10.1.1.100)
-2022/11/18 18:04:33 - source_ip: 10.1.1.253 - message: <189>875: *Nov 18 10:04:33.529: %LINEPROTO-5-UPDOWN: Line protocol on Interface Loopback0, changed state to up
-2022/11/18 18:04:34 - source_ip: 10.1.1.253 - message: <187>876: *Nov 18 10:04:33.530: %LINK-3-UPDOWN: Interface Loopback0, changed state to up
-2022/11/18 18:04:41 - source_ip: 10.1.1.253 - message: <189>877: *Nov 18 10:04:38.837: %LINEPROTO-5-UPDOWN: Line protocol on Interface Loopback0, changed state to down
-2022/11/18 18:04:41 - source_ip: 10.1.1.253 - message: <189>878: *Nov 18 10:04:38.837: %LINK-5-CHANGED: Interface Loopback0, changed state to administratively down
-2022/11/18 18:04:42 - source_ip: 10.1.1.253 - message: <189>879: *Nov 18 10:04:41.370: %SYS-5-CONFIG_I: Configured from 10.1.1.100 by snmp
-2022/11/18 18:04:43 - source_ip: 10.1.1.253 - message: <189>880: *Nov 18 10:04:43.367: %LINEPROTO-5-UPDOWN: Line protocol on Interface Loopback0, changed state to up
-2022/11/18 18:04:44 - source_ip: 10.1.1.253 - message: <187>881: *Nov 18 10:04:43.367: %LINK-3-UPDOWN: Interface Loopback0, changed state to up
-2023/04/11 17:51:44 - source_ip: 10.1.1.180 - message: <189>qytang syslog test
-2023/04/11 17:51:44 - source_ip: 10.1.1.180 - message: <189>qytang syslog test
+2024/01/16 10:50:12 - source_ip: 10.10.1.100 - message: <189>qytang syslog test
+2024/01/16 10:50:12 - source_ip: 10.10.1.100 - message: <189>qytang syslog test
+2024/01/16 10:51:47 - source_ip: 10.10.1.100 - message: <189>qytang syslog test
+2024/01/16 10:51:47 - source_ip: 10.10.1.100 - message: <189>qytang syslog test
+2024/01/16 10:52:07 - source_ip: 10.10.1.1 - message: <189>14814: *Jan 16 10:52:02.966: %SYS-5-CONFIG_I: Configured from console by admin on vty0 (10.10.1.100)
+2024/01/16 10:52:08 - source_ip: 10.10.1.1 - message: <189>14815: *Jan 16 10:52:03.885: %LINK-5-CHANGED: Interface GigabitEthernet2, changed state to administratively down
+2024/01/16 10:54:43 - source_ip: 10.10.1.200 - message: <189>qytang syslog test
+2024/01/16 10:54:43 - source_ip: 10.10.1.200 - message: <189>qytang syslog test
+2024/01/16 10:55:02 - source_ip: 10.10.1.1 - message: <189>14816: *Jan 16 10:54:57.807: %SYS-5-CONFIG_I: Configured from console by admin on vty0 (10.10.1.100)
+2024/01/16 10:55:04 - source_ip: 10.10.1.1 - message: <189>14817: *Jan 16 10:54:59.080: %LINK-5-CHANGED: Interface GigabitEthernet2, changed state to administratively down
