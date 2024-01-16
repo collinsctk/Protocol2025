@@ -27,7 +27,7 @@ def scapy_ping_one(host, ifname):
             return host, True  # 返回主机和结果，1为通
         else:
             return host, False  # 返回主机和结果，2为不通
-    except Exception:
+    except AttributeError:
         return host, False  # 出现异常也返回主机和结果，2为不通
 
 
