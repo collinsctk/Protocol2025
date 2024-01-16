@@ -30,7 +30,7 @@ async def async_netmiko(task_id, ip, username, password, cmd):
 
 if __name__ == '__main__':
     # 设备清单
-    devices_list = ['10.1.1.253', '10.1.1.252', '10.1.1.253', '10.1.1.252', '10.1.1.253', '10.1.1.252']
+    devices_list = ['10.10.1.1', '10.10.1.1', '10.10.1.1', '10.10.1.1', '10.10.1.1', '10.10.1.1']
     # 把ip, username, password, cmd放到一个列表, 便于后续使用*device来传多参数
     devices_cmd_list = [[d, 'admin', 'Cisc0123', 'show run'] for d in devices_list]
     # 多参数使用*device来传
@@ -39,36 +39,36 @@ if __name__ == '__main__':
     start_time = datetime.now()
 
     # -------------------------------协程部分---------------------------------
-
-    # 循环任务计数号
-    task_no = 1
-
-    # 协程的任务清单
-    tasks = []
-
-    for d in devices_cmd_list:
-        # 产生携程任务
-        task = loop.create_task(async_netmiko(task_no, *d))
-        # 把产生的携程任务放入任务列表
-        tasks.append(task)
-        # 任务号加1
-        task_no += 1
-
-    # 等待所有任务执行完毕
-    loop.run_until_complete(asyncio.wait(tasks))
-
-    # 提取并且打印结果, 0号位为IP, 1号位为命令执行结果
-    for s in tasks:
-        if s.result():
-            print('='*40 + s.result()[0] + '='*40)
-            print(s.result()[1])
+    #
+    # # 循环任务计数号
+    # task_no = 1
+    #
+    # # 协程的任务清单
+    # tasks = []
+    #
+    # for d in devices_cmd_list:
+    #     # 产生携程任务
+    #     task = loop.create_task(async_netmiko(task_no, *d))
+    #     # 把产生的携程任务放入任务列表
+    #     tasks.append(task)
+    #     # 任务号加1
+    #     task_no += 1
+    #
+    # # 等待所有任务执行完毕
+    # loop.run_until_complete(asyncio.wait(tasks))
+    #
+    # # 提取并且打印结果, 0号位为IP, 1号位为命令执行结果
+    # for s in tasks:
+    #     if s.result():
+    #         print('='*40 + s.result()[0] + '='*40)
+    #         print(s.result()[1])
 
     # -------------------------------普通操作-------------------------------
 
-    # for d in devices_cmd_list:
-    #     cmd_result = netmiko_show_cred(*d)
-    #     print('=' * 40 + d[0] + '=' * 40)
-    #     print(cmd_result)
+    for d in devices_cmd_list:
+        cmd_result = netmiko_show_cred(*d)
+        print('=' * 40 + d[0] + '=' * 40)
+        print(cmd_result)
 
     # ==========================记录结束时间，并打印耗时=======================
     end_time = datetime.now()

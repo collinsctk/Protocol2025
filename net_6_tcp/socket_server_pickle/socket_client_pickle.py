@@ -33,5 +33,5 @@ if __name__ == '__main__':
     # Server和Client需要分属两个不同的机器
     send_dict = {'key1': 'welcome to qytang' * 2048, 'key2': [1, 2, 3, 4, 5], 'key3': ([3, 4], 'python')}
     myfile = open('./file_dir/Logo.jpg', 'rb').read()
-    client_pickle('10.1.1.180', 5555, send_dict)
-    client_pickle('10.1.1.180', 5555, myfile)
+    client_pickle('10.10.1.100', 5555, send_dict)
+    client_pickle('10.10.1.100', 5555, myfile)

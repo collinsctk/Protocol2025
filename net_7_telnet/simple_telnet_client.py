@@ -57,4 +57,4 @@ def telnet_client(ip, username, password, cmd_list, enable=None, verbose=True):
 if __name__ == "__main__":
     # 使用Linux解释器 & WIN解释器
     cmds = ['terminal length 0', 'show ver', 'config ter', 'router ospf 1']
-    telnet_client('10.1.1.253', 'admin', 'Cisc0123', cmd_list=cmds, verbose=True)
+    telnet_client('10.10.1.1', 'admin', 'Cisc0123', cmd_list=cmds, verbose=True)

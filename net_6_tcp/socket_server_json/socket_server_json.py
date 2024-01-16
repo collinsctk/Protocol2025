@@ -53,5 +53,5 @@ if __name__ == '__main__':
     # 使用Linux解释器 & WIN解释器
     # Server和Client需要分属两个不同的机器
     server_ip = '0.0.0.0'
-    server_port = 6666
+    server_port = 6668
     server_json(server_ip, server_port)
