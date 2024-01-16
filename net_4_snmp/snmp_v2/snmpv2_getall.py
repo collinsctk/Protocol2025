@@ -48,8 +48,6 @@ def snmpv2_getall(ip, community, count=25, port=161):
 
 
 def get_all(device_ip, device_community):
-    # device_ip = "10.1.1.253"
-    # device_community = "tcpipro"
     device_name = snmpv2_get(device_ip, device_community, "1.3.6.1.2.1.1.5.0", port=161)[1]
     # print(device_name)
     cpu_usage = snmpv2_get(device_ip, device_community, "1.3.6.1.4.1.9.9.109.1.1.1.1.3.7", port=161)[1]
@@ -111,10 +109,14 @@ def get_all(device_ip, device_community):
 
 
 if __name__ == '__main__':
+    # ip地址与snmp community字符串
+    ip_address = "10.10.1.1"
+    community = "tcpipro"
+
     from pprint import pprint
 
-    final_result = snmpv2_getall("10.1.1.253", "tcpipro", count=25, port=161)
+    final_result = snmpv2_getall(ip_address, community, count=25, port=161)
     pprint(final_result, indent=4)
 
-    get_all_result = get_all("10.1.1.253", "tcpipro")
+    get_all_result = get_all(ip_address, community)
     pprint(get_all_result, indent=4)

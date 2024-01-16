@@ -34,35 +34,21 @@ def snmpv2_getnext(ip, community, oid, port=161):
 
 if __name__ == "__main__":
     # 使用Linux解释器 & WIN解释器
+
+    # ip地址与snmp community字符串
+    ip_address = "10.10.1.1"
+    community = "tcpipro"
+
     # 显示接口信息
-    print(snmpv2_getnext("10.1.1.253", "tcpipro", "1.3.6.1.2.1.2.2.1.2", port=161))
-    for x, y in snmpv2_getnext("10.1.1.253", "tcpipro", "1.3.6.1.2.1.2.2.1.2", port=161):
+    print(snmpv2_getnext(ip_address, community, "1.3.6.1.2.1.2.2.1.2", port=161))
+    for x, y in snmpv2_getnext(ip_address, community, "1.3.6.1.2.1.2.2.1.2", port=161):
         print(x, y)
     # 接口速率
-    print(snmpv2_getnext("10.1.1.253", "tcpipro", "1.3.6.1.2.1.2.2.1.5", port=161))
+    print(snmpv2_getnext(ip_address, community, "1.3.6.1.2.1.2.2.1.5", port=161))
 
     # 进接口字节数
-    print(snmpv2_getnext("10.1.1.253", "tcpipro", "1.3.6.1.2.1.2.2.1.10", port=161))
+    print(snmpv2_getnext(ip_address, community, "1.3.6.1.2.1.2.2.1.10", port=161))
 
     # 出接口字节数
-    print(snmpv2_getnext("10.1.1.253", "tcpipro", "1.3.6.1.2.1.2.2.1.16", port=161))
-
-    # ---------------------------------------------------------------------------------
-    if_name_raw = snmpv2_getnext("10.1.1.253", "tcpipro", "1.3.6.1.2.1.2.2.1.2", port=161)
-    if_name_list = [i[1] for i in if_name_raw]
-
-    if_speed_raw = snmpv2_getnext("10.1.1.253", "tcpipro", "1.3.6.1.2.1.2.2.1.5", port=161)
-    if_speed_list = [i[1] for i in if_speed_raw]
-
-    if_in_raw = snmpv2_getnext("10.1.1.253", "tcpipro", "1.3.6.1.2.1.2.2.1.10", port=161)
-    if_in_list = [i[1] for i in if_in_raw]
-
-    if_out_raw = snmpv2_getnext("10.1.1.253", "tcpipro", "1.3.6.1.2.1.2.2.1.16", port=161)
-    if_out_list = [i[1] for i in if_out_raw]
-
-    final_list = []
-    for name, speed, in_bytes, out_bytes in zip(if_name_list, if_speed_list, if_in_list, if_out_list):
-        final_list.append({'name': name, 'speed': speed, 'in_bytes': in_bytes, 'out_bytes': out_bytes})
-    from pprint import pprint
-    pprint(final_list, indent=4)
+    print(snmpv2_getnext(ip_address, community, "1.3.6.1.2.1.2.2.1.16", port=161))
 

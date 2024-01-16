@@ -3,9 +3,9 @@ from snmpv2_getbulk import snmpv2_getbulk
 
 
 def snmpv2_getall(ip, community, count=25, port=161):
-    cpu_usage = int(snmpv2_get("10.1.1.253", community, "1.3.6.1.4.1.9.9.109.1.1.1.1.3.7", port=161)[1])
-    mem_free = snmpv2_get("10.1.1.253", community, "1.3.6.1.4.1.9.9.109.1.1.1.1.13.7", port=161)[1]
-    mem_use = snmpv2_get("10.1.1.253", community, "1.3.6.1.4.1.9.9.109.1.1.1.1.12.7", port=161)[1]
+    cpu_usage = int(snmpv2_get(ip, community, "1.3.6.1.4.1.9.9.109.1.1.1.1.3.7", port=161)[1])
+    mem_free = snmpv2_get(ip, community, "1.3.6.1.4.1.9.9.109.1.1.1.1.13.7", port=161)[1]
+    mem_use = snmpv2_get(ip, community, "1.3.6.1.4.1.9.9.109.1.1.1.1.12.7", port=161)[1]
     mem_usage = round((int(mem_use) / (int(mem_use) + int(mem_free))) * 100, 2)
 
     router_all_dict = {
@@ -15,9 +15,9 @@ def snmpv2_getall(ip, community, count=25, port=161):
 
     }
 
-    if_name_list = [i[1] for i in snmpv2_getbulk("10.1.1.253", "tcpipro", "1.3.6.1.2.1.2.2.1.2", count=25, port=161)]
+    if_name_list = [i[1] for i in snmpv2_getbulk(ip, community, "1.3.6.1.2.1.2.2.1.2", count=25, port=161)]
     # print(if_name_list)
-    if_state_list_raw = [i[1] for i in snmpv2_getbulk("10.1.1.253", "tcpipro", "1.3.6.1.2.1.2.2.1.7", count=25, port=161)]
+    if_state_list_raw = [i[1] for i in snmpv2_getbulk(ip, community, "1.3.6.1.2.1.2.2.1.7", count=25, port=161)]
     # print(if_state_list_raw)
     if_state_list = []
     for i in if_state_list_raw:
@@ -26,9 +26,9 @@ def snmpv2_getall(ip, community, count=25, port=161):
         else:
             if_state_list.append(False)
     # print(if_state_list)
-    if_in_bytes_list = [int(i[1]) for i in snmpv2_getbulk("10.1.1.253", "tcpipro", "1.3.6.1.2.1.2.2.1.10", port=161)]
+    if_in_bytes_list = [int(i[1]) for i in snmpv2_getbulk(ip, community, "1.3.6.1.2.1.2.2.1.10", port=161)]
     # print(if_in_bytes_list)
-    if_out_bytes_list = [int(i[1]) for i in snmpv2_getbulk("10.1.1.253", "tcpipro", "1.3.6.1.2.1.2.2.1.16", port=161)]
+    if_out_bytes_list = [int(i[1]) for i in snmpv2_getbulk(ip, community, "1.3.6.1.2.1.2.2.1.16", port=161)]
     # print(if_out_bytes_list)
 
     if_zip = zip(if_name_list, if_state_list, if_in_bytes_list, if_out_bytes_list)
@@ -61,7 +61,7 @@ def snmpv2_getall(ip, community, count=25, port=161):
                         'VoIP-Null0': {'interface_in_bytes': 0,
                                        'interface_out_bytes': 0,
                                        'interface_state': True}},
-     'ip': '10.1.1.253',
+     'ip': '10.10.1.1',
      'mem_usage': 70.54}
     """
     # ----------------------------------interface_list---------------------------------
@@ -96,7 +96,7 @@ def snmpv2_getall(ip, community, count=25, port=161):
                          'interface_name': 'Null0',
                          'interface_out_bytes': 0,
                          'interface_state': True}],
-     'ip': '10.1.1.253',
+     'ip': '10.10.1.1',
      'mem_usage': 70.54}
     """
     return router_all_dict
@@ -104,4 +104,4 @@ def snmpv2_getall(ip, community, count=25, port=161):
 
 if __name__ == "__main__":
     from pprint import pprint
-    pprint(snmpv2_getall('10.1.1.253', 'tcpipro'))
+    pprint(snmpv2_getall('10.10.1.1', 'tcpipro'))

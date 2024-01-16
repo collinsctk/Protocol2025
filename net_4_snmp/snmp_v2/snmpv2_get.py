@@ -6,6 +6,8 @@
 # 教主VIP, 让我们聊点高级的
 # https://vip.qytang.com/
 
+# -----下面是解决win报错问题------
+# ------Linux下视乎没有问题------
 # pyasn1==0.4.8
 # pysnmp==4.4.12
 from pysnmp.hlapi import *
@@ -45,19 +47,24 @@ if __name__ == "__main__":
     # pyasn1==0.4.8
     # pysnmp==4.4.12
     # 使用Linux解释器 & WIN解释器
+
+    # ip地址与snmp community字符串
+    ip_address = "10.10.1.1"
+    community = "tcpipro"
+
     # 系统描述
-    print(snmpv2_get("10.1.1.253", "tcpipro", "1.3.6.1.2.1.1.1.0", port=161))
+    print(snmpv2_get(ip_address, community, "1.3.6.1.2.1.1.1.0", port=161))
     # 联系人
-    print(snmpv2_get("10.1.1.253", "tcpipro", "1.3.6.1.2.1.1.4.0", port=161))
+    print(snmpv2_get(ip_address, community, "1.3.6.1.2.1.1.4.0", port=161))
     # 主机名
-    print(snmpv2_get("10.1.1.253", "tcpipro", "1.3.6.1.2.1.1.5.0", port=161))
+    print(snmpv2_get(ip_address, community, "1.3.6.1.2.1.1.5.0", port=161))
     # 地点
-    print(snmpv2_get("10.1.1.253", "tcpipro", "1.3.6.1.2.1.1.6.0", port=161))
+    print(snmpv2_get(ip_address, community, "1.3.6.1.2.1.1.6.0", port=161))
     # cpmCPUTotal5sec
-    print(snmpv2_get("10.1.1.253", "tcpipro", "1.3.6.1.4.1.9.9.109.1.1.1.1.3.7", port=161))
+    print(snmpv2_get(ip_address, community, "1.3.6.1.4.1.9.9.109.1.1.1.1.3.7", port=161))
     # cpmCPUMemoryUsed
-    print(snmpv2_get("10.1.1.253", "tcpipro", "1.3.6.1.4.1.9.9.109.1.1.1.1.12.7", port=161))
+    print(snmpv2_get(ip_address, community, "1.3.6.1.4.1.9.9.109.1.1.1.1.12.7", port=161))
     # cpmCPUMemoryFree
-    print(snmpv2_get("10.1.1.253", "tcpipro", "1.3.6.1.4.1.9.9.109.1.1.1.1.13.7", port=161))
+    print(snmpv2_get(ip_address, community, "1.3.6.1.4.1.9.9.109.1.1.1.1.13.7", port=161))
 
 
