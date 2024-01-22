@@ -61,6 +61,11 @@ if __name__ == '__main__':
     hits = [a[1] for a in conn_num_list_top_5]
     plt.barh(url, hits, height=0.5)
 
+    # --------------------调整Y轴标签的格式，否则显示不完整-------------------
+    plt.yticks(rotation=30)  # 设置标签角度
+    plt.yticks(fontsize=10)  # 设置字体大小
+    plt.subplots_adjust(left=0.3)  # 设置标签和图的距离
+
     # ##########################添加注释###################################
     plt.rcParams['font.sans-serif'] = ['SimHei']  # 设置中文
     plt.title('站点访问量统计')  # 主题

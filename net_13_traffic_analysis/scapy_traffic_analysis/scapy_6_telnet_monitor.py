@@ -46,4 +46,4 @@ def telnet_monitor(user_filter, ifname):
 
 
 if __name__ == "__main__":
-    telnet_monitor('tcp port 23 and ip host 10.1.1.253', 'ens192')
+    telnet_monitor('tcp port 23 and ip host 10.10.1.1', 'ens224')

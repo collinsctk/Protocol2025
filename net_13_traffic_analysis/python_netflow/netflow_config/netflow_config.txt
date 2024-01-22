@@ -8,7 +8,7 @@ flow record Qytang-Record
  collect counter bytes
 
 flow exporter Netflow-Exporter
- destination 10.1.1.180
+ destination 10.10.1.200
  transport udp 2055
  template data timeout 30
 !
