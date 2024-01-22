@@ -136,7 +136,11 @@ if __name__ == '__main__':
     # print(decode_subject_base64('=?utf-8?b?6ZmE5Lu25rWL6K+VX+S4u+mimA==?='))
     from pprint import pprint
     i = 1
-    for x in qyt_rec_mail('pop.qq.com', '3348326959@qq.com', 'dmyymagcazklcjie', save_file=True, delete_email=True):
+    for x in qyt_rec_mail('pop.qq.com',
+                          '3348326959@qq.com',
+                          'anchwprpwxfbdbif',
+                          save_file=True,
+                          delete_email=True):
         print('='*50, '第', i, '封信', '='*50)
         pprint(x)
         i += 1
