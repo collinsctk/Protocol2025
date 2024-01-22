@@ -44,7 +44,7 @@ if __name__ == '__main__':
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    r = get_md5_config('10.1.1.253', 'admin', 'Cisc0123')
+    r = get_md5_config('10.10.1.1', 'admin', 'Cisc0123')
     if r:
         router_config = RouterConfig(
                                      device_ip=r[0],

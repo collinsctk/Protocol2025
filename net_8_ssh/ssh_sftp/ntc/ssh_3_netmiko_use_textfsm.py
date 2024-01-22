@@ -24,7 +24,7 @@ if __name__ == '__main__':
     # 设置环境变量
     # export NET_TEXTFSM=/ntc-templates_pyATS/templates/
     from pprint import pprint
-    parsed_result = netmiko_show_cred_use_textfsm('10.1.1.253',
+    parsed_result = netmiko_show_cred_use_textfsm('10.10.1.1',
                                                   'admin',
                                                   'Cisc0123',
                                                   'show ip inter brie',

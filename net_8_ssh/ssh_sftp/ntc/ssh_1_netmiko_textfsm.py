@@ -3,7 +3,7 @@ from textfsm import TextFSM
 # TextFSM的中文翻译https://www.jianshu.com/p/e75daa3af0a4
 from pprint import pprint
 
-raw_result = netmiko_show_cred('10.1.1.253', 'admin', 'Cisc0123', 'show ip interface brief')
+raw_result = netmiko_show_cred('10.10.1.1', 'admin', 'Cisc0123', 'show ip interface brief')
 print(raw_result)
 # raw_result = """
 # Interface              IP-Address      OK? Method Status                Protocol

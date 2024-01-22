@@ -56,5 +56,5 @@ def excel_ios_user_to_excel(ip, username, password, excelfile):
 
 
 if __name__ == '__main__':
-    # excel_user_to_ios('10.1.1.253', 'admin', 'Cisc0123', './excel_file/read_accounts.xlsx')
-    excel_ios_user_to_excel('10.1.1.253', 'admin', 'Cisc0123', './excel_file/write_iosuser_new.xlsx')
+    # excel_user_to_ios('10.10.1.1', 'admin', 'Cisc0123', './excel_file/read_accounts.xlsx')
+    excel_ios_user_to_excel('10.10.1.1', 'admin', 'Cisc0123', './excel_file/write_iosuser_new.xlsx')

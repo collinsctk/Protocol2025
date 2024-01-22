@@ -75,4 +75,10 @@ def netmiko_ntc_template(ip, username, password, cmd, device_type):
 
 if __name__ == "__main__":
     from pprint import pprint
-    pprint(netmiko_ntc_template('10.1.1.253', 'admin', 'Cisc0123', 'show interfaces', 'cisco_ios'))
+    pprint(netmiko_ntc_template('10.10.1.1',
+                                'admin',
+                                'Cisc0123',
+                                'show interfaces',
+                                'cisco_ios'
+                                )
+           )

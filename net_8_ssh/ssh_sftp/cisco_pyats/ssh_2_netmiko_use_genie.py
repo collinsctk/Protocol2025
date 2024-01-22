@@ -29,11 +29,11 @@ if __name__ == '__main__':
 
     # Linux环境
     from pprint import pprint
-    parsed_result = netmiko_show_cred_use_genie('10.1.1.253',
+    parsed_result = netmiko_show_cred_use_genie('10.10.1.1',
                                                 'admin',
                                                 'Cisc0123',
                                                 # 'show ip inter brief',
-                                                'show ip route'
-                                                # 'show version',
+                                                # 'show ip route'
+                                                'show version',
                                                 )
     pprint(parsed_result)

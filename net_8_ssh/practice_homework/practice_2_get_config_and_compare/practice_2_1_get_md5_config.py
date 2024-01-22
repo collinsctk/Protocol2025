@@ -50,7 +50,7 @@ if __name__ == '__main__':
     # =========================== 插入数据 ==========================
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
-    r = get_md5_config('10.1.1.253', 'admin', 'Cisc0123')
+    r = get_md5_config('10.10.1.1', 'admin', 'Cisc0123')
     if r:
         cursor.execute("insert into router_config_md5(ip, record_time, config, md5) values(?, ?, ?, ?)", (r[0], r[1], r[2], r[3]))
         conn.commit()
