@@ -66,7 +66,7 @@ if __name__ == '__main__':
     """
     qyt_smtp_attachment('smtp.qq.com',
                         '3348326959@qq.com',
-                        'dmyymagcazklcjie',
+                        'anchwprpwxfbdbif',
                         '3348326959@qq.com',
                         '3348326959@qq.com;collinsctk@qytang.com',
                         '图片测试',
@@ -94,7 +94,7 @@ if __name__ == '__main__':
     # 发送邮件
     qyt_smtp_attachment('smtp.qq.com',
                         '3348326959@qq.com',
-                        'dmyymagcazklcjie',
+                        'anchwprpwxfbdbif',
                         '3348326959@qq.com',
                         '3348326959@qq.com;collinsctk@qytang.com',
                         '乾颐堂Python强化班Syslog分析',
