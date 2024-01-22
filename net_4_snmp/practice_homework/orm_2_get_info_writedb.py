@@ -9,6 +9,8 @@
 
 import time
 from net_4_snmp.snmp_v2.snmpv2_get import snmpv2_get
+from net_4_snmp.snmp_v2.snmpv2_getall_2024 import snmpv2_all_2024
+
 from sqlalchemy.orm import sessionmaker
 from orm_1_create_table import RouterMonitor, db_filename
 from sqlalchemy import create_engine
@@ -24,17 +26,51 @@ session = Session()
 
 def get_info_writedb(ip, rocommunity, seconds):
     while seconds > 0:
-        # cpmCPUTotal5sec
-        cpu_info = snmpv2_get(ip, rocommunity, "1.3.6.1.4.1.9.9.109.1.1.1.1.3.7", port=161)[1]
-        # cpmCPUMemoryUsed
-        memu_info = snmpv2_get(ip, rocommunity, "1.3.6.1.4.1.9.9.109.1.1.1.1.12.7", port=161)[1]
-        # cpmCPUMemoryFree
-        memf_info = snmpv2_get(ip, rocommunity, "1.3.6.1.4.1.9.9.109.1.1.1.1.13.7", port=161)[1]
+        # # cpmCPUTotal5sec
+        # cpu_info = snmpv2_get(ip, rocommunity, "1.3.6.1.4.1.9.9.109.1.1.1.1.3.7", port=161)[1]
+        # # cpmCPUMemoryUsed
+        # memu_info = snmpv2_get(ip, rocommunity, "1.3.6.1.4.1.9.9.109.1.1.1.1.12.7", port=161)[1]
+        # # cpmCPUMemoryFree
+        # memf_info = snmpv2_get(ip, rocommunity, "1.3.6.1.4.1.9.9.109.1.1.1.1.13.7", port=161)[1]
+
+        get_all_dict = snmpv2_all_2024(ip, rocommunity)
+        """
+        {'cpu': 4,
+         'interface_list': [{'in_bytes': 113838503,
+                             'name': 'GigabitEthernet1',
+                             'out_bytes': 7136791,
+                             'status': True},
+                            {'in_bytes': 5198931,
+                             'name': 'GigabitEthernet2',
+                             'out_bytes': 0,
+                             'status': True},
+                            {'in_bytes': 183,
+                             'name': 'GigabitEthernet3',
+                             'out_bytes': 0,
+                             'status': False},
+                            {'in_bytes': 0,
+                             'name': 'VoIP-Null0',
+                             'out_bytes': 0,
+                             'status': True},
+                            {'in_bytes': 0,
+                             'name': 'Null0',
+                             'out_bytes': 0,
+                             'status': True}],
+         'ip_address': '10.10.1.1',
+         'mem_free': 5257348,
+         'mem_percent': 34.97,
+         'mem_used': 2827496}
+        """
+        ip = get_all_dict['ip_address']
+        cpu_info = get_all_dict['cpu']
+        mem_use = get_all_dict['mem_used']
+        mem_free = get_all_dict['mem_free']
+
         router_monitor_record = RouterMonitor(
             device_ip=ip,
             cpu_useage_percent=cpu_info,
-            mem_use=memu_info,
-            mem_free=memf_info
+            mem_use=mem_use,
+            mem_free=mem_free
         )
         session.add(router_monitor_record)
         session.commit()

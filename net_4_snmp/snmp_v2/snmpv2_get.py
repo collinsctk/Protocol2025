@@ -61,7 +61,7 @@ if __name__ == "__main__":
     # 地点
     print(snmpv2_get(ip_address, community, "1.3.6.1.2.1.1.6.0", port=161))
     # cpmCPUTotal5sec
-    print(snmpv2_get(ip_address, community, "1.3.6.1.4.1.9.9.109.1.1.1.1.3.7", port=161))
+    print(snmpv2_get(ip_address, community, "1.3.6.1.4.1.9.9.109.1.1.1.1.6.7", port=161))
     # cpmCPUMemoryUsed
     print(snmpv2_get(ip_address, community, "1.3.6.1.4.1.9.9.109.1.1.1.1.12.7", port=161))
     # cpmCPUMemoryFree
