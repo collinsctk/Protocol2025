@@ -28,4 +28,7 @@ def ssh_client_one_cmd(ip, username, password, cmd):
 
 if __name__ == '__main__':
     # 使用Linux解释器 & WIN解释器
-    print(ssh_client_one_cmd('10.10.1.1', 'admin', 'Cisc0123', 'show ver'))
+    print(ssh_client_one_cmd('10.10.1.1',
+                             'admin',
+                             'Cisc0123',
+                             'show ver'))

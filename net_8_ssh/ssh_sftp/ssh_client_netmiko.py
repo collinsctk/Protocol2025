@@ -40,7 +40,7 @@ def netmiko_config_cred(host, username, password, cmds_list, enable='Cisc0123', 
 
 
 if __name__ == '__main__':
-    # raw_result = netmiko_show_cred('10.1.1.253', 'admin', 'Cisc0123', 'show ip inter brie')
+    # raw_result = netmiko_show_cred('10.10.1.1', 'admin', 'Cisc0123', 'show ip inter brie')
     # raw_result = netmiko_show_cred('r1.qytang.com', 'admin', 'Cisc0123', 'show ip inter brie')
     raw_result = netmiko_show_cred('2001:1::1', 'admin', 'Cisc0123', 'show ip inter brie')
     print(type(raw_result))

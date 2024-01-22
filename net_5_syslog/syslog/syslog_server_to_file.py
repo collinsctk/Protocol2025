@@ -28,7 +28,8 @@ class SyslogUDPHandler(socketserver.BaseRequestHandler):
         data = bytes.decode(self.request[0].strip())  # 读取数据
         # ============可以配置过滤器仅仅读取接口up/down信息===============
         if re.match(r'.*%LINEPROTO-5-UPDOWN: Line protocol on Interface \S+, changed state to down.*', data):
-            if_name = re.match(r'.*%LINEPROTO-5-UPDOWN: Line protocol on Interface (\S+), changed state to down.*', data).groups()[0]
+            if_name = re.match(r'.*%LINEPROTO-5-UPDOWN: Line protocol on Interface (\S+), changed state to down.*',
+                               data).groups()[0]
             device_ip = self.client_address[0]
             community = "tcpiprw"
             shutdown_if(device_ip, community, if_name, 1)
