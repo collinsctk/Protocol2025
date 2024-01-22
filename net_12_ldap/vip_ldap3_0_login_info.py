@@ -19,7 +19,7 @@ from ldap3 import Server, ALL
 ad_admin_username = 'administrator'
 ad_admin_password = 'Cisc0123'
 
-server = Server('ldaps://10.1.1.201', get_info=ALL, use_ssl=True)
+server = Server('ldaps://10.10.1.110', get_info=ALL, use_ssl=True)
 
 
 if __name__ == '__main__':
