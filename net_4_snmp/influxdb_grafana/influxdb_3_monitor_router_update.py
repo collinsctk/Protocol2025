@@ -32,13 +32,13 @@ while True:
     current_time = datetime.datetime.utcnow().isoformat("T")
     cpu_mem_body = [
         {
-            "measurement": "router_monitor",
-            "time": current_time,
-            "tags": {
+            "measurement": "router_monitor",   # 可以认为是表名
+            "time": current_time,     # 时间戳，时序数据库的核心
+            "tags": {                 # 标签，用于过滤
                 "device_ip": getall_result.get('ip'),
                 "device_type": "IOS-XE"
             },
-            "fields": {
+            "fields": {               # 字段，用于存储数据
                 "cpu_usage": getall_result.get('cpu_usage'),
                 "mem_usage": getall_result.get('mem_usage'),
                 "mem_free": getall_result.get('mem_free'),
@@ -46,27 +46,28 @@ while True:
         }
     ]
     # print(cpu_mem_body)
-    client.write_points(cpu_mem_body)
+    client.write_points(cpu_mem_body)  # 写入数据库
     # ----------------------写入接口进出数据------------------------
     current_time = datetime.datetime.utcnow().isoformat("T")
-    if_bytes_body = []
+
+    if_bytes_body = []  # 用于存储多个接口的字典
 
     for if_info in getall_result.get('if_list'):
         if if_info.get('in_bytes') and if_info.get('out_bytes'):
             if_info_dict = {
-                                "measurement": "if_monitor",
-                                "time": current_time,
-                                "tags": {
+                                "measurement": "if_monitor",   # 可以认为是表名
+                                "time": current_time,          # 时间戳，时序数据库的核心
+                                "tags": {                      # 标签，用于过滤
                                     "device_ip": getall_result.get('ip'),
                                     "device_type": "IOS-XE",
                                     "interface_name": if_info.get('name')
                                 },
-                                "fields": {
+                                "fields": {                    # 字段，用于存储数据
                                     "in_bytes": if_info.get('in_bytes'),
                                     "out_bytes": if_info.get('out_bytes'),
                                 },
                             }
             if_bytes_body.append(if_info_dict)
     # print(if_bytes_body)
-    client.write_points(if_bytes_body)
+    client.write_points(if_bytes_body)  # 写入数据库
     time.sleep(5)
