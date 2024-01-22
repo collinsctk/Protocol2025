@@ -23,12 +23,16 @@ def netmiko_show_cred_use_textfsm(host, username, password, cmd, enable='Cisc012
 if __name__ == '__main__':
     # 设置环境变量
     # export NET_TEXTFSM=/ntc-templates_pyATS/templates/
+
+    # 查询支持的厂商
+    # https://github.com/networktocode/ntc-templates/tree/master/ntc_templates
+
     from pprint import pprint
     parsed_result = netmiko_show_cred_use_textfsm('10.10.1.1',
                                                   'admin',
                                                   'Cisc0123',
-                                                  'show ip inter brie',
+                                                  # 'show ip inter brie',
                                                   # 'show ip route',
-                                                  # 'show version',
+                                                  'show version',
                                                   )
     pprint(parsed_result)
