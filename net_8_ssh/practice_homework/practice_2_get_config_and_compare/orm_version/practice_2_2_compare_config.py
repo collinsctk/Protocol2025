@@ -13,8 +13,8 @@ from sqlalchemy import func
 from sqlalchemy import create_engine
 
 engine = create_engine(f'sqlite:///{db_file_name}?check_same_thread=False',
-                           # echo=True
-                           )
+                       # echo=True
+                       )
 
 Session = sessionmaker(bind=engine)
 session = Session()
@@ -24,21 +24,22 @@ def def_config_id():
     md5_list = []
 
     # 注意group by查询的使用, 找到那些唯一的MD5值
-    for md5_value, md5_count in session.query(RouterConfig.md5, func.count(RouterConfig.md5)).group_by(RouterConfig.md5).all():
+    for md5_value, md5_count in session.query(RouterConfig.md5,
+                                              func.count(RouterConfig.md5)).group_by(RouterConfig.md5).all():
         md5_list.append(md5_value)
 
     # 找到唯一MD5值的ID
     id_list = []
     for md5 in md5_list:
-        yourresults = session.query(RouterConfig).filter_by(md5=md5)
-        id_list.append(min([x.id for x in yourresults]))  # 找到多个ID, 把最小的放入列表
+        your_results = session.query(RouterConfig).filter_by(md5=md5)
+        id_list.append(min([x.id for x in your_results]))  # 找到多个ID, 把最小的放入列表
     id_list = sorted(id_list)  # 列表排序
 
     # 找到ID与获取配置的时间
     id_time_list = []
     for id in id_list:
-        yourresult = session.query(RouterConfig).filter_by(id=id).one()
-        id_time_list.append(yourresult)
+        your_result = session.query(RouterConfig).filter_by(id=id).one()
+        id_time_list.append(your_result)
 
     # 打印ID与获取配置的时间
     for i in id_time_list:
