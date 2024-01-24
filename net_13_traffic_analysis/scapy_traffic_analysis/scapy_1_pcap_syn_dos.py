@@ -11,7 +11,7 @@ import warnings
 logging.getLogger("kamene.runtime").setLevel(logging.ERROR)  # 清除报错
 warnings.filterwarnings("ignore")
 from kamene.all import *
-import re
+from collections import defaultdict
 from net_13_traffic_analysis.scapy_traffic_analysis.scapy_0_pcap_dir import pcap_dir
 
 
@@ -20,7 +20,9 @@ def find_pcap_syn_dos(pcap_filename):
     pkts_file = rdpcap(pcap_filename)  # 使用scapy的rdpcap函数打开pcap文件
     pkt_list = pkts_file.res  # 提取每一个包到清单pkt_list
 
-    dos_dict = {}  # 最后的结果写入dos_dict,格式为{('196.21.5.12', '196.21.5.254', 5000): 36}!利用字典键值的唯一性
+    dos_dict = defaultdict(int)  # 所有新键默认值为0
+    # 最后的结果写入dos_dict,格式为{('196.21.5.12', '196.21.5.254', 5000): 36}!利用字典键值的唯一性
+
     for packet in pkt_list:
         try:
             if packet.getlayer(TCP).fields['flags'] == 2:  # SYN包
@@ -28,8 +30,7 @@ def find_pcap_syn_dos(pcap_filename):
                 destination_ip = packet.getlayer(IP).fields['dst']  # 提取目的地址
                 destination_port = packet.getlayer(TCP).fields['dport']  # 提取目的端口号
                 conn = source_ip, destination_ip, destination_port  # 用源地址,目的地址和目的端口产生元组
-                conn_counts = dos_dict.get(conn, 0)  # 判断是否有这个键值, 没有就返回0
-                dos_dict[conn] = conn_counts + 1  # 在返回值的基础上加1
+                dos_dict[conn] += 1  # 直接增加计数
         except Exception:
             pass
     return dos_dict
