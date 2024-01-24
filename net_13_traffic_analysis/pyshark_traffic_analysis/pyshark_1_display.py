@@ -55,10 +55,19 @@ def print_highest_layer(pkt):
     print(pkt.ip.src_host)    # 提取IP头部的源IP字段
     print(dir(pkt.ip))        # 打印IP头部的所有字段
     pkt_dict = {}
-    # 要支持_all_fields, pyshark需要控制在0.4.5
+    # print(dir(pkt))
     for layer in pkt.__dict__.get('layers'):
-        # 把Pyshark能decode的每一层的所有字段, 并入(update)pkt_dict中
-        pkt_dict.update(layer.__dict__.get('_all_fields'))
+        # 去除有"_"的属性
+        layer_dict = {attr: getattr(layer, attr) for attr in dir(layer) if
+                      not attr.startswith('_') and getattr(layer, attr)}
+
+        # 删除field_names键
+        layer_dict.pop('field_names', None)  # 删除 'field_names' 键
+
+        # 删除空值键
+        layer_dict = {k: v for k, v in layer_dict.items() if v}  # 删除所有值为空的键
+
+        pkt_dict[layer.layer_name] = layer_dict
 
     pprint.pprint(pkt_dict, indent=4)
     pkt_list.append(pkt_dict)
