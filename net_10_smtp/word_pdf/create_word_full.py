@@ -192,10 +192,10 @@ def create_word_full(student_data, img_counters, img_protocols, save_word_name):
 
 
 if __name__ == '__main__':
-    data = {'姓名': '张三', '性别': '男', '出生年月': '1997.6.2', '籍贯': '北京', '学历': '本科', '单位/学校': '忆城国际',
+    data = {'姓名': '张三', '性别': '男', '出生年月': '1997.6.2', '籍贯': '北京', '学历': '本科', '单位/学校': '亿城国际',
             'QQ': '8888888', '联系电话': '13999999999', '身份证号': '156456369263561666', '从何得知乾颐堂': '老学员介绍',
             '报名课程': 'python基础', '税费金额（不含发票税）': '499', '课程顾问': '小雪', '班主任联系电话': '13432555669', '备注:': ''}
-    counters = [30, 53, 12, 45]
-    protocols = ['vip学员', '安全学员', '无线学员', 'python学员', ]
+    counters = [30, 53, 12, 45, 100]
+    protocols = ['vip学员', '安全学员', '无线学员', 'python学员', 'NetDevOps']
 
     create_word_full(data, counters, protocols, './saved_word/python-docx演示.docx')
