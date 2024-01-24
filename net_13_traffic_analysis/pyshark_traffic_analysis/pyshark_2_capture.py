@@ -21,7 +21,9 @@ import pprint
 
 # bpf为捕获过滤器, 过滤Telnet流量
 capture = pyshark.LiveCapture(interface='ens224', bpf_filter='ip and tcp port 23')
-# using the sniff() method to capture a given amount of packets (or for a given amount of time) and then read the packets from the capture object as a list
+# using the sniff() method to capture a given amount of packets (or for a given amount of time) and then read
+# the packets from the capture object as a list
+
 # capture.sniff(timeout=5)
 
 # use the sniff_continously() method as a generator and work on each packet as it arrives.
@@ -33,7 +35,18 @@ def print_highest_layer(pkt):
     pkt_dict = {}
     try:
         for layer in pkt.__dict__.get('layers'):
-            pkt_dict.update(layer.__dict__.get('_all_fields'))
+            # 去除有"_"的属性
+            layer_dict = {attr: getattr(layer, attr) for attr in dir(layer) if
+                          not attr.startswith('_') and getattr(layer, attr)}
+
+            # 删除field_names键
+            layer_dict.pop('field_names', None)  # 删除 'field_names' 键
+
+            # 删除空值键
+            layer_dict = {k: v for k, v in layer_dict.items() if v}  # 删除所有值为空的键
+
+            pkt_dict[layer.layer_name] = layer_dict
+
         pprint.pprint(pkt_dict, indent=4)
     except AttributeError:
         pass

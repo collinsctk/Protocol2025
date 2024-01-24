@@ -20,24 +20,24 @@ import pyshark
 from net_13_traffic_analysis.pyshark_traffic_analysis.pyshark_0_pcap_dir import pcap_data_dir
 
 
-def get_max_id(pcapfile):
+def get_max_id(pcap_file):
     # 本代码的主要任务: 找到最大的TCP Stream ID! 这个ID是连续的!
-    cap = pyshark.FileCapture(pcapfile, keep_packets=False)
+    cap = pyshark.FileCapture(pcap_file, keep_packets=False)
 
     sess_index = []  # 所有的tcp流索引ID清单
 
     for pkt in cap:
         try:
             sess_index.append(pkt.tcp.stream)  # 把所有的tcp流索引ID放入清单
-        except Exception:
+        except AttributeError:
             pass
 
     if len(sess_index) == 0:  # 如果没有任何索引ID就打印错误
         print('No TCP Found')
+        return None
     else:
         sess_index_int = [int(sid) for sid in sess_index]  # 把索引ID字符串转换为整数,便于排序
-
-    return max(sess_index_int)  # 返回最大的索引ID
+        return max(sess_index_int)  # 返回最大的索引ID
 
 
 if __name__ == '__main__':

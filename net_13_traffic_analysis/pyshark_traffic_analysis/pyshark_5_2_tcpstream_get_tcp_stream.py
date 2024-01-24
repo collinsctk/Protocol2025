@@ -20,9 +20,11 @@ import pyshark
 from net_13_traffic_analysis.pyshark_traffic_analysis.pyshark_0_pcap_dir import pcap_data_dir
 
 
-def get_tcp_stream(pcapfile, sid):
+def get_tcp_stream(pcap_file, sid):
     # 提取PCAP文件中,特定tcp流ID的数据包
-    cap = pyshark.FileCapture(pcapfile, keep_packets=False, display_filter='tcp.stream eq {0}'.format(sid))  # 打开PCAP文件
+    cap = pyshark.FileCapture(pcap_file,
+                              keep_packets=False,
+                              display_filter='tcp.stream eq {0}'.format(sid))  # 打开PCAP文件
 
     return cap  # 返回清单
 
