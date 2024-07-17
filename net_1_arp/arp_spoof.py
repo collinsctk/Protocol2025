@@ -69,6 +69,6 @@ if __name__ == "__main__":
     # 欺骗10.1.1.253 让它认为10.1.1.254的MAC地址为本地攻击者计算机的MAC
     import platform
     if platform.system() == "Linux":
-        arp_spoof('10.10.1.1', '10.10.1.2', 'ens224')
+        arp_spoof('10.10.1.1', '10.10.1.254', 'ens224')
     elif platform.system() == "Windows":
-        arp_spoof('10.10.1.1', '10.10.1.2', 'VMware Network Adapter VMnet1')
+        arp_spoof('10.10.1.1', '10.10.1.254', 'VMware Network Adapter VMnet1')
