@@ -12,6 +12,14 @@
 # CryptographyDeprecationWarning: Blowfish has been deprecated cipher=algorithms.Blowfish,
 # CryptographyDeprecationWarning: CAST5 has been deprecated cipher=algorithms.CAST5,
 # vim ./lib/python3.11/site-packages/kamene/layers/ipsec.py, 注释掉Blowfish和CAST5的部分
+"""
+    #CRYPT_ALGOS['Blowfish'] = CryptAlgo('Blowfish',
+    #                                    cipher=algorithms.Blowfish,
+    #                                    mode=modes.CBC)
+    #CRYPT_ALGOS['CAST'] = CryptAlgo('CAST',
+    #                                cipher=algorithms.CAST5,
+    #                                mode=modes.CBC)
+"""
 
 import logging
 
