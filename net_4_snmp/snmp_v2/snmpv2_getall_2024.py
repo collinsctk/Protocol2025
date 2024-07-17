@@ -42,6 +42,6 @@ def snmpv2_all_2024(ip_address, community):
 
 if __name__ == '__main__':
     from pprint import pprint
-    ip_address = '10.10.1.1'
-    community = 'tcpipro'
+    ip_address = '10.10.1.11'
+    community = 'qytangro'
     pprint(snmpv2_all_2024(ip_address, community))

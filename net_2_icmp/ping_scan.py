@@ -10,11 +10,7 @@
 import logging
 import ipaddress
 logging.getLogger("kamene.runtime").setLevel(logging.ERROR)
-import sys
-if sys.platform == 'linux':
-    from multiprocessing.pool import Pool
-else:
-    from multiprocessing.pool import ThreadPool as Pool
+from multiprocessing.pool import ThreadPool as Pool
 
 from net_2_icmp.ping_one import scapy_ping_one
 from kamene.all import *

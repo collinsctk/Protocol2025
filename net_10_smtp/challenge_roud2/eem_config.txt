@@ -1,0 +1,10 @@
+event manager applet bgp_prefix_exceed_notification
+ event syslog pattern "MAXPFXEXCEED: Number of prefixes received from"
+ action 1.0 regexp ":\s+[0-9]+\s+exceeds" "$_syslog_msg" exceednum
+ action 2.0 syslog msg "exceed num: $exceednum"
+ action 3.0 regexp "received from\s+[0-9.]+\s+" "$_syslog_msg" ipaddr
+ action 4.0 syslog msg "ip addr: $ipaddr"
+ action 5.0 regexp "limit\s+[0-9]+" "$_syslog_msg" limit
+ action 6.0 syslog msg "prefix limit: $limit"
+ action 7.0 cli command "en"
+ action 8.0 cli command "guestshell run python3 /home/guestshell/email_notification.py $ipaddr $exceednum $limit"

@@ -26,8 +26,21 @@ import logging
 
 logging.getLogger("kamene.runtime").setLevel(logging.ERROR)  # 清除报错
 from kamene.all import *
-from tools.get_ip_netifaces import get_ipv6_address
-from tools.scapy_iface import scapy_iface  # 获取scapy iface的名字
+'''
+~~~Linux配置IPv6:~~~
+
+[ipv6]
+addr-gen-mode=eui64
+method=manual
+address1=2001:1::200/64
+
+~~~Cisco C8Kv配置IPv6:~~~
+
+ipv6 unicast-routing
+interface GigabitEthernet1
+ ipv6 address 2001:1::1/64
+
+'''
 
 
 def scapy_pingv6_one(host, ifname):

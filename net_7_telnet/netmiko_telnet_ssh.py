@@ -13,8 +13,8 @@ CSR1 = {
         'host': '10.10.1.1',
         'username': 'admin',
         'password': 'Cisc0123',
-        'device_type': 'cisco_ios_telnet',  # Telnet
-        # 'device_type': 'cisco_ios',  # SSH
+        # 'device_type': 'cisco_ios_telnet',  # Telnet
+        'device_type': 'cisco_ios',  # SSH
         'secret': 'Cisc0123',
 }
 

@@ -54,27 +54,27 @@ def qyt_smtp_attachment(mailserver, username, password, from_mail, to_mail, subj
 
 if __name__ == '__main__':
     # # 使用Linux解释器 & WIN解释器
-    # qyt_smtp_attachment('smtp.qq.com',
-    #                     '3348326959@qq.com',
-    #                     'anchwprpwxfbdbif',
-    #                     '3348326959@qq.com',
-    #                     '3348326959@qq.com;collinsctk@qytang.com',
-    #                     '附件测试_主题',
-    #                     '附件测试_正文\r\n行1\r\n行2',
-    #                     ['./attachment_dir/Logo.jpg'])
-
-    # 下面代码由于涉及到MS Office所以需要在Windows下运行
-    from net_10_smtp.word_pdf.create_word_for_syslog import create_word_for_syslog
-    from docx2pdf import convert
-    create_word_for_syslog('./word_pdf/src_img/logo.png',
-                           './word_pdf/saved_word/syslog-docx.docx')
-    convert('./word_pdf/saved_word/syslog-docx.docx', './word_pdf/saved_pdf/syslog-pdf.pdf')
     qyt_smtp_attachment('smtp.qq.com',
                         '3348326959@qq.com',
                         'anchwprpwxfbdbif',
                         '3348326959@qq.com',
                         '3348326959@qq.com;collinsctk@qytang.com',
-                        'Syslog分析报告',
-                        '详情请看附件',
-                        ['./word_pdf/saved_word/syslog-docx.docx', './word_pdf/saved_pdf/syslog-pdf.pdf'])
+                        '附件测试_主题',
+                        '附件测试_正文\r\n行1\r\n行2',
+                        ['./attachment_dir/Logo.jpg'])
 
+    # # 下面代码由于涉及到MS Office所以需要在Windows下运行
+    # from net_10_smtp.word_pdf.create_word_for_syslog import create_word_for_syslog
+    # from docx2pdf import convert
+    # create_word_for_syslog('./word_pdf/src_img/logo.png',
+    #                        './word_pdf/saved_word/syslog-docx.docx')
+    # convert('./word_pdf/saved_word/syslog-docx.docx', './word_pdf/saved_pdf/syslog-pdf.pdf')
+    # qyt_smtp_attachment('smtp.qq.com',
+    #                     '3348326959@qq.com',
+    #                     'anchwprpwxfbdbif',
+    #                     '3348326959@qq.com',
+    #                     '3348326959@qq.com;collinsctk@qytang.com',
+    #                     'Syslog分析报告',
+    #                     '详情请看附件',
+    #                     ['./word_pdf/saved_word/syslog-docx.docx', './word_pdf/saved_pdf/syslog-pdf.pdf'])
+    #

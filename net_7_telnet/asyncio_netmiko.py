@@ -35,7 +35,7 @@ async def async_netmiko(task_id, ip, username, password, cmd):
 
 if __name__ == '__main__':
     # 设备清单
-    devices_list = ['10.10.1.1', '10.10.1.1', '10.10.1.1', '10.10.1.1', '10.10.1.1', '10.10.1.1']
+    devices_list = ['10.10.1.1', '10.10.1.2', '10.10.1.1', '10.10.1.2', '10.10.1.1', '10.10.1.2']
     # 把ip, username, password, cmd放到一个列表, 便于后续使用*device来传多参数
     devices_cmd_list = [[d, 'admin', 'Cisc0123', 'show run'] for d in devices_list]
     # 多参数使用*device来传

@@ -27,8 +27,17 @@ def find_pcap_uri(pcap_filename, host_regex):
                 packet.show()
                 http_request = packet.getlayer(Raw).fields['load'].split()
                 # 空白和\r\n都会被split()分开
-                # packet.show() 'GET /?nameAccount=4008519651&uid=3102224384&cb=JSONP_CALLBACK_5_61 HTTP/1.1\r\nHost: hb.crm2.qq.com\r\nConnection: keep-alive\r\nAccept: */*\r\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.80 Safari/537.36 Core/1.47.163.400 QQBrowser/9.3.7175.400\r\nReferer: http://edu.51cto.com/lecturer/index/user_id-9137368.html\r\nAccept-Encoding: gzip, deflate, sdch\r\nAccept-Language: zh-CN,zh;q=0.8\r\nCookie: cuid=7780981392; o_cookie=605658506; pgv_pvid=1509412600; RK=sSlPbf+CVr; ptcz=ce34b86a10a14784b025e777a361081e4e264d78d3e5fb1a793a8072659d499a; pt2gguin=o0605658506; uin=o0605658506; skey=@vk7UzceLE; qzone_check=605658506_1460939090\r\n\r\n'
+                # packet.show() 'GET /?nameAccount=4008519651&uid=3102224384&cb=JSONP_CALLBACK_5_61 HTTP/1.1\r\n
+                # Host: hb.crm2.qq.com\r\n
+                # Connection: keep-alive\r\n
+                # Accept: */*\r\n
+                # User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.80 Safari/537.36 Core/1.47.163.400 QQBrowser/9.3.7175.400\r\n
+                # Referer: http://edu.51cto.com/lecturer/index/user_id-9137368.html\r\n
+                # Accept-Encoding: gzip, deflate, sdch\r\nAccept-Language: zh-CN,zh;q=0.8\r\n
+                # Cookie: cuid=7780981392; o_cookie=605658506; pgv_pvid=1509412600; RK=sSlPbf+CVr; ptcz=ce34b86a10a14784b025e777a361081e4e264d78d3e5fb1a793a8072659d499a; pt2gguin=o0605658506; uin=o0605658506; skey=@vk7UzceLE; qzone_check=605658506_1460939090\r\n\r\n'
+
                 # print(http_request) [b'GET', b'/?nameAccount=4008519651&uid=3102224384&cb=JSONP_CALLBACK_5_61', b'HTTP/1.1', b'Host:', b'hb.crm2.qq.com', b'Connection:', b'keep-alive', b'Accept:', b'*/*', b'User-Agent:', b'Mozilla/5.0', b'(Windows', b'NT', b'10.0;', b'WOW64)', b'AppleWebKit/537.36', b'(KHTML,', b'like', b'Gecko)', b'Chrome/47.0.2526.80', b'Safari/537.36', b'Core/1.47.163.400', b'QQBrowser/9.3.7175.400', b'Referer:', b'http://edu.51cto.com/lecturer/index/user_id-9137368.html', b'Accept-Encoding:', b'gzip,', b'deflate,', b'sdch', b'Accept-Language:', b'zh-CN,zh;q=0.8', b'Cookie:', b'cuid=7780981392;', b'o_cookie=605658506;', b'pgv_pvid=1509412600;', b'RK=sSlPbf+CVr;', b'ptcz=ce34b86a10a14784b025e777a361081e4e264d78d3e5fb1a793a8072659d499a;', b'pt2gguin=o0605658506;', b'uin=o0605658506;', b'skey=@vk7UzceLE;', b'qzone_check=605658506_1460939090']
+
                 host_location = http_request.index(b'Host:') + 1  # 找到出现b'Host:'的下面一个位置
                 host = http_request[host_location]  # 提取HTTP的host
                 host_acsii = host.decode()  # 解码为普通字符串
