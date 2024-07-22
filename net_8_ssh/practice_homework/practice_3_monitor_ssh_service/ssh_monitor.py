@@ -7,7 +7,7 @@
 # https://ke.qq.com/course/271956?tuin=24199d8a
 
 
-from net_8_ssh.ssh_sftp.ssh_client_one_cmd import ssh_client_one_cmd
+from net_8_ssh.paramiko_plan.ssh_client_one_cmd import ssh_client_one_cmd
 
 
 def monitor_sshd(ip):

@@ -34,7 +34,7 @@ if __name__ == '__main__':
     ssh_sftp_put('10.10.1.200',
                  'root',
                  'Cisc0123',
-                 './file_dir/upload_file.txt',
+                 'file_dir/upload_file.txt',
                  'upload_file.txt', port=22)
     # ssh_sftp_get('10.10.1.200',
     #              'root',

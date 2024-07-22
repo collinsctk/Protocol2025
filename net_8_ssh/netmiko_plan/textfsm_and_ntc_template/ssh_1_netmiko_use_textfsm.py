@@ -31,8 +31,8 @@ if __name__ == '__main__':
     parsed_result = netmiko_show_cred_use_textfsm('10.10.1.1',
                                                   'admin',
                                                   'Cisc0123',
-                                                  # 'show ip inter brie',
+                                                  'show ip inter brie',
                                                   # 'show ip route',
-                                                  'show version',
+                                                  # 'show version',
                                                   )
     pprint(parsed_result)
