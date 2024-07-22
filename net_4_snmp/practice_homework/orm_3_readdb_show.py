@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdate
 import matplotlib.ticker as mtick
 from sqlalchemy import create_engine
-
+from datetime import datetime, timedelta
 plt.rcParams['font.sans-serif'] = ['SimHei']  # 设置中文
 plt.rcParams['font.family'] = 'sans-serif'
 
@@ -25,13 +25,16 @@ engine = create_engine(f'sqlite:///{db_filename}?check_same_thread=False',
 Session = sessionmaker(bind=engine)
 session = Session()
 
+# 一个小时之前的时间
+one_hours_before = datetime.now() - timedelta(hours=1)
+
 
 def cpu_show():
     time_list = []
     cpu_list = []
 
-    # 把结果写入time_list和cpu_list的列表
-    for i in session.query(RouterMonitor).all():
+    # 把结果写入time_list和cpu_list的列表，只取一个小时之内的数据
+    for i in session.query(RouterMonitor).filter(RouterMonitor.record_datetime > one_hours_before):
         time_list.append(i.record_datetime)
         cpu_list.append(i.cpu_useage_percent)
 
@@ -70,7 +73,7 @@ def mem_show():
     mem_list = []
 
     # 把结果写入time_list和cpu_list的列表
-    for i in session.query(RouterMonitor).all():
+    for i in session.query(RouterMonitor).filter(RouterMonitor.record_datetime > one_hours_before):
         time_list.append(i.record_datetime)
 
         mem_list.append((i.mem_use/(i.mem_use + i.mem_free))*100)
