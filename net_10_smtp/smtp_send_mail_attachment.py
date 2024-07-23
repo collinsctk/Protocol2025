@@ -9,6 +9,7 @@
 # pip install python-docx
 # pip install docx2pdf
 
+import os
 import smtplib
 import email.utils
 from email.mime.multipart import MIMEMultipart
