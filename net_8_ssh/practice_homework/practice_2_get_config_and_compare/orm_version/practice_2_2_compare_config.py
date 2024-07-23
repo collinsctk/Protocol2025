@@ -5,8 +5,7 @@
 # 亁颐堂官网www.qytang.com
 # 教主技术进化论拓展你的技术新边疆
 # https://ke.qq.com/course/271956?tuin=24199d8a
-import sqlite3
-from net_8_ssh.practice_homework.practice_2_get_config_and_compare.practice_2_0_diff_conf import diff_txt
+from net_8_ssh.practice_homework.practice_2_get_config_and_compare.orm_version.practice_2_0_diff_conf import diff_txt
 from sqlalchemy.orm import sessionmaker
 from practice_2_0_create_table import RouterConfig, db_file_name
 from sqlalchemy import func

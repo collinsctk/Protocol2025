@@ -6,7 +6,7 @@
 # 教主技术进化论拓展你的技术新边疆
 # https://ke.qq.com/course/271956?tuin=24199d8a
 
-from net_8_ssh.ssh_sftp.ssh_client_netmiko import netmiko_show_cred
+from net_8_ssh.netmiko_plan.ssh_client_netmiko import netmiko_show_cred
 import re
 import hashlib
 from datetime import datetime
@@ -16,7 +16,7 @@ def get_md5_config(host, username, password):
     try:
         # 获取完整的running-configuration
         device_config_raw = netmiko_show_cred(host, username, password, 'show run')
-        print(device_config_raw)
+        # print(device_config_raw)
         split_result = re.split(r'\nhostname \S+\n', device_config_raw)
         run_config = device_config_raw.replace(split_result[0], '').strip()
         # 计算MD5值
