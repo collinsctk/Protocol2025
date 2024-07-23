@@ -3,7 +3,7 @@ import asyncio
 import os
 import threading
 
-from net_8_ssh.ssh_sftp.ssh_client_netmiko import netmiko_show_cred
+from net_8_ssh.netmiko_plan.ssh_client_netmiko import netmiko_show_cred
 from datetime import datetime
 
 # 协程任务循环

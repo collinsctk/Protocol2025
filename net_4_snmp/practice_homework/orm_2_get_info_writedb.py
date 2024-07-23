@@ -61,8 +61,8 @@ def get_info_writedb(ip, rocommunity, seconds):
          'mem_percent': 34.97,
          'mem_used': 2827496}
         """
-        ip = get_all_dict['ip_address']
-        cpu_info = get_all_dict['cpu']
+        ip = get_all_dict['device_ip']
+        cpu_info = get_all_dict['cpu_percent']
         mem_use = get_all_dict['mem_used']
         mem_free = get_all_dict['mem_free']
 

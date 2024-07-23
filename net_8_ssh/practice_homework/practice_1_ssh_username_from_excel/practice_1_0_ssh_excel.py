@@ -11,7 +11,7 @@ from net_8_ssh.practice_homework.practice_1_ssh_username_from_excel.practice_0_p
 
 from net_8_ssh.practice_homework.practice_1_ssh_username_from_excel.practice_0_write_excel_openpyxl import excel_write_list
 from net_8_ssh.practice_homework.practice_1_ssh_username_from_excel.practice_0_pandas_write_excel import excel_write_list as pandas_excel_write_list
-from net_8_ssh.ssh_sftp.ssh_client_netmiko import netmiko_show_cred, netmiko_config_cred
+from net_8_ssh.netmiko_plan.ssh_client_netmiko import netmiko_show_cred, netmiko_config_cred
 import re
 
 
