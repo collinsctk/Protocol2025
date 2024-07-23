@@ -15,10 +15,10 @@ def create_word_full(student_data, img_counters, img_protocols, save_word_name):
 
     document = Document()
 
-    document.styles['Normal'].font.name = u'微软雅黑'
+    document.styles['Normal'].font.name = 'Noto Sans CJK SC'
     document.styles['Normal'].font.size = Pt(14)
     # 设置文档的基础字体
-    document.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), u'微软雅黑')
+    document.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), 'Noto Sans CJK SC')
     # 设置文档的基础样式
 
     document.add_picture('./src_img/logo.png', width=Inches(6))
@@ -28,14 +28,14 @@ def create_word_full(student_data, img_counters, img_protocols, save_word_name):
     p1 = document.add_paragraph()
     # 对齐方式为居中，没有这句的话默认左对齐。
     p1.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    
+
     # 写入内容'乾颐堂网络技术服务协议'
     run1 = p1.add_run('乾颐堂网络技术服务协议')
 
     # 设置字体font
-    run1.font.name = '微软雅黑'
+    run1.font.name = 'Noto Sans CJK SC'
     # 设置中文字体
-    run1._element.rPr.rFonts.set(qn('w:eastAsia'), u'微软雅黑')
+    run1._element.rPr.rFonts.set(qn('w:eastAsia'), 'Noto Sans CJK SC')
 
     # 设置字体大小为20磅
     run1.font.size = Pt(20)
@@ -45,16 +45,16 @@ def create_word_full(student_data, img_counters, img_protocols, save_word_name):
     p1.space_after = Pt(1)
     # 段前距离5磅
     p1.space_before = Pt(5)
-    
+
     # 起一个新的段落
     p2 = document.add_paragraph()
 
     # 写入内容 "报名日期：2022年12月03日"
-    run2 = p2.add_run('报名日期：%s' % (today, ))
+    run2 = p2.add_run('报名日期：%s' % (today,))
 
     # 调整字体与大小
-    run2.font.name = '仿宋_GB2312'
-    run2._element.rPr.rFonts.set(qn('w:eastAsia'), u'仿宋_GB2312')
+    run2.font.name = 'Noto Sans CJK SC'
+    run2._element.rPr.rFonts.set(qn('w:eastAsia'), 'Noto Sans CJK SC')
     run2.font.size = Pt(12)
     run2.font.bold = True
 
@@ -117,7 +117,7 @@ def create_word_full(student_data, img_counters, img_protocols, save_word_name):
     run3 = p3.add_run('关于乾颐堂科技有限责任公司介绍')
 
     # 调整字体与颜色
-    run3.font.name = '仿宋_GB2312'
+    run3.font.name = 'Noto Sans CJK SC'
     run3.font.color.rgb = RGBColor(0xaf, 0x26, 0x26)
 
     # 起一个新的段落
@@ -128,8 +128,8 @@ def create_word_full(student_data, img_counters, img_protocols, save_word_name):
                       '南京均设立了专业的网络实验室，我们创建了一个专注于网络技术、Cisco认证考试以及华为HCIE认证考试的培训机构。'
                       '在很短的时间内，学员已经达到5000多人，我们在口碑以及培训水平上远远超过其他同类的培训中心。')
     # 调整字体与文字大小
-    run5.font.name = '仿宋_GB2312'
-    run5._element.rPr.rFonts.set(qn('w:eastAsia'), u'仿宋_GB2312')
+    run5.font.name = 'Noto Sans CJK SC'
+    run5._element.rPr.rFonts.set(qn('w:eastAsia'), 'Noto Sans CJK SC')
     run5.font.size = Pt(10)
 
     # 起一个新的段落
@@ -138,8 +138,8 @@ def create_word_full(student_data, img_counters, img_protocols, save_word_name):
     run5 = p5.add_run('    乾颐堂师资力量雄厚，包括现任明教教主，安德老师等数十位重量级的老师。我们的理念是为您想的更多，'
                       '旨在将高中低端各个层级的IT认证培训做得更加专业更加多样化，力争成为行业内教学质量第一、服务质量第一的培训机构。')
     # 调整字体与文字大小
-    run5.font.name = '微软雅黑'
-    run5._element.rPr.rFonts.set(qn('w:eastAsia'), u'微软雅黑')  # 字体填写 如‘等体,微软雅黑’
+    run5.font.name = 'Noto Sans CJK SC'
+    run5._element.rPr.rFonts.set(qn('w:eastAsia'), 'Noto Sans CJK SC')
     run5.font.size = Pt(10)
 
     # ------------------------测试字体与大小部分---------------------
@@ -174,9 +174,9 @@ def create_word_full(student_data, img_counters, img_protocols, save_word_name):
     p4 = document.add_paragraph()
     p4.alignment = WD_ALIGN_PARAGRAPH.CENTER
     run4 = p4.add_run('乾颐堂学员报名课程分布如下图')
-    run4.font.name = '仿宋_GB2312'
+    run4.font.name = 'Noto Sans CJK SC'
 
-    document.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), u'仿宋_GB2312')
+    document.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), 'Noto Sans CJK SC')
     run4.font.size = Pt(16)
     run4.font.bold = True
 
@@ -192,9 +192,12 @@ def create_word_full(student_data, img_counters, img_protocols, save_word_name):
 
 
 if __name__ == '__main__':
-    data = {'姓名': '张三', '性别': '男', '出生年月': '1997.6.2', '籍贯': '北京', '学历': '本科', '单位/学校': '亿城国际',
-            'QQ': '8888888', '联系电话': '13999999999', '身份证号': '156456369263561666', '从何得知乾颐堂': '老学员介绍',
-            '报名课程': 'python基础', '税费金额（不含发票税）': '499', '课程顾问': '小雪', '班主任联系电话': '13432555669', '备注:': ''}
+    data = {'姓名': '张四', '性别': '男', '出生年月': '1997.6.2', '籍贯': '北京', '学历': '本科',
+            '单位/学校': '亿城国际',
+            'QQ': '8888888', '联系电话': '13999999999', '身份证号': '156456369263561666',
+            '从何得知乾颐堂': '老学员介绍',
+            '报名课程': 'python基础', '税费金额（不含发票税）': '499', '课程顾问': '小雪',
+            '班主任联系电话': '13432555669', '备注:': ''}
     counters = [30, 53, 12, 45, 100]
     protocols = ['vip学员', '安全学员', '无线学员', 'python学员', 'NetDevOps']
 

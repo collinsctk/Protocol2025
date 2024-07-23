@@ -6,14 +6,16 @@
 # 教主技术进化论拓展你的技术新边疆
 # https://ke.qq.com/course/271956?tuin=24199d8a
 
+# pip install python-docx
+# pip install docx2pdf
 
-import os
 import smtplib
 import email.utils
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
 from tools.decorator_time import print_run_time
+import platform
 
 
 @print_run_time()
@@ -63,18 +65,39 @@ if __name__ == '__main__':
                         '附件测试_正文\r\n行1\r\n行2',
                         ['./attachment_dir/Logo.jpg'])
 
-    # # 下面代码由于涉及到MS Office所以需要在Windows下运行
-    # from net_10_smtp.word_pdf.create_word_for_syslog import create_word_for_syslog
-    # from docx2pdf import convert
-    # create_word_for_syslog('./word_pdf/src_img/logo.png',
-    #                        './word_pdf/saved_word/syslog-docx.docx')
-    # convert('./word_pdf/saved_word/syslog-docx.docx', './word_pdf/saved_pdf/syslog-pdf.pdf')
-    # qyt_smtp_attachment('smtp.qq.com',
-    #                     '3348326959@qq.com',
-    #                     'anchwprpwxfbdbif',
-    #                     '3348326959@qq.com',
-    #                     '3348326959@qq.com;collinsctk@qytang.com',
-    #                     'Syslog分析报告',
-    #                     '详情请看附件',
-    #                     ['./word_pdf/saved_word/syslog-docx.docx', './word_pdf/saved_pdf/syslog-pdf.pdf'])
-    #
+    # 下面代码由于涉及到MS Office所以需要在Windows下运行
+    from net_10_smtp.word_pdf.create_word_for_syslog import create_word_for_syslog
+
+    create_word_for_syslog('./word_pdf/src_img/logo.png',
+                           './word_pdf/saved_word/syslog.docx')
+
+    if platform.system() == "Linux":
+        """
+        -------------Linux操作记录----------------
+        # 安装LibreOffice：
+        yum install libreoffice
+        
+        # 下载并安装Noto Sans CJK字体
+        cd /usr/share/fonts
+        sudo wget https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJKsc-hinted.zip
+        sudo unzip NotoSansCJKsc-hinted.zip -d noto
+        sudo fc-cache -fv
+        
+        """
+        print('System is Linux')
+        import os
+        os.popen(f"libreoffice --headless "
+                 f"--convert-to pdf "
+                 f"--outdir ./word_pdf/saved_pdf ./word_pdf/saved_word/syslog.docx")
+    elif platform.system() == "Windows":
+        print('System is Windows')
+        from docx2pdf import convert
+        convert('./word_pdf/saved_word/syslog.docx', './word_pdf/saved_pdf/syslog.pdf')
+    qyt_smtp_attachment('smtp.qq.com',
+                        '3348326959@qq.com',
+                        'anchwprpwxfbdbif',
+                        '3348326959@qq.com',
+                        '3348326959@qq.com;collinsctk@qytang.com',
+                        'Syslog分析报告',
+                        '详情请看附件',
+                        ['./word_pdf/saved_word/syslog.docx', './word_pdf/saved_pdf/syslog.pdf'])

@@ -1,6 +1,3 @@
-import time
-
-# 安装python-docx
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH  # 加粗
 from docx.shared import Pt  # 磅数
@@ -15,11 +12,11 @@ def create_word_for_syslog(add_img, save_word_name):
     document = Document()
 
     # 设置文档的基础字体
-    document.styles['Normal'].font.name = u'微软雅黑'
+    document.styles['Normal'].font.name = 'Noto Sans CJK SC'
     document.styles['Normal'].font.size = Pt(14)
 
     # 设置文档的基础样式
-    document.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), u'微软雅黑')
+    document.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), 'Noto Sans CJK SC')
     # 在文件最上头插入图，宽度为6英寸
     document.add_picture(add_img, width=Inches(6))
 
@@ -31,9 +28,9 @@ def create_word_for_syslog(add_img, save_word_name):
     # 设置标题
     run1 = p1.add_run('乾颐堂Python强化班Syslog分析')
     # 设置字体font
-    run1.font.name = '微软雅黑'
+    run1.font.name = 'Noto Sans CJK SC'
     # 设置中文字体
-    run1._element.rPr.rFonts.set(qn('w:eastAsia'), u'微软雅黑')
+    run1._element.rPr.rFonts.set(qn('w:eastAsia'), 'Noto Sans CJK SC')
     # 设置字体大小为20磅
     run1.font.size = Pt(20)
     # 设置加粗
@@ -51,8 +48,8 @@ def create_word_for_syslog(add_img, save_word_name):
     # 第二个自然段主题
     run2 = p2.add_run('下面是最近一个小时的Syslog的数据统计! 显示排前三的Syslog严重级别与数量')
     # 字体和大小
-    run2.font.name = '仿宋_GB2312'
-    run2._element.rPr.rFonts.set(qn('w:eastAsia'), u'仿宋_GB2312')
+    run2.font.name = 'Noto Sans CJK SC'
+    run2._element.rPr.rFonts.set(qn('w:eastAsia'), 'Noto Sans CJK SC')
     run2.font.size = Pt(10)
 
     # 创建表
@@ -78,8 +75,8 @@ def create_word_for_syslog(add_img, save_word_name):
     # 第二个自然段主题
     run3 = p3.add_run('\r\n下面是最近一个小时的Syslog的数据统计饼状图分析!')
     # 字体和大小
-    run3.font.name = '仿宋_GB2312'
-    run3._element.rPr.rFonts.set(qn('w:eastAsia'), u'仿宋_GB2312')
+    run3.font.name = 'Noto Sans CJK SC'
+    run3._element.rPr.rFonts.set(qn('w:eastAsia'), 'Noto Sans CJK SC')
     run3.font.size = Pt(10)
     # 插入图片
     document.add_picture('temp.png', width=Inches(3.0), height=Inches(3.0))
@@ -91,6 +88,4 @@ def create_word_for_syslog(add_img, save_word_name):
 
 
 if __name__ == '__main__':
-    create_word_for_syslog('./src_img/logo.png', './saved_word/syslog-docx.docx')
-
-
+    create_word_for_syslog('./src_img/logo.png', './saved_word/syslog.docx')
