@@ -37,7 +37,7 @@ if __name__ == '__main__':
     # print(get_md5_config('10.1.1.253', 'admin', 'Cisc0123'))
     import os
     import sqlite3
-    db_path = './db_file/config_db.sqlite'
+    db_path = '../db_file/config_db.sqlite'
     # ========================= 创建数据库表 =========================
     # if os.path.exists(db_path):
     #     os.remove(db_path)
