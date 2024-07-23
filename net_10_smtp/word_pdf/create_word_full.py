@@ -9,6 +9,26 @@ from docx.shared import RGBColor  # 颜色模块
 from net_10_smtp.modules.mat_bing import mat_bing
 import os
 
+"""
+----------------Windows----------------
+1. python-docx
+2. MS Office
+3. 字体默认有
+4. docx2pdf
+
+
+----------------Linux----------------
+1. python-docx
+2. yum install libreoffice
+3. cd /usr/share/fonts
+   sudo wget https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJKsc-hinted.zip
+   sudo unzip NotoSansCJKsc-hinted.zip -d noto
+   sudo fc-cache -fv
+4. os.popen(f"libreoffice --headless "
+            f"--convert-to pdf "
+            f"--outdir ./word_pdf/saved_pdf ./word_pdf/saved_word/syslog.docx")
+"""
+
 
 def create_word_full(student_data, img_counters, img_protocols, save_word_name):
     today = time.strftime("%Y{y}%m{m}%d{d}", time.localtime()).format(y='年', m='月', d='日')
@@ -193,7 +213,7 @@ def create_word_full(student_data, img_counters, img_protocols, save_word_name):
 
 if __name__ == '__main__':
     data = {'姓名': '张四', '性别': '男', '出生年月': '1997.6.2', '籍贯': '北京', '学历': '本科',
-            '单位/学校': '亿城国际',
+            '单位/学校': 'IC PARK',
             'QQ': '8888888', '联系电话': '13999999999', '身份证号': '156456369263561666',
             '从何得知乾颐堂': '老学员介绍',
             '报名课程': 'python基础', '税费金额（不含发票税）': '499', '课程顾问': '小雪',
