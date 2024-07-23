@@ -34,4 +34,4 @@ if __name__ == '__main__':
             'ftp_get.py',
             'qytang',
             'Cisc0123',
-            rdir='/python/qytang1/')
+            rdir='/qytang1/')

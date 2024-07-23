@@ -29,8 +29,8 @@ if __name__ == '__main__':
     file_dir = './file_dir/'
     # 使用Linux解释器 & WIN解释器
     downloadfile('10.10.1.110',
-                 'qytang.py',
+                 'qytang2.py',
                  'qytang',
                  'Cisc0123',
-                 rdir='/python/qytang2/',
+                 rdir='/qytang2/',
                  ldir=file_dir)
