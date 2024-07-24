@@ -58,6 +58,8 @@ def print_highest_layer(pkt):
     # print(dir(pkt))
     for layer in pkt.__dict__.get('layers'):
         # 去除有"_"的属性
+        # not attr.startswith('_') and getattr(layer, attr) # 不以"_"开头,并且有值的属性
+        # attr: getattr(layer, attr) # 属性名称: 属性值
         layer_dict = {attr: getattr(layer, attr) for attr in dir(layer) if
                       not attr.startswith('_') and getattr(layer, attr)}
 
