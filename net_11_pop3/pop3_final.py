@@ -139,8 +139,9 @@ if __name__ == '__main__':
     for x in qyt_rec_mail('pop.qq.com',
                           '3348326959@qq.com',
                           'anchwprpwxfbdbif',
-                          save_file=True,
-                          delete_email=True):
+                          if_write_dict=False,   # 这个默认是False，就不会写入字典，附件也不会显示
+                          save_file=True,        # 保存附件到本地
+                          delete_email=True):    # 删除邮件
         print('='*50, '第', i, '封信', '='*50)
         pprint(x)
         i += 1
