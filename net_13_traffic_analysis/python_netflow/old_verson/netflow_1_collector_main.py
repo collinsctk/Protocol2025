@@ -10,7 +10,7 @@ import logging
 import sys
 import socketserver
 from datetime import datetime
-from net_13_traffic_analysis.python_netflow.netflow_orm_2_v9_process_module import ExportPacket
+from net_13_traffic_analysis.python_netflow.old_verson.netflow_0_v9_process_module import ExportPacket, createdb
 
 logging.getLogger().setLevel(logging.INFO)
 ch = logging.StreamHandler(sys.stdout)
@@ -46,6 +46,7 @@ class SoftflowUDPHandler(socketserver.BaseRequestHandler):
 
 
 if __name__ == "__main__":
+    createdb()
     server = SoftflowUDPHandler.get_server('0.0.0.0', 2055)
 
     logging.getLogger().setLevel(logging.DEBUG)

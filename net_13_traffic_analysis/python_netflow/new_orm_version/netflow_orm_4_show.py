@@ -28,6 +28,7 @@ protocol_map = {'6/22': 'SSH',
                 '17/2055': 'Netflow',
                 '6/80': 'HTTP',
                 '1/0': 'ICMP',
+                '2/34': 'IGMP',
                 '6/443': 'HTTPS',
                 '17/5355': 'LLMNR'}
 

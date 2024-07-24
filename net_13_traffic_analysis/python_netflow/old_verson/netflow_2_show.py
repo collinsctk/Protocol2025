@@ -9,7 +9,7 @@
 import sqlite3
 import datetime
 from matplotlib import pyplot as plt
-from net_13_traffic_analysis.python_netflow.netflow_0_v9_process_module import db_dir
+from net_13_traffic_analysis.python_netflow.old_verson.netflow_0_v9_process_module import db_dir
 # 协议名称映射表
 protocol_map = {'6/22': 'SSH',
                 '6/23': 'Telnet',

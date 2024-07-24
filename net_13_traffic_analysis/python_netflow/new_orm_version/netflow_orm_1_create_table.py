@@ -3,7 +3,7 @@ from sqlalchemy.orm import declarative_base
 from sqlalchemy import Column, String, Integer, DateTime
 import datetime
 
-db_dir = './db_dir/'
+db_dir = '../db_dir/'
 
 engine = create_engine(f'sqlite:///{db_dir}sqlalchemy_sqlite3.db?check_same_thread=False',
                        # echo=True
