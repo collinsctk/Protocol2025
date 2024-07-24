@@ -96,4 +96,4 @@ if __name__ == '__main__':
                       '2350512555',
                       '2350512555@qq.com',
                       'qytanggroup',
-                      random_pass=False))
+                      random_pass=True))

@@ -18,12 +18,13 @@
 
 import pyshark
 import re
+from collections import defaultdict
 from net_13_traffic_analysis.pyshark_traffic_analysis.pyshark_0_pcap_dir import pcap_data_dir
 pkt_list = []
 
 cap = pyshark.FileCapture(pcap_data_dir + 'dos.pcap', keep_packets=False, display_filter='http')
 
-url_dict = {}
+url_dict = defaultdict(int)  # 所有新键默认值为0
 
 
 def print_highest_layer(pkt):
@@ -35,12 +36,9 @@ def print_highest_layer(pkt):
         re_result = re.match(r"(^(?=^.{3,255}$)[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(?:\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+$)",
                              pkt.http.host)
         if re_result:
-            host = re_result.groups()[0]
-        # 字典数据结构如下
-        # 键为method和host, 值为数量
-        counts = url_dict.get((pkt.http.request_method, host), 0)
-        counts += 1
-        url_dict[(pkt.http.request_method, host)] = counts
+            host = re_result.groups()[0]  # 提取URL
+            url_dict[(pkt.http.request_method, host)] += 1  # 直接增加计数
+
     except Exception:
         pass
 

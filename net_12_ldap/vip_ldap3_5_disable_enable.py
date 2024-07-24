@@ -32,5 +32,5 @@ def enable_user(username):
 
 
 if __name__ == '__main__':
-    print(disable_user('qyt-qink'))
-    # enable_user('qyt-qink')
+    # print(disable_user('qyt-qink'))
+    enable_user('qyt-qink')

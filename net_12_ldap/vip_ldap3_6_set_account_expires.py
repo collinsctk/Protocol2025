@@ -40,5 +40,5 @@ if __name__ == '__main__':
     print(get_user_info('qyt-qink'))
     from dateutil.parser import parse
     # 這個時間的時區與系統匹配
-    print(set_user_accountexpires('qyt-qink', parse('2023-10-1')))
+    print(set_user_accountexpires('qyt-qink', parse('2024-10-1')))
     print(get_user_info('qyt-qink'))
