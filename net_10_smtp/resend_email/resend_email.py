@@ -40,7 +40,7 @@ if __name__ == '__main__':
     email_from = 'collinsctk@qytang.com'
     email_to_list = ['collinsctk@gmail.com']
     subject = '测试邮件'
-    body = '这是一封测试邮件'
+    body = '<h1>这是一封测试邮件</h1>'
     attachment_file_path_list = ['test.docx']
     resend_email(email_from,
                  email_to_list,
