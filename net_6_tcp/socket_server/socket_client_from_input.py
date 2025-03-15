@@ -10,7 +10,7 @@
 from socket import *
 
 # 连接的服务器地址
-myHost = '10.10.1.100'
+myHost = '196.21.5.218'
 # 连接的服务器端口号
 myPort = 6666
 
