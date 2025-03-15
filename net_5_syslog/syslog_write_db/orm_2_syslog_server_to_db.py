@@ -6,6 +6,17 @@
 # 教主技术进化论拓展你的技术新边疆
 # https://ke.qq.com/course/271956?tuin=24199d8a
 
+from pathlib import Path
+import sys
+
+# 获取当前文件的路径
+current_file_path = Path(__file__).resolve()
+
+# 获取当前文件所在的目录路径
+root_dir = current_file_path.parent.parent.parent
+# 将根目录添加到Python路径
+sys.path.insert(1, str(root_dir))
+
 
 import socketserver
 import re
@@ -54,47 +65,82 @@ severity_level_dict = {0: 'EMERG',
                        6: 'INFO',
                        7: 'DEBUG'}
 
+# 定义正则表达式模式
+# <187>83: *Apr  4 00:03:12.969: %LINK-3-UPDOWN: Interface GigabitEthernet2, changed state to up
+# <189>574: Mar 15 03:00:01.275: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: admin]
+standard_pattern = re.compile(
+    r'^<(?P<priority>\d*)>'           # Priority value containing facility and severity
+    r'(?P<logid>\d*):\s*'            # Log ID
+    r'\*?(?P<timestamp>[^:]+):\s*'    # Timestamp with optional asterisk
+    r'%(?P<log_source>\w+)-'         # Log source
+    r'(?P<severity_level>\d)-'        # Severity level
+    r'(?P<description>\w+):\s*'       # Description
+    r'(?P<text>.*)$'                  # Message text
+)
+
+# 处理其他格式的日志
+# <189>574: Mar 15 03:00:01.275: ICMP: echo reply rcvd
+# 有些日志会缺失%SYS-5-CONFIG_I, 造成第一个正则表达式无法匹配
+# 下面的icmp的debug就是示例
+# <191>91: *Apr  4 00:12:29.616: ICMP: echo reply rcvd, src 10.1.1.80, dst 10.1.1.253, topology BASE, dscp 0 topoid 0
+alternate_pattern = re.compile(
+    r'^<(?P<priority>\d*)>'           # Priority value containing facility and severity
+    r'(?P<logid>\d*):\s*'            # Log ID
+    r'\*?(?P<timestamp>[^:]+):\s*'    # Timestamp with optional asterisk
+    r'(?P<log_source>\w+):\s*'        # Log source
+    r'(?P<text>.*)$'                  # Message text
+)
 
 class SyslogUDPHandler(socketserver.BaseRequestHandler):
     def handle(self):
         data = bytes.decode(self.request[0].strip())  # 读取数据
+        print('-' * 40)
         print(data)
+        print('-' * 40)
         syslog_info_dict = {'device_ip': self.client_address[0]}
-        try:
-            # <187>83: *Apr  4 00:03:12.969: %LINK-3-UPDOWN: Interface GigabitEthernet2, changed state to up
-            syslog_info = re.match(r'^<(\d*)>(\d*): \*(.*): %(\w+)-(\d)-(\w+): (.*)', str(data)).groups()
-            # print(syslog_info[0]) 提取为整数 例如 185
+        
+        # Try standard syslog format first
+        match = standard_pattern.match(str(data))
+        if match:
             # 185 二进制为 1011 1001
             # 前5位为facility  >> 3 获取前5位
             # 后3位为severity_level  & 0b111 获取后3位
-            syslog_info_dict['facility'] = int(syslog_info[0]) >> 3
-            syslog_info_dict['facility_name'] = facility_dict[int(syslog_info[0]) >> 3]
-            syslog_info_dict['logid'] = int(syslog_info[1])
-            syslog_info_dict['time'] = parser.parse(syslog_info[2])
-            syslog_info_dict['log_source'] = syslog_info[3]
-            syslog_info_dict['severity_level'] = int(syslog_info[4])
-            syslog_info_dict['severity_level_name'] = severity_level_dict[int(syslog_info[4])]
-            syslog_info_dict['description'] = syslog_info[5]
-            syslog_info_dict['text'] = syslog_info[6]
-        except AttributeError:
-            # 有些日志会缺失%SYS-5-CONFIG_I, 造成第一个正则表达式无法匹配 , 也无法提取severity_level
-            # 下面的icmp的debug就是示例
-            # <191>91: *Apr  4 00:12:29.616: ICMP: echo reply rcvd, src 10.1.1.80, dst 10.1.1.253, topology BASE, dscp 0 topoid 0
-            syslog_info = re.match(r'^<(\d*)>(\d*): \*(.*): (\w+): (.*)', str(data)).groups()
-            print(syslog_info[0])
-            syslog_info_dict['facility'] = int(syslog_info[0]) >> 3
-            syslog_info_dict['facility_name'] = facility_dict[int(syslog_info[0]) >> 3]
-            syslog_info_dict['logid'] = int(syslog_info[1])
-            syslog_info_dict['time'] = parser.parse(syslog_info[2])
-            syslog_info_dict['log_source'] = syslog_info[3]
-            # 如果在文本部分解析不了severity_level, 切换到syslog_info[0]去获取
-            # 185 二进制为 1011 1001
-            # 前5位为facility  >> 3 获取前5位
-            # 后3位为severity_level  & 0b111 获取后3位
-            syslog_info_dict['severity_level'] = int(syslog_info[0]) & 0b111
-            syslog_info_dict['severity_level_name'] = severity_level_dict[(int(syslog_info[0]) & 0b111)]
-            syslog_info_dict['description'] = 'N/A'
-            syslog_info_dict['text'] = syslog_info[4]
+            priority = int(match.group('priority'))
+            syslog_info_dict.update({
+                'facility': priority >> 3,
+                'facility_name': facility_dict[priority >> 3],
+                'logid': int(match.group('logid')),
+                'time': parser.parse(match.group('timestamp')),
+                'log_source': match.group('log_source'),
+                'severity_level': int(match.group('severity_level')),
+                'severity_level_name': severity_level_dict[int(match.group('severity_level'))],
+                'description': match.group('description'),
+                'text': match.group('text')
+            })
+        else:
+            # Try alternate format
+            match = alternate_pattern.match(str(data))
+            if match:
+                # 如果在文本部分解析不了severity_level, 切换到priority去获取
+                # 185 二进制为 1011 1001
+                # 前5位为facility  >> 3 获取前5位
+                # 后3位为severity_level  & 0b111 获取后3位
+                priority = int(match.group('priority'))
+                severity_level = priority & 0b111  # Extract severity from priority
+                syslog_info_dict.update({
+                    'facility': priority >> 3,
+                    'facility_name': facility_dict[priority >> 3],
+                    'logid': int(match.group('logid')),
+                    'time': parser.parse(match.group('timestamp')),
+                    'log_source': match.group('log_source'),
+                    'severity_level': severity_level,
+                    'severity_level_name': severity_level_dict[severity_level],
+                    'description': severity_level_dict[severity_level],
+                    'text': match.group('text')
+                })
+            else:
+                print(f"Could not parse message: {data}")
+                return
 
         print(syslog_info_dict)
 

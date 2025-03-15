@@ -5,6 +5,17 @@
 # 亁颐堂官网www.qytang.com
 # 教主技术进化论拓展你的技术新边疆
 # https://ke.qq.com/course/271956?tuin=24199d8a
+from pathlib import Path
+import sys
+import os
+
+# 获取当前文件的路径
+current_file_path = Path(__file__).resolve()
+
+# 获取当前文件所在的目录路径
+root_dir = current_file_path.parent.parent.parent
+# 将根目录添加到Python路径
+sys.path.insert(1, str(root_dir))
 
 from matplotlib import pyplot as plt
 from sqlalchemy.orm import sessionmaker
@@ -33,7 +44,6 @@ def syslog_show():
     print(level_list)
     print([float(count) for count in count_list])
 
-    plt.rcParams['font.sans-serif'] = ['SimHei']  # 设置中文
     # 调节图形大小，宽，高
     plt.figure(figsize=(6, 6))
 
@@ -64,6 +74,18 @@ def syslog_show():
     plt.axis('equal')
     plt.title('SYSLOG严重级别分布图')  # 主题
     plt.legend()
+    
+    # 创建images目录（如果不存在）
+    images_dir = os.path.join(os.path.dirname(current_file_path), 'images')
+    if not os.path.exists(images_dir):
+        os.makedirs(images_dir)
+    
+    # 使用绝对路径保存图片
+    image_path = os.path.join(images_dir, 'syslog_severity_level_distribution.png')
+    plt.savefig(image_path)
+    print(f"图片已保存到: {image_path}")
+    
+    # 显示图片
     plt.show()
 
 
