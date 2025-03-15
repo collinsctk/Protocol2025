@@ -2,6 +2,13 @@
 import asyncio
 import os
 import threading
+import sys
+from pathlib import Path
+
+# 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
+current_file = Path(__file__)
+project_root = current_file.parent.parent
+sys.path.append(str(project_root))
 
 from net_8_ssh.netmiko_plan.ssh_client_netmiko import netmiko_show_cred
 from datetime import datetime
@@ -35,7 +42,7 @@ async def async_netmiko(task_id, ip, username, password, cmd):
 
 if __name__ == '__main__':
     # 设备清单
-    devices_list = ['10.10.1.1', '10.10.1.2', '10.10.1.1', '10.10.1.2', '10.10.1.1', '10.10.1.2']
+    devices_list = ['196.21.5.211', '196.21.5.212']
     # 把ip, username, password, cmd放到一个列表, 便于后续使用*device来传多参数
     devices_cmd_list = [[d, 'admin', 'Cisc0123', 'show run'] for d in devices_list]
     # 多参数使用*device来传

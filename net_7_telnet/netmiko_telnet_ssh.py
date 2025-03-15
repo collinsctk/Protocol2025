@@ -10,7 +10,7 @@ from netmiko import Netmiko
 
 
 CSR1 = {
-        'host': '10.10.1.1',
+        'host': '196.21.5.211',
         'username': 'admin',
         'password': 'Cisc0123',
         # 'device_type': 'cisco_ios_telnet',  # Telnet
