@@ -36,14 +36,14 @@ def ssh_client_multi_cmd(ip, username, password, cmd_list, verbose=True):
 
 if __name__ == '__main__':
     # 使用Linux解释器 & WIN解释器
-    ssh_client_multi_cmd('r1.qytang.com',
+    ssh_client_multi_cmd('C8Kv1.qytang.com',
                          'admin',
                          'Cisc0123',
                          ['terminal length 0',
                           'show run',
                           'config ter',
                           'router ospf 1'])
-    ssh_client_multi_cmd('2001:1::1',
+    ssh_client_multi_cmd('2001:196:21:5::211',
                          'admin',
                          'Cisc0123',
                          ['terminal length 0',

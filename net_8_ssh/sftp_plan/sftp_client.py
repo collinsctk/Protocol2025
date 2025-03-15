@@ -31,13 +31,20 @@ def ssh_sftp_get(ip, user, password, remote_file, local_file, port=22):
 
 if __name__ == '__main__':
     # 使用Linux解释器 & WIN解释器
-    ssh_sftp_put('10.10.1.200',
+    from pathlib import Path
+    import sys
+
+    # 获取当前文件的路径
+    current_dir_path = Path(__file__).resolve().parent
+
+    ssh_sftp_put('196.21.5.218',
                  'root',
                  'Cisc0123',
-                 'file_dir/upload_file.txt',
+                 f'{current_dir_path}/file_dir/upload_file.txt',
                  'upload_file.txt', port=22)
-    # ssh_sftp_get('10.10.1.200',
+    # ssh_sftp_get('196.21.5.218',
     #              'root',
     #              'Cisc0123',
     #              'upload_file.txt',
-    #              './file_dir/download_file.txt', port=22)
+    #              f'{current_dir_path}/file_dir/download_file.txt', 
+    #              port=22)

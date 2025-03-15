@@ -8,6 +8,7 @@ from pathlib import Path
 # 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
 current_file = Path(__file__)
 project_root = current_file.parent.parent
+print(project_root)
 sys.path.append(str(project_root))
 
 from net_8_ssh.netmiko_plan.ssh_client_netmiko import netmiko_show_cred
