@@ -7,6 +7,13 @@
 # https://ke.qq.com/course/271956?tuin=24199d8a
 import ftplib
 import os
+import os
+import sys
+from pathlib import Path
+
+# 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
+current_file = Path(__file__)
+current_dir = current_file.parent
 
 
 def downloadfile(hostname, file, username='anonymous', password='1@2.net', rdir='.', ldir='.', verbose=True):
@@ -26,11 +33,11 @@ def downloadfile(hostname, file, username='anonymous', password='1@2.net', rdir=
 
 
 if __name__ == '__main__':
-    file_dir = './file_dir/'
+    file_dir = f'{current_dir}/file_dir/'
     # 使用Linux解释器 & WIN解释器
-    downloadfile('10.10.1.110',
+    downloadfile('196.21.5.189',
                  'qytang2.py',
-                 'qytang',
-                 'Cisc0123',
+                #  'qytang',
+                #  'Cisc0123',
                  rdir='/qytang2/',
                  ldir=file_dir)

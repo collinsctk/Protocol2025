@@ -9,6 +9,12 @@
 
 import ftplib
 import os
+import sys
+from pathlib import Path
+
+# 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
+current_file = Path(__file__)
+current_dir = current_file.parent
 
 
 def putfile(hostname, file, username='anonymous', password='1@2.net', rdir='.', ldir='.', verbose=True):
@@ -20,7 +26,11 @@ def putfile(hostname, file, username='anonymous', password='1@2.net', rdir='.', 
     remote.encoding = 'GB18030'  # 使用中文编码
     remote.login(username, password)  # 输入用户名和密码进行登录
     remote.cwd(rdir)  # 切换FTP目录
-    remote.storbinary('STOR ' + file, local, 1024)  # 上传文件
+    
+    # 提取文件名，不使用完整路径
+    filename = os.path.basename(file)
+    remote.storbinary('STOR ' + filename, local, 1024)  # 上传文件，只使用文件名
+    
     remote.quit()  # 退出会话
     local.close()  # 关闭本地文件
     if verbose:
@@ -28,10 +38,9 @@ def putfile(hostname, file, username='anonymous', password='1@2.net', rdir='.', 
 
 
 if __name__ == '__main__':
-    file_dir = './file_dir/'
     # 使用Linux解释器 & WIN解释器
-    putfile('10.10.1.110',
-            'ftp_get.py',
-            'qytang',
+    putfile('196.21.5.189',
+            f'{current_dir}/ftp_get.py',
+            'administrator',
             'Cisc0123',
-            rdir='/qytang1/')
+            rdir='/qytang1/')  # 使用默认目录

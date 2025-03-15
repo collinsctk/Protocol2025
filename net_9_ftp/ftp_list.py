@@ -24,4 +24,4 @@ def listftpfile(hostname, username='anonymous', password='1@2.net', remote_dir='
 
 if __name__ == '__main__':
     # 使用Linux解释器 & WIN解释器
-    print(listftpfile('10.10.1.110'))
+    print(listftpfile('196.21.5.189'))

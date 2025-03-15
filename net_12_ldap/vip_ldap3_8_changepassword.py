@@ -6,9 +6,17 @@
 # 教主技术进化论拓展你的技术新边疆
 # https://ke.qq.com/course/271956?tuin=24199d8a
 from ldap3 import Connection
-from net_12_ldap.vip_ldap3_0_login_info import server, ad_admin_username, ad_admin_password
-from net_12_ldap.vip_ldap3_1_get_user_info import get_user_info
-from net_12_ldap.vip_ldap3_3_add_user import random_password
+import sys
+from pathlib import Path
+
+# 获取当前文件所在目录
+current_file = Path(__file__)
+current_dir = current_file.parent
+sys.path.append(str(current_dir))
+
+from vip_ldap3_0_login_info import server, ad_admin_username, ad_admin_password
+from vip_ldap3_1_get_user_info import get_user_info
+from vip_ldap3_3_add_user import random_password
 
 
 # 修改用户密码

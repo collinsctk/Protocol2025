@@ -1,1 +1,1 @@
-print('qytang2')
+print('1')

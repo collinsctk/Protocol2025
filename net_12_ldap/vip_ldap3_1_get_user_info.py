@@ -6,7 +6,15 @@
 # 教主技术进化论拓展你的技术新边疆
 # https://ke.qq.com/course/271956?tuin=24199d8a
 from ldap3 import Connection
-from net_12_ldap.vip_ldap3_0_login_info import server, ad_admin_username, ad_admin_password
+import sys
+from pathlib import Path
+
+# 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
+current_file = Path(__file__)
+project_root = current_file.parent.parent
+sys.path.append(str(project_root))
+
+from vip_ldap3_0_login_info import server, ad_admin_username, ad_admin_password
 
 
 def get_user_info(username):
@@ -76,6 +84,7 @@ if __name__ == '__main__':
     # 可以查詢用戶
     from pprint import pprint
     pprint(get_user_info('qyt-qink'))
+    pprint('-'*50)
     pprint(get_user_self_info('qyt-qink', 'Cisc0123'))
     # 可以查詢組
     # print(get_user_info('vipgroup'))

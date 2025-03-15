@@ -11,11 +11,18 @@ from ftplib import FTP
 import re
 import optparse
 import os
+import sys
+from pathlib import Path
+
+# 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
+current_file = Path(__file__)
+project_root = current_file.parent.parent
+sys.path.append(str(project_root))
+
 from tools.decorator_time import print_run_time
 
-
 @print_run_time()
-def ftp_find(hostname, username, password, start_dir='/', file_type='.py', verbose=True):
+def ftp_find(hostname, username='anonymous', password='1@2.net', start_dir='/', file_type='.py', verbose=True):
     if verbose:
         print('查找整个FTP中的特定文件(递归查询)，并且返回清单！')
     try:
@@ -66,4 +73,8 @@ def ftp_find(hostname, username, password, start_dir='/', file_type='.py', verbo
 
 if __name__ == '__main__':
     # 使用Linux解释器 & WIN解释器
-    print(ftp_find('10.10.1.110', 'qytang', 'Cisc0123', '/', '.py'))
+    print(ftp_find('196.21.5.189', 
+                #    'qytang', 
+                #    'Cisc0123',
+                   start_dir='/', 
+                   file_type='.py'))

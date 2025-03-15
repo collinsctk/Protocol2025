@@ -6,8 +6,16 @@
 # 教主技术进化论拓展你的技术新边疆
 # https://ke.qq.com/course/271956?tuin=24199d8a
 from ldap3 import Connection, MODIFY_REPLACE
-from net_12_ldap.vip_ldap3_0_login_info import server, ad_admin_username, ad_admin_password
-from net_12_ldap.vip_ldap3_1_get_user_info import get_user_info
+import sys
+from pathlib import Path
+
+# 获取当前文件所在目录
+current_file = Path(__file__)
+current_dir = current_file.parent
+sys.path.append(str(current_dir))
+
+from vip_ldap3_0_login_info import server, ad_admin_username, ad_admin_password
+from vip_ldap3_1_get_user_info import get_user_info
 from datetime import datetime, timedelta
 
 
@@ -40,5 +48,5 @@ if __name__ == '__main__':
     print(get_user_info('qyt-qink'))
     from dateutil.parser import parse
     # 這個時間的時區與系統匹配
-    print(set_user_accountexpires('qyt-qink', parse('2024-10-1')))
+    print(set_user_accountexpires('qyt-qink', parse('2026-10-1')))
     print(get_user_info('qyt-qink'))

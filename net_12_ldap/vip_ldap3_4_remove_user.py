@@ -6,8 +6,16 @@
 # 教主技术进化论拓展你的技术新边疆
 # https://ke.qq.com/course/271956?tuin=24199d8a
 from ldap3 import Connection
-from net_12_ldap.vip_ldap3_0_login_info import server, ad_admin_username, ad_admin_password
-from net_12_ldap.vip_ldap3_1_get_user_info import get_user_info
+import sys
+from pathlib import Path
+
+# 获取当前文件所在目录
+current_file = Path(__file__)
+current_dir = current_file.parent
+sys.path.append(str(current_dir))
+
+from vip_ldap3_0_login_info import server, ad_admin_username, ad_admin_password
+from vip_ldap3_1_get_user_info import get_user_info
 
 
 def delete_user(username):
@@ -25,5 +33,5 @@ def delete_user(username):
 
 if __name__ == '__main__':
     from net_12_ldap.vip_ldap3_2_get_group_users import get_group_users
-    delete_user('qyt-qink35')
+    delete_user('qyt-qink66')
     print(get_group_users('qytanggroup'))
