@@ -6,6 +6,15 @@ from docx.shared import Pt  # 磅数
 from docx.oxml.ns import qn  # 中文格式
 from docx.shared import Inches  # 图片尺寸
 from docx.shared import RGBColor  # 颜色模块
+import sys
+from pathlib import Path
+
+# 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
+current_file = Path(__file__)
+current_dir = current_file.parent
+project_root = current_file.parent.parent.parent
+sys.path.append(str(project_root))
+
 from net_10_smtp.modules.mat_bing import mat_bing
 import os
 
@@ -41,7 +50,7 @@ def create_word_full(student_data, img_counters, img_protocols, save_word_name):
     document.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), 'Noto Sans CJK SC')
     # 设置文档的基础样式
 
-    document.add_picture('./src_img/logo.png', width=Inches(6))
+    document.add_picture(f'{current_dir}{os.sep}src_img{os.sep}logo.png', width=Inches(6))
     # 在文件最上头插入图，宽度为6英寸
 
     # 初始化建立第一个自然段
@@ -212,7 +221,7 @@ def create_word_full(student_data, img_counters, img_protocols, save_word_name):
 
 
 if __name__ == '__main__':
-    data = {'姓名': '张四', '性别': '男', '出生年月': '1997.6.2', '籍贯': '北京', '学历': '本科',
+    data = {'姓名': '张三', '性别': '男', '出生年月': '1997.6.2', '籍贯': '北京', '学历': '本科',
             '单位/学校': 'IC PARK',
             'QQ': '8888888', '联系电话': '13999999999', '身份证号': '156456369263561666',
             '从何得知乾颐堂': '老学员介绍',
@@ -221,4 +230,4 @@ if __name__ == '__main__':
     counters = [30, 53, 12, 45, 100]
     protocols = ['vip学员', '安全学员', '无线学员', 'python学员', 'NetDevOps']
 
-    create_word_full(data, counters, protocols, './saved_word/python-docx演示.docx')
+    create_word_full(data, counters, protocols, f'{current_dir}{os.sep}saved_word{os.sep}python-docx演示.docx')

@@ -4,6 +4,15 @@ from docx.shared import Pt  # 磅数
 from docx.oxml.ns import qn  # 中文格式
 from docx.shared import Inches  # 图片尺寸
 from docx.shared import RGBColor  # 颜色模块
+import sys
+from pathlib import Path
+
+# 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
+current_file = Path(__file__)
+current_dir = current_file.parent
+project_root = current_file.parent.parent.parent
+sys.path.append(str(project_root))
+
 from net_10_smtp.modules.syslog_bing import syslog_bing
 import os
 
@@ -88,4 +97,5 @@ def create_word_for_syslog(add_img, save_word_name):
 
 
 if __name__ == '__main__':
-    create_word_for_syslog('./src_img/logo.png', './saved_word/syslog.docx')
+    create_word_for_syslog(f'{current_dir}{os.sep}src_img{os.sep}logo.png', 
+                           f'{current_dir}{os.sep}saved_word{os.sep}syslog.docx')

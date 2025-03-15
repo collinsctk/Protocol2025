@@ -7,7 +7,7 @@ import os
 filename = "sqlalchemy_syslog_sqlite3.db"
 
 # os.path.dirname(os.path.realpath(__file__) 当前文件目录
-db_file_name = f'{os.path.dirname(os.path.realpath(__file__))}/{filename}'
+db_file_name = '/protocol2022/net_5_syslog/syslog_write_db/sqlalchemy_syslog_sqlite3.db'
 
 Base = declarative_base()
 

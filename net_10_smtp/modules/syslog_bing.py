@@ -10,6 +10,15 @@
 from matplotlib import pyplot as plt
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
+import sys
+from pathlib import Path
+
+# 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
+current_file = Path(__file__)
+project_root = current_file.parent.parent.parent
+sys.path.append(str(project_root))
+
+
 from net_5_syslog.syslog_write_db.orm_1_syslog_create_table import Syslog, db_file_name
 from sqlalchemy import func
 
@@ -31,7 +40,9 @@ def syslog_bing(save_file_name):
         level_list.append(level)
         count_list.append(count)
 
-    plt.rcParams['font.sans-serif'] = ['SimHei']  # 设置中文
+    plt.rcParams['font.sans-serif'] = ['Noto Sans SC']
+    plt.rcParams['font.family'] = 'sans-serif'
+    
     # 调节图形大小，宽，高
     plt.figure(figsize=(6, 6))
 
@@ -68,4 +79,5 @@ def syslog_bing(save_file_name):
 
 if __name__ == '__main__':
     syslog_bing('test.png')
+    
 

@@ -2,7 +2,7 @@
 from matplotlib import pyplot as plt
 
 
-plt.rcParams['font.sans-serif'] = ['SimHEI']
+plt.rcParams['font.sans-serif'] = ['Noto Sans SC']
 plt.rcParams['font.family'] = 'sans-serif'
 
 

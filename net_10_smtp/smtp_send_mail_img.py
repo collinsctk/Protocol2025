@@ -14,6 +14,13 @@ from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
 from email.mime.image import MIMEImage
 import os
+import sys
+from pathlib import Path
+
+current_file = Path(__file__)
+project_root = current_file.parent.parent
+current_dir = current_file.parent
+sys.path.append(str(project_root))
 
 
 def qyt_smtp_attachment(mailserver, username, password, from_mail, to_mail, subj, main_body, images=None):
@@ -60,18 +67,23 @@ if __name__ == '__main__':
     <h3>图片测试</h3>
     <p>这是乾颐堂公司LOGO图片。</p>
     <p>
-    <br><img src="cid:Logo"></br>
+    <br><img src="cid:logo"></br>
     </p>
     <p>
     """
-    qyt_smtp_attachment('smtp.qq.com',
-                        '3348326959@qq.com',
-                        'anchwprpwxfbdbif',
-                        '3348326959@qq.com',
+    # 获取环境变量
+    smtp_user = os.environ.get('SMTPUSER')
+    smtp_password = os.environ.get('SMTPPASS')
+    smtp_server = os.environ.get('SMTPSERVER')
+    smtp_from = os.environ.get('SMTPFROM')
+    qyt_smtp_attachment(smtp_server,
+                        smtp_user,
+                        smtp_password,
+                        smtp_from,
                         '3348326959@qq.com;collinsctk@qytang.com',
                         '图片测试',
                         main_body_txt,
-                        ['./attachment_dir/Logo.jpg'])
+                        [f'{current_dir}{os.sep}word_pdf{os.sep}src_img{os.sep}logo.png'])
 
     # ---------------------------- 案例二: 更加负载的HTML ----------------------------
     # 产生饼状图，后续嵌入到网页
@@ -80,7 +92,7 @@ if __name__ == '__main__':
 
     # 导入jinja2模块，并且定义模块所在目录
     from jinja2 import Template
-    tem_path = './templates/'
+    tem_path = f'{current_dir}{os.sep}templates{os.sep}'
 
     # x为级别名字(例如:ALERT), y为数量
     total = sum([y for x, y in syslog_result])
@@ -92,14 +104,14 @@ if __name__ == '__main__':
     email_html = email_template.render(severity_list=severity_list)
 
     # 发送邮件
-    qyt_smtp_attachment('smtp.qq.com',
-                        '3348326959@qq.com',
-                        'anchwprpwxfbdbif',
-                        '3348326959@qq.com',
+    qyt_smtp_attachment(smtp_server,
+                        smtp_user,
+                        smtp_password,
+                        smtp_from,
                         '3348326959@qq.com;collinsctk@qytang.com',
                         '乾颐堂Python强化班Syslog分析',
                         email_html,
-                        ['./word_pdf/src_img/logo.png', 'syslog.png'])
+                        [f'{current_dir}{os.sep}word_pdf{os.sep}src_img{os.sep}logo.png', 'syslog.png'])
     # 删除没有用的图片
     import os
     os.remove('syslog.png')

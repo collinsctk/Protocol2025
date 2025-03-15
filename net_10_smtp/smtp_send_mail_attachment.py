@@ -15,8 +15,16 @@ import email.utils
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
-from tools.decorator_time import print_run_time
 import platform
+import sys
+from pathlib import Path
+
+# 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
+current_file = Path(__file__)
+project_root = current_file.parent.parent
+current_dir = current_file.parent
+sys.path.append(str(project_root))
+from tools.decorator_time import print_run_time
 
 
 @print_run_time()
@@ -56,21 +64,26 @@ def qyt_smtp_attachment(mailserver, username, password, from_mail, to_mail, subj
 
 
 if __name__ == '__main__':
-    # # 使用Linux解释器 & WIN解释器
-    qyt_smtp_attachment('smtp.qq.com',
-                        '3348326959@qq.com',
-                        'anchwprpwxfbdbif',
-                        '3348326959@qq.com',
+    # 使用Linux解释器 & WIN解释器
+    # 获取环境变量
+    smtp_user = os.environ.get('SMTPUSER')
+    smtp_password = os.environ.get('SMTPPASS')
+    smtp_server = os.environ.get('SMTPSERVER')
+    smtp_from = os.environ.get('SMTPFROM')
+    qyt_smtp_attachment(smtp_server,
+                        smtp_user,
+                        smtp_password,
+                        smtp_from,
                         '3348326959@qq.com;collinsctk@qytang.com',
                         '附件测试_主题',
                         '附件测试_正文\r\n行1\r\n行2',
-                        ['./attachment_dir/Logo.jpg'])
+                        [f'{current_dir}{os.sep}word_pdf{os.sep}src_img{os.sep}logo.png'])
 
     # 下面代码由于涉及到MS Office所以需要在Windows下运行
     from net_10_smtp.word_pdf.create_word_for_syslog import create_word_for_syslog
 
-    create_word_for_syslog('./word_pdf/src_img/logo.png',
-                           './word_pdf/saved_word/syslog.docx')
+    create_word_for_syslog(f'{current_dir}{os.sep}word_pdf{os.sep}src_img{os.sep}logo.png',
+                           f'{current_dir}{os.sep}word_pdf{os.sep}saved_word{os.sep}syslog.docx')
 
     if platform.system() == "Linux":
         """
@@ -89,16 +102,18 @@ if __name__ == '__main__':
         import os
         os.popen(f"libreoffice --headless "
                  f"--convert-to pdf "
-                 f"--outdir ./word_pdf/saved_pdf ./word_pdf/saved_word/syslog.docx")
+                 f"--outdir {current_dir}{os.sep}word_pdf{os.sep}saved_pdf {current_dir}{os.sep}word_pdf{os.sep}saved_word{os.sep}syslog.docx")
     elif platform.system() == "Windows":
         print('System is Windows')
         from docx2pdf import convert
-        convert('./word_pdf/saved_word/syslog.docx', './word_pdf/saved_pdf/syslog.pdf')
-    qyt_smtp_attachment('smtp.qq.com',
-                        '3348326959@qq.com',
-                        'anchwprpwxfbdbif',
-                        '3348326959@qq.com',
+        convert(f'{current_dir}{os.sep}word_pdf{os.sep}saved_word{os.sep}syslog.docx',
+                f'{current_dir}{os.sep}word_pdf{os.sep}saved_pdf{os.sep}syslog.pdf')
+    qyt_smtp_attachment(smtp_server,
+                        smtp_user,
+                        smtp_password,
+                        smtp_from,
                         '3348326959@qq.com;collinsctk@qytang.com',
                         'Syslog分析报告',
                         '详情请看附件',
-                        ['./word_pdf/saved_word/syslog.docx', './word_pdf/saved_pdf/syslog.pdf'])
+                        [f'{current_dir}{os.sep}word_pdf{os.sep}saved_word{os.sep}syslog.docx', 
+                         f'{current_dir}{os.sep}word_pdf{os.sep}saved_pdf{os.sep}syslog.pdf'])

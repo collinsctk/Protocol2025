@@ -1,3 +1,4 @@
 *.pyc
 net_4_snmp/airflow/.env
 net_4_snmp/airflow/logs/*
+.env
