@@ -6,11 +6,10 @@
 # 教主技术进化论拓展你的技术新边疆
 # https://ke.qq.com/course/271956?tuin=24199d8a
 
-
-import pickle
 from io import BytesIO
-from socket import *
-
+from socket import socket, AF_INET, SOCK_STREAM
+import pickle
+from pathlib import Path
 
 def client_pickle(ip, port, obj):
     msg = pickle.dumps(obj)  # 把obj pickle到一个二进制字串
@@ -32,6 +31,9 @@ if __name__ == '__main__':
     # 使用Linux解释器 & WIN解释器
     # Server和Client需要分属两个不同的机器
     send_dict = {'key1': 'welcome to qytang' * 2048, 'key2': [1, 2, 3, 4, 5], 'key3': ([3, 4], 'python')}
-    myfile = open('./file_dir/Logo.jpg', 'rb').read()
-    client_pickle('10.10.1.100', 5555, send_dict)
-    client_pickle('10.10.1.100', 5555, myfile)
+    # 使用Path获取当前文件的目录，然后找到Logo.jpg
+    current_dir = Path(__file__).parent
+    logo_path = current_dir / 'file_dir' / 'Logo.jpg'
+    myfile = open(logo_path, 'rb').read()
+    client_pickle('196.21.5.218', 5555, send_dict)
+    client_pickle('196.21.5.218', 5555, myfile)

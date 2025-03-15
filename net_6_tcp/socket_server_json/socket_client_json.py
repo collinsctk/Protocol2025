@@ -46,5 +46,5 @@ if __name__ == '__main__':
     # Server和Client需要分属两个不同的机器
     dict1 = {'key1': 'welcome to qytang', 'key2': [1, 2, 3, 4, 5], 'key3': ([3, 4], 'python'), 'key4': 'python'*2048}
     dict2 = {'key1': 'welcome to qytang', 'key2': [1, 2, 3, 4, 5], 'key3': ([3, 4], 'python'), 'key4': 'python'}
-    client_json('10.10.1.100', 6668, dict1)
-    client_json('10.10.1.100', 6668, dict2)
+    client_json('196.21.5.218', 6668, dict1)
+    client_json('196.21.5.218', 6668, dict2)

@@ -6,41 +6,51 @@
 # 教主技术进化论拓展你的技术新边疆
 # https://ke.qq.com/course/271956?tuin=24199d8a
 
-
-import pickle
 from socket import *
-
+import pickle
+import struct
+from pathlib import Path
 
 def server_pickle(ip, port):
-    # 创建TCP Socket, AF_INET为IPv4，SOCK_STREAM为TCP
+    # 创建TCP Socket, 并且绑定到端口上
     sockobj = socket(AF_INET, SOCK_STREAM)
-    # 绑定套接字到地址，地址为（host，port）的元组
     sockobj.bind((ip, port))
-    # 在拒绝连接前，操作系统可以挂起的最大连接数量，一般配置为5
     sockobj.listen(5)
 
-    mss = 1460
+    print('Server is online')
 
-    while True:  # 一直接受请求，直到ctl+c终止程序
-        # 接受TCP连接，并且返回（conn,address）的元组，conn为新的套接字对象，可以用来接收和发送数据，address是连接客户端的地址
-        connection, address = sockobj.accept()
-        # 打印连接客户端的IP地址
-        print('Server Connected by', address)
-        recieved_message = b''  # 预先定义接收信息变量
-        recieved_message_fragment = connection.recv(mss)  # 读取接收到的信息，写入到接收到信息分片
-        while recieved_message_fragment:
-            recieved_message = recieved_message + recieved_message_fragment  # 把所有接收到信息分片重组装
-            recieved_message_fragment = connection.recv(mss)
-        obj = pickle.loads(recieved_message)  # 把接收到信息pickle回正常的obj
-        if isinstance(obj, dict):
-            print("收到字典数据!!!")
-            print(obj)  # 打印obj，当然也可以选择写入文件或者数据库
-        elif isinstance(obj, bytes):
-            myfile = open('./file_dir/Recieved_img.jpg', 'wb')
-            myfile.write(obj)
-            myfile.close()
-            print("收到二进制数据,并写入到文件!!!")
-        connection.close()
+    while True:  # 一直接受客户端的请求，直到ctl+c终止程序
+        try:
+            connection, address = sockobj.accept()
+            print('Server Connected by', address)  # 打印客户端的地址
+            mss = 1460  # 定义接收缓存区的大小
+            buffer = []  # 创建缓存，存储接收到的数据
+            while True:  # 一直接收数据，直到接收完毕
+                data = connection.recv(mss)  # 接收数据
+                if data:  # 如果接收到数据
+                    buffer.append(data)  # 把接收到的数据，添加到缓存中
+                else:  # 如果没有接收到数据，表示客户端已经发送完毕
+                    obj = pickle.loads(b''.join(buffer))  # 把缓存中的数据拼接起来，并且unpickle
+                    if isinstance(obj, dict):  # 如果是字典
+                        print(obj)  # 打印字典
+                    else:  # 如果是数据
+                        # 使用Path获取当前文件的目录，然后找到file_dir目录
+                        current_dir = Path(__file__).parent
+                        file_dir = current_dir / 'file_dir'
+                        # 如果file_dir目录不存在就创建它
+                        file_dir.mkdir(exist_ok=True)
+                        # 构建接收文件的完整路径
+                        received_file = file_dir / 'Recieved_img.jpg'
+                        # 写入文件
+                        myfile = open(received_file, 'wb')
+                        myfile.write(obj)
+                        myfile.close()
+                        print(f'文件接收成功, 并保存到{received_file}!')
+                    break
+            connection.close()
+        except KeyboardInterrupt:  # 如果ctl+c
+            break  # 退出while True
+    sockobj.close()  # 关闭socket
 
 
 if __name__ == '__main__':
