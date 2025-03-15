@@ -11,15 +11,21 @@ import logging
 import ipaddress
 logging.getLogger("kamene.runtime").setLevel(logging.ERROR)
 from multiprocessing.pool import ThreadPool as Pool
+from kamene.all import *
+import os
+import sys
+
+# 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(project_root)
 
 from net_2_icmp.ping_one import scapy_ping_one
-from kamene.all import *
 from tools.sort_ip import sort_ip
 from net_1_arp.time_decorator import run_time
 
 
 @run_time()
-def scapy_ping_scan(network, ifname):
+def scapy_ping_scan(network):
     net = ipaddress.ip_network(network)
     ip_list = [str(ip_add) for ip_add in net]  # 把网络(net)中的IP放入ip_list
     pool = Pool(processes=100)  # 创建多进程的进程池（并发为10）
@@ -27,7 +33,7 @@ def scapy_ping_scan(network, ifname):
 
     result = []
     for i in ip_list:
-        result.append(pool.apply_async(scapy_ping_one, args=(i, ifname)))
+        result.append(pool.apply_async(scapy_ping_one, args=(i,)))
 
     pool.close()  # 关闭pool，不在加入新的进程
     pool.join()  # 等待每一个进程结束
@@ -44,15 +50,6 @@ def scapy_ping_scan(network, ifname):
 
 if __name__ == '__main__':
     # Windows Linux均可使用
-    import platform
-    if platform.system() == "Linux":
-        input_ifname = 'ens224'
-    elif platform.system() == "Windows":
-        # 注意网卡有两个名字
-        # 名称1: VMware Network Adapter VMnet1 ---- 显示的网卡名字（名字可以改）
-        # 名称2: VMware Virtual Ethernet Adapter for VMnet1 ---- Kamene需要这个名字（不能改）
-        # 可以使用函数get_ifname()从名称1得到名称2, 但是速度很慢，建议直接手动输入名称2
-        input_ifname = 'VMware Virtual Ethernet Adapter for VMnet1'
-    for ip in scapy_ping_scan("10.10.1.0/24", input_ifname):
+    for ip in scapy_ping_scan("196.21.5.0/24"):
         print(str(ip))
 

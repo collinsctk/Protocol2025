@@ -10,11 +10,10 @@ logging.getLogger("kamene.runtime").setLevel(logging.ERROR)
 from kamene.all import *
 
 
-def scapy_ping_one(host, ifname):
+def scapy_ping_one(host):
     packet = IP(dst=host) / ICMP() / b'Welcome to qytang'  # 构造Ping数据包
     ping = sr1(packet,
                timeout=1,
-               iface=ifname,  # 使用指定的接口发包
                verbose=False)  # 获取响应信息，超时为2秒，关闭详细信息
 
     try:
@@ -29,15 +28,5 @@ def scapy_ping_one(host, ifname):
 
 if __name__ == '__main__':
     # Windows Linux均可使用
-    import platform
-    if platform.system() == "Linux":
-        input_ifname = 'ens224'
-    elif platform.system() == "Windows":
-        # 注意网卡有两个名字
-        # 名称1: VMware Network Adapter VMnet1 ---- 显示的网卡名字（名字可以改）
-        # 名称2: VMware Virtual Ethernet Adapter for VMnet1 ---- Kamene需要这个名字（不能改）
-        # 可以使用函数get_ifname()从名称1得到名称2, 但是速度很慢，建议直接手动输入名称2
-        input_ifname = 'VMware Virtual Ethernet Adapter for VMnet1'
-
-    print(scapy_ping_one("10.10.1.1", input_ifname))
+    print(scapy_ping_one("196.21.5.1"))
     # print(scapy_ping_one(sys.argv[1]))

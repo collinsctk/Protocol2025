@@ -18,13 +18,12 @@ import sys
 import re
 
 
-def ping_one(dst, id_no, seq_no, ttl_no, ifname):
+def ping_one(dst, id_no, seq_no, ttl_no):
     send_time = time.time()
     time_in_bytes = struct.pack('>d', send_time)  # 把发出的时间,写入ICMP数据部分
     # 构建ICMP Echo数据包
     ping_one_reply = sr1(IP(dst=dst, ttl=ttl_no) / ICMP(id=id_no, seq=seq_no) / time_in_bytes,
                          timeout=2,
-                         iface=ifname,  # 使用指定的接口发包
                          verbose=False)
     try:
         if ping_one_reply.getlayer(ICMP).type == 0 \
@@ -53,11 +52,11 @@ def ping_one(dst, id_no, seq_no, ttl_no, ifname):
             return None
 
 
-def qyt_ping(dst, ifname):
+def qyt_ping(dst):
     # 随机产生ICMP ID
     id_no = random.randint(1, 65535)
     for i in range(1, 6):  # ping五个包
-        ping_result = ping_one(dst, id_no, i, 64, ifname)
+        ping_result = ping_one(dst, id_no, i, 64)
         if ping_result:
             print('%d bytes from %s: icmp_seq=%d ttl=%d time=%4.2f ms' % (
                 ping_result[0], ping_result[1], ping_result[2], ping_result[3], ping_result[4]))
@@ -69,13 +68,4 @@ def qyt_ping(dst, ifname):
 
 if __name__ == '__main__':
     # Windows Linux均可使用
-    import platform
-    if platform.system() == "Linux":
-        input_ifname = 'ens224'
-    elif platform.system() == "Windows":
-        # 注意网卡有两个名字
-        # 名称1: VMware Network Adapter VMnet1 ---- 显示的网卡名字（名字可以改）
-        # 名称2: VMware Virtual Ethernet Adapter for VMnet1 ---- Kamene需要这个名字（不能改）
-        # 可以使用函数get_ifname()从名称1得到名称2, 但是速度很慢，建议直接手动输入名称2
-        input_ifname = 'VMware Virtual Ethernet Adapter for VMnet1'
-    qyt_ping('10.10.1.1', input_ifname)
+    qyt_ping('196.21.5.1')
