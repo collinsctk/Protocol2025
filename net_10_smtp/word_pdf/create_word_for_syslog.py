@@ -69,11 +69,13 @@ def create_word_for_syslog(add_img, save_word_name):
     table.cell(0, 1).text = '数量'
     table.cell(0, 2).text = '百分比'
 
+    # print(syslog_result)
     total = sum([y for x, y in syslog_result])
 
     # 后续行
     i = 1
     for x, y in syslog_result[:3]:
+        # print(x, y)
         table.cell(i, 0).text = x
         table.cell(i, 1).text = str(int(y))
         table.cell(i, 2).text = f'{(y/total)*100:.1f}'

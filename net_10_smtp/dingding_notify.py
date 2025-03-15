@@ -1,7 +1,7 @@
+import os   
 from dingtalkchatbot.chatbot import DingtalkChatbot
 
-qyt_webhook = 'https://oapi.dingtalk.com/robot/send?access_token=3957a042c05384519b4257656ff85e5055540ee4e0637b1272266ff894c90e83'
-
+qyt_webhook = os.environ.get('DINGDINGWEBHOOK')
 
 # dingding组群发MarkDown
 def send_group_msg(webhook, title, text, is_at_all=True):

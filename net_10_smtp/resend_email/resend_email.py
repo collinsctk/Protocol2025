@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding=utf-8 -*-
 
-from api_key import resend_api_key
 import base64
 import resend
+import os
 
 # 设置 Resend API 密钥
-resend.api_key = resend_api_key
+resend.api_key = os.environ.get('RESENDAPIKEY')
 
 
 def resend_email(email_from, email_to_list, subject, body, attachment_file_path_list=None):
@@ -37,11 +37,18 @@ def resend_email(email_from, email_to_list, subject, body, attachment_file_path_
 
 
 if __name__ == '__main__':
+    import sys
+    from pathlib import Path
+
+    # 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
+    current_file = Path(__file__)
+    current_dir = current_file.parent
+
     email_from = 'collinsctk@qytang.com'
-    email_to_list = ['collinsctk@gmail.com']
+    email_to_list = ['collinsctk@qytang.com']
     subject = '测试邮件'
     body = '<h1>这是一封测试邮件</h1>'
-    attachment_file_path_list = ['test.docx']
+    attachment_file_path_list = [f'{current_dir}{os.sep}test.docx']
     resend_email(email_from,
                  email_to_list,
                  subject,
