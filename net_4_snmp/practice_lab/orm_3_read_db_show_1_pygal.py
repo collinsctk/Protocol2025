@@ -5,11 +5,23 @@
 # 亁颐堂官网www.qytang.com
 # 教主VIP, 让我们聊点高级的
 # https://vip.qytang.com/
+import sys
+import os
+from pathlib import Path
+
+# 获取当前文件的路径
+current_file_path = Path(__file__).resolve()
+# 当前目录的路径
+current_dir = current_file_path.parent.parent
+root_dir = current_dir.parent
+
+sys.path.insert(1, str(root_dir))
+
 
 from sqlalchemy.orm import sessionmaker
-from part_4_snmp.practice_lab.orm_1_create_table import RouterMonitor, db_filename
+from net_4_snmp.practice_lab.orm_1_create_table import RouterMonitor, db_filename
 # airflow 调度写入的PSQL数据库
-from part_4_snmp.airflow.dags.orm_1_create_table import engine
+# from net_4_snmp.airflow.dags.orm_1_create_table import engine
 import pygal  # 引入 Pygal
 from pygal.style import Style
 from sqlalchemy import create_engine
