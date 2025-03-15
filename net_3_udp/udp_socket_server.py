@@ -6,7 +6,7 @@
 # 教主VIP, 让我们聊点高级的
 # https://vip.qytang.com/
 
-from tools.get_ip_netifaces import get_ip_address
+
 import socket
 import sys
 
