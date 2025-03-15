@@ -11,7 +11,7 @@ project_root = current_file.parent.parent
 print(project_root)
 sys.path.append(str(project_root))
 
-from net_8_ssh.netmiko_plan.ssh_client_netmiko import netmiko_show_cred
+from net_8_ssh.netmiko_plan.netmiko_1_show_client import netmiko_show_cred
 from datetime import datetime
 
 # 协程任务循环

@@ -1,0 +1,17 @@
+{# 简单替换,注意最后的减号,它不会多产生一个空行 -#}
+simple_replacement: {{ simple_replacement }}
+{# 获取字典数据 -#}
+get_dict: {{ get_dict.qyt_dict_key }}
+{# 通过位置获取列表数据 -#}
+get_list: {{ get_list.0 }}
+{# 循环列表 -#}
+<ul>
+{% for l in get_list -%}
+    {% if l == 'loc0' -%} {# 条件 -#}
+    {# 内建filter https://tedboy.github.io/jinja2/templ14.html -#}
+    <li>{{ l.upper() }}</li>
+    {% else -%}
+    <li>{{ l }}</li>
+    {% endif -%}
+{% endfor -%}
+</ul>

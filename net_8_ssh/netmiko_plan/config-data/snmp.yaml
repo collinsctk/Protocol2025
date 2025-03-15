@@ -1,0 +1,4 @@
+snmp_location: beijing_qytang
+snmp_contact: qytang_jiaozhu
+snmp_ro_community: qytangro
+snmp_rw_community: qytangrw

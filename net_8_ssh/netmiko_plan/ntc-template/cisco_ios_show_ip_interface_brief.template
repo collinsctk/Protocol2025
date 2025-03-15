@@ -1,0 +1,7 @@
+Value INTERFACE ([A-Z]\S+\d+)
+Value IP_ADDRESS (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})
+Value STATUS (up|down|administratively down|deleted)
+Value PROTO (up|down)
+
+Start
+  ^${INTERFACE}\s+${IP_ADDRESS}\s+\w+\s+\w+\s+${STATUS}\s+${PROTO} -> Record

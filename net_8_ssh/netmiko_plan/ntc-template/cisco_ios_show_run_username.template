@@ -1,0 +1,6 @@
+Value USERNAME (\S+)
+Value PASSWORD (.*)
+Value PRIV (\d+)
+
+Start
+  ^username ${USERNAME} privilege ${PRIV} secret \d ${PASSWORD} -> Record

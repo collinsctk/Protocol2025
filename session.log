@@ -1,0 +1,289 @@
+
+
+C8Kv2#
+C8Kv2#terminal width 511
+C8Kv2#terminal length 0
+C8Kv2#
+C8Kv2#
+C8Kv2#show run
+Building configuration...
+
+Current configuration : 6924 bytes
+!
+! Last configuration change at 08:17:08 GMT Sun Mar 9 2025 by admin
+!
+version 17.14
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+platform sslvpn use-pd
+platform console virtual
+!
+hostname C8Kv2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no logging console
+no aaa new-model
+clock timezone GMT 8 0
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip name-server 114.114.114.114
+!
+!
+!
+login on-success log
+!
+!
+subscriber templating
+!
+! 
+! 
+! 
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-2965309643
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2965309643
+ revocation-check none
+ rsakeypair TP-self-signed-2965309643
+ hash sha256
+!
+crypto pki trustpoint SLA-TrustPoint
+ enrollment pkcs12
+ revocation-check crl
+ hash sha256
+!
+!
+crypto pki certificate chain TP-self-signed-2965309643
+ certificate self-signed 01
+  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030 
+  31312F30 2D060355 04030C26 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 32393635 33303936 3433301E 170D3234 30383330 31313131 
+  35325A17 0D333430 38333031 31313135 325A3031 312F302D 06035504 030C2649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D32 39363533 
+  30393634 33308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 
+  0A028201 0100D196 216E058F 4CF24BF2 28DB72A1 DD40AB4C 843CA7BE 3695EDC6 
+  A8738776 12B9D52B 2258DBC9 328B80AC 5D9D0F64 4D59EA33 5C83AD34 4636E4B9 
+  02156E85 D46BE404 CD5E8DD4 00694C1A 00A521AE 60B7E9B2 8BF0E4D6 F5AFF85E 
+  B6624F2A 167EC9FC 1269FE6D EAFEA8E1 851CD83A 1F1AF535 A02BFA3F 141EF0FB 
+  E7E71788 80F0F8FD C7A5980E E41374F1 84C5D195 12285B7F 26136F76 B46E3001 
+  AF998081 5217DC5D 2ED28C8D 561AD0C1 80D3A1EF D7533DCA 8473F72D DD80F0E9 
+  5B92B9E8 25231B22 847EC932 B6FD83A1 6FBAC7AF 34F1840A 54E8E2E7 B5DAFB30 
+  236F5583 C8218EF4 58A97691 6068D6AC 6C8B309A 3E6EE848 46F95978 90531AAE 
+  8E7B1E99 74230203 010001A3 53305130 1D060355 1D0E0416 04144068 79E304F6 
+  CABD072D 1F096686 AD5D3348 4296301F 0603551D 23041830 16801440 6879E304 
+  F6CABD07 2D1F0966 86AD5D33 48429630 0F060355 1D130101 FF040530 030101FF 
+  300D0609 2A864886 F70D0101 0B050003 82010100 B14BA8AB E2E25E72 5DA1246F 
+  926B08C0 94670644 42372E60 2EA62A15 E220D6FA 8B9865CD F2B56677 452710AF 
+  24D209A5 D133854D 8B4AB62E 98F296E0 2AAD0DCB 9E2E77C0 F7E88D7E 03F00145 
+  8FDB4406 A4CC39A9 434D51AB 51C16AB6 7AE01477 2E8E7C3F 6C3E5F9F D8318D8E 
+  43B07232 88C86CFC C098061A 2DF772CB 423DB853 C7BEC7B0 6A83AB2B 13A51451 
+  E674C993 3D2E0C6D F46130EC A820B288 7FACBF26 9DFA8D32 E1499755 37208DA3 
+  6298385B ED48DDBF FA4822F0 3A058792 F170637F 77ABF2EA 0A970ADA F8FC980B 
+  3B8884E2 39138DC9 996697EB 05D85EF0 10548469 42A0006A 7607B931 495C5651 
+  660CCF75 27477EB0 5B9F66B5 ABB1AA54 4392E8FB
+  	quit
+crypto pki certificate chain SLA-TrustPoint
+ certificate ca 01
+  30820321 30820209 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030 
+  32310E30 0C060355 040A1305 43697363 6F312030 1E060355 04031317 43697363 
+  6F204C69 63656E73 696E6720 526F6F74 20434130 1E170D31 33303533 30313934 
+  3834375A 170D3338 30353330 31393438 34375A30 32310E30 0C060355 040A1305 
+  43697363 6F312030 1E060355 04031317 43697363 6F204C69 63656E73 696E6720 
+  526F6F74 20434130 82012230 0D06092A 864886F7 0D010101 05000382 010F0030 
+  82010A02 82010100 A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D 
+  CBB4C798 212AA147 C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520 
+  1C394D78 462EF239 C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE 
+  4AA4E80D DB6FD1C9 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC 
+  7390A3EB 2B5436AD C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188 
+  68E69491 20F320E7 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7 
+  C7479096 B4CB2D62 EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191 
+  C55F0D76 61F9A4CD 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44 
+  DFC7C6CF 04DD7FD1 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201 
+  06300F06 03551D13 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85 
+  4B3D31E5 1B3E6A17 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500 
+  03820101 00507F24 D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905 
+  604EDCDE FF4FED2B 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B 
+  D98987BF E40CBD9E 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8 
+  467A3DF4 4D565700 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C 
+  7CA7B7E6 C1AF74F6 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B 
+  5FB0DA06 B92AFE7F 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678 
+  80DDCD16 D6BACECA EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB 
+  418616A9 4093E049 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0 
+  D697DF7F 28
+  	quit
+!
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid C8000V sn 91BLQCORNOA
+license boot level network-premier addon dna-premier
+memory free low-watermark processor 201659
+diagnostic bootup level minimal
+!
+!
+spanning-tree extend system-id
+!
+!
+username admin privilege 15 secret 9 $9$owT8w3GleKUXvE$4sA2VZaYoOKF5pqHQiaHHc9oEaNJKSgPxo9FeaOPBxM
+!
+redundancy
+!
+!
+!
+!
+!
+!
+!
+lldp run
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback0
+ ip address 2.2.2.2 255.255.255.0
+!
+interface GigabitEthernet1
+ ip address 196.21.5.212 255.255.255.0
+ negotiation auto
+!
+interface GigabitEthernet2
+ ip address 10.1.1.2 255.255.255.0
+ negotiation auto
+!
+interface GigabitEthernet3
+ ip address 192.168.1.1 255.255.255.0
+ negotiation auto
+!
+router ospf 1
+ router-id 2.2.2.2
+ network 2.2.2.0 0.0.0.255 area 0
+ network 10.1.1.0 0.0.0.255 area 0
+ network 192.168.1.0 0.0.0.255 area 0
+!
+ip forward-protocol nd
+!
+ip http server
+ip http authentication local
+ip http secure-server
+ip route 0.0.0.0 0.0.0.0 196.21.5.1
+ip ssh bulk-mode 131072
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+mgcp behavior rsip-range tgcp-only
+mgcp behavior comedia-role none
+mgcp behavior comedia-check-media-src disable
+mgcp behavior comedia-sdp-force disable
+!
+mgcp profile default
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ stopbits 1
+line aux 0
+line vty 0 4
+ exec-timeout 0 0
+ login local
+ transport input ssh
+line vty 5 15
+ login local
+ transport input ssh
+!
+ntp server ntp.aliyun.com
+!
+!
+!
+!
+!
+!
+telemetry ietf subscription 666
+ encoding encode-kvgpb
+ filter xpath /process-cpu-ios-xe-oper:cpu-usage/cpu-utilization/five-seconds
+ stream yang-push
+ update-policy periodic 1000
+ receiver ip address 196.21.5.218 57000 protocol grpc-tcp
+telemetry ietf subscription 667
+ encoding encode-kvgpb
+ filter xpath /memory-ios-xe-oper:memory-statistics/memory-statistic
+ stream yang-push
+ update-policy periodic 1000
+ receiver ip address 196.21.5.218 57000 protocol grpc-tcp
+telemetry ietf subscription 671
+ encoding encode-kvgpb
+ filter xpath /interfaces-ios-xe-oper:interfaces/interface/statistics
+ stream yang-push
+ update-policy periodic 1000
+ receiver ip address 196.21.5.218 57000 protocol grpc-tcp
+netconf-yang
+restconf
+end
+
+C8Kv2#
+C8Kv2#exit
+encode-kvgpb
+ filter xpath /memory-ios-xe-oper:memory-statistics/memory-statistic
+ stream yang-push
+ update-policy periodic 1000
+ receiver ip address 196.21.5.218 57000 protocol grpc-tcp
+telemetry ietf subscription 671
+ encoding encode-kvgpb
+ filter xpath /interfaces-ios-xe-oper:interfaces/interface/statistics
+ stream yang-push
+netconf-yang
+restconf
+end
+
+C8Kv1#
+C8Kv1#exit

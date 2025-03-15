@@ -1,0 +1,22 @@
+device_ip: 196.21.5.211
+device_type: cisco_ios
+username: admin
+password: Cisc0123
+configs:
+  - config_direction: ospf
+    config_data:
+      process_id: 1
+      router_id: 1.1.1.1
+      network_list:
+        - network: 10.1.1.0
+          wildcard_mask: 0.0.0.255
+          area: 0
+  - config_direction: users
+    config_data:
+      users:
+        - username: qytuser1
+          password: Cisc0123
+          priv: 15
+        - username: qytuser2
+          password: Cisc0123
+          priv: 15

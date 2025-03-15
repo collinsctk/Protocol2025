@@ -1,0 +1,12 @@
+simple_replacement: qytang_replace  # 简单替换
+get_dict:  # 获取字典数据
+  qyt_dict_key: qyt_dict_value
+get_list:  # 获取列表数据
+  - loc0
+  - loc1
+  - loc2
+
+
+
+
+
