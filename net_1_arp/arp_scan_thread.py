@@ -8,12 +8,13 @@
 
 
 import logging
-import os
 import sys
+from pathlib import Path
 
 # 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
-project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.append(project_root)
+current_file = Path(__file__)
+project_root = current_file.parent.parent
+sys.path.append(str(project_root))
 
 logging.getLogger("kamene.runtime").setLevel(logging.ERROR)
 import ipaddress

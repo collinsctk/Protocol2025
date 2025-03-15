@@ -5,9 +5,19 @@
 # 亁颐堂官网www.qytang.com
 # 教主VIP, 让我们聊点高级的
 # https://vip.qytang.com/
+from pathlib import Path
+import sys
 
-from part_4_snmp.python_script.snmp_v2_1_get import snmpv2_get
-from part_4_snmp.python_script.snmp_v2_3_getbulk import snmpv2_getbulk
+# 获取当前文件的路径
+current_file_path = Path(__file__).resolve()
+
+# 获取当前文件所在的目录路径
+root_dir = current_file_path.parent.parent.parent
+# 将根目录添加到Python路径
+sys.path.insert(1, str(root_dir))
+
+from net_4_snmp.python_script.snmp_v2_1_get import snmpv2_get
+from net_4_snmp.python_script.snmp_v2_3_getbulk import snmpv2_getbulk
 import asyncio
 
 # ~~~~~~~~~~~~~~~~注意版本~~~~~~~~~~~~~
