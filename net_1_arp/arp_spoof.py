@@ -10,7 +10,7 @@
 # https://www.winpcap.org/install/
 import logging
 logging.getLogger("kamene.runtime").setLevel(logging.ERROR)  # 清除报错
-from kamene.all import *
+from kamene.all import ARP, Ether, sendp
 import os
 import sys
 

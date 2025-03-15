@@ -7,7 +7,7 @@
 # https://vip.qytang.com/
 import logging
 logging.getLogger("kamene.runtime").setLevel(logging.ERROR)
-from kamene.all import *
+from kamene.all import ICMP, IP, sr1
 
 
 def scapy_ping_one(host):

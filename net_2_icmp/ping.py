@@ -10,7 +10,7 @@
 import logging
 
 logging.getLogger("kamene.runtime").setLevel(logging.ERROR)  # 清除报错
-from kamene.all import *
+from kamene.all import IP, ICMP, Raw, Padding, sr1
 import time
 import struct
 import random

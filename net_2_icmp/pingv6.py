@@ -25,7 +25,7 @@
 import logging
 
 logging.getLogger("kamene.runtime").setLevel(logging.ERROR)  # 清除报错
-from kamene.all import *
+from kamene.all import IPv6, ICMPv6EchoRequest, sr1
 '''
 ~~~Linux配置IPv6:~~~
 
