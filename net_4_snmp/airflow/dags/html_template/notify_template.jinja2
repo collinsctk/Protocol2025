@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>配置发生改变通知</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 5px;
+            font-family: "Consolas", "Courier New", monospace;
+            font-size: 14px;
+        }
+        th {
+            background-color: #eee;
+            font-weight: bold;
+            text-align: left;
+        }
+        .diff_add {
+            background-color: #d4fcbc;
+        }
+        .diff_sub {
+            background-color: #fbb6b6;
+        }
+        .diff_chg {
+            background-color: #ffe5b6;
+        }
+    </style>
+</head>
+<body>
+    <h1>配置发生改变通知</h1>
+    {{ diff_content }}
+    <h1>AI配置变更分析</h1>
+    {{ ai_diff_content }}
+</body>
+</html>
