@@ -18,7 +18,15 @@
 
 import pyshark
 import pprint
-from net_13_traffic_analysis.pyshark_traffic_analysis.pyshark_0_pcap_dir import pcap_data_dir
+import sys
+from pathlib import Path
+
+# 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
+current_file = Path(__file__)
+current_root = current_file.parent
+sys.path.append(str(current_root))
+
+from pyshark_0_pcap_dir import pcap_data_dir
 
 # ####################最原始操作,信息过量#####################
 # cap = pyshark.FileCapture(pcap_data_dir + 'dos.pcap')

@@ -20,7 +20,7 @@ import pyshark
 import pprint
 
 # bpf为捕获过滤器, 过滤Telnet流量
-capture = pyshark.LiveCapture(interface='ens224', bpf_filter='ip and tcp port 23')
+capture = pyshark.LiveCapture(interface='ens35', bpf_filter='ip and tcp port 23')
 # using the sniff() method to capture a given amount of packets (or for a given amount of time) and then read
 # the packets from the capture object as a list
 

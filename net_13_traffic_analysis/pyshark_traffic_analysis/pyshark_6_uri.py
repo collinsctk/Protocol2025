@@ -18,8 +18,18 @@
 
 import pyshark
 import re
+import os
 from collections import defaultdict
-from net_13_traffic_analysis.pyshark_traffic_analysis.pyshark_0_pcap_dir import pcap_data_dir
+import sys
+from pathlib import Path
+
+# 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
+current_file = Path(__file__)
+current_root = current_file.parent
+sys.path.append(str(current_root))
+
+
+from pyshark_0_pcap_dir import pcap_data_dir
 pkt_list = []
 
 cap = pyshark.FileCapture(pcap_data_dir + 'dos.pcap', keep_packets=False, display_filter='http')
@@ -65,10 +75,11 @@ if __name__ == '__main__':
     plt.subplots_adjust(left=0.3)  # 设置标签和图的距离
 
     # ##########################添加注释###################################
-    plt.rcParams['font.sans-serif'] = ['SimHei']  # 设置中文
+    plt.rcParams['font.sans-serif'] = ['Noto Sans SC']
+    plt.rcParams['font.family'] = 'sans-serif'
     plt.title('站点访问量统计')  # 主题
     plt.xlabel('访问数量')  # X轴注释
     plt.ylabel('站点')  # Y轴注释
     # ##########################添加注释###################################
     # 使用WIN来显示图
-    plt.show()
+    plt.savefig(f'{current_root}{os.sep}pyshark_6_uri.png')
