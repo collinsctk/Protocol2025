@@ -5,8 +5,16 @@
 # 亁颐堂官网www.qytang.com
 # 教主技术进化论拓展你的技术新边疆
 # https://ke.qq.com/course/271956?tuin=24199d8a
-from part_1_netmiko.netmiko_1_show_client import device_ip, username, password
-from part_1_netmiko.netmiko_1_show_client import netmiko_show_cred
+
+import sys
+from pathlib import Path
+
+# 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
+current_file = Path(__file__)
+root_dir = current_file.parent.parent.parent.parent
+sys.path.append(str(root_dir))
+from net_8_ssh.netmiko_plan.config_bak_and_diff.config_diff_1_create_table import RouterConfig, db_file_path
+from net_8_ssh.netmiko_plan.netmiko_1_show_client import netmiko_show_cred, device_ip, username, password
 import re
 import hashlib
 from datetime import datetime
@@ -36,7 +44,6 @@ def get_md5_config(host, username, password):
 
 if __name__ == '__main__':
     from sqlalchemy.orm import sessionmaker
-    from part_1_netmiko.config_bak_and_diff.config_diff_1_create_table import RouterConfig, db_file_path
     from sqlalchemy import create_engine
 
     engine = create_engine(f'sqlite:///{db_file_path}?check_same_thread=False',

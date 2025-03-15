@@ -5,8 +5,17 @@
 # 亁颐堂官网www.qytang.com
 # 教主技术进化论拓展你的技术新边疆
 # https://ke.qq.com/course/271956?tuin=24199d8a
-from part_1_netmiko.config_bak_and_diff.config_diff_2_dff_conf import diff_txt
-from part_1_netmiko.config_bak_and_diff.config_diff_1_create_table import RouterConfig, db_file_path
+
+import sys
+from pathlib import Path
+
+# 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
+current_file = Path(__file__)
+currren_dir = current_file.parent
+sys.path.append(str(currren_dir))
+
+from config_diff_2_dff_conf import diff_txt
+from config_diff_1_create_table import RouterConfig, db_file_path
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import func
 from sqlalchemy import create_engine
