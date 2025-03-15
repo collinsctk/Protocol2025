@@ -68,9 +68,8 @@ if __name__ == '__main__':
     # 获取环境变量
     smtp_user = os.environ.get('SMTPUSER')
     smtp_password = os.environ.get('SMTPPASS')
-    smtp_server = os.environ.get('SMTPSERVER')
     smtp_from = os.environ.get('SMTPFROM')
-    qyt_smtp_attachment(smtp_server,
+    qyt_smtp_attachment("smtp.qq.com",
                         smtp_user,
                         smtp_password,
                         smtp_from,
@@ -108,7 +107,7 @@ if __name__ == '__main__':
         from docx2pdf import convert
         convert(f'{current_dir}{os.sep}word_pdf{os.sep}saved_word{os.sep}syslog.docx',
                 f'{current_dir}{os.sep}word_pdf{os.sep}saved_pdf{os.sep}syslog.pdf')
-    qyt_smtp_attachment(smtp_server,
+    qyt_smtp_attachment("smtp.qq.com",
                         smtp_user,
                         smtp_password,
                         smtp_from,

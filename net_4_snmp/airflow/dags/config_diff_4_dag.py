@@ -16,7 +16,7 @@ default_args = {
     'start_date': datetime(2024, 11, 5, 0, 0, tzinfo=local_tz),
     'retries': 1,  # 重试次数
     'retry_delay': timedelta(seconds=10),  # 重试间隔
-    'on_failure_callback': qyt_smtp_attachment,  # 添加失败回调函数
+    # 'on_failure_callback': qyt_smtp_attachment,  # 添加失败回调函数
     # 'on_success_callback': qyt_smtp_attachment,  # 添加成功回调函数
 }
 

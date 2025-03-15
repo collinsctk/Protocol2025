@@ -12,8 +12,13 @@ import re
 import email
 import base64
 from email.header import decode_header, make_header
+from pathlib import Path
+import os
 
-attachment_dir = './attachment_dir/'
+current_file = Path(__file__)
+current_dir = current_file.parent
+
+attachment_dir = f'{current_dir}{os.sep}attachment_dir{os.sep}'
 
 
 def decode_subject_base64(need_decode_str):
@@ -134,15 +139,16 @@ def qyt_rec_mail(mailserver, mailuser, mailpasswd, if_write_dict=False, save_fil
 if __name__ == '__main__':
     # 使用Linux解释器 & WIN解释器
     # print(decode_subject_base64('=?utf-8?b?6ZmE5Lu25rWL6K+VX+S4u+mimA==?='))
+    smtp_user = os.environ.get('SMTPUSER')
+    smtp_password = os.environ.get('SMTPPASS')
     from pprint import pprint
     i = 1
     for x in qyt_rec_mail('pop.qq.com',
-                          '3348326959@qq.com',
-                          'anchwprpwxfbdbif',
+                          smtp_user,
+                          smtp_password,
                           if_write_dict=False,   # 这个默认是False，就不会写入字典，附件也不会显示
                           save_file=True,        # 保存附件到本地
                           delete_email=True):    # 删除邮件
         print('='*50, '第', i, '封信', '='*50)
         pprint(x)
         i += 1
-
