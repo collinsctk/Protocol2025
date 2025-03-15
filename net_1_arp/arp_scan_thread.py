@@ -8,6 +8,12 @@
 
 
 import logging
+import os
+import sys
+
+# 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(project_root)
 
 logging.getLogger("kamene.runtime").setLevel(logging.ERROR)
 import ipaddress
@@ -17,11 +23,11 @@ from net_1_arp.time_decorator import run_time
 
 
 @run_time()
-def scapy_arp_scan(network, ifname):
+def scapy_arp_scan(network):
     net = ipaddress.ip_network(network)  # 产生网络对象
     ip_list = [str(ip_add) for ip_add in net]  # 把网络中的IP放入ip_list
     pool = ThreadPool(processes=100)  # 创建多进程的进程池（并发为100）
-    result = [pool.apply_async(arp_request, args=(i, ifname)) for i in ip_list]  # 把线程放入result清单
+    result = [pool.apply_async(arp_request, args=(i,)) for i in ip_list]  # 把线程放入result清单
     pool.close()  # 关闭pool，不再加入新的线程
     pool.join()  # 等待每一个线程结束
     scan_dict = {}  # ARP扫描结果的字典, 键为IP, 值为MAC
@@ -33,17 +39,5 @@ def scapy_arp_scan(network, ifname):
 
 if __name__ == '__main__':
     # Windows Linux均可使用
-    import platform
-    if platform.system() == "Linux":
-        input_ifname = 'ens224'
-    elif platform.system() == "Windows":
-        # 注意网卡有两个名字
-        # 名称1: VMware Network Adapter VMnet1 ---- 显示的网卡名字（名字可以改）
-        # 名称2: VMware Virtual Ethernet Adapter for VMnet1 ---- Kamene需要这个名字（不能改）
-        # 可以使用函数get_ifname()从名称1得到名称2, 但是速度很慢，建议直接手动输入名称2
-        input_ifname = 'VMware Virtual Ethernet Adapter for VMnet1'
-    for ip, mac in scapy_arp_scan("10.10.1.0/24",
-                                  input_ifname
-                                  ).items():
+    for ip, mac in scapy_arp_scan("196.21.5.0/24").items():
         print('ip地址:'+ip+'是活动的,他的MAC地址是:'+mac)
-

