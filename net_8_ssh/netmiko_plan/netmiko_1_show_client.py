@@ -37,13 +37,13 @@ def netmiko_show_cred(host,
 if __name__ == '__main__':
     from pprint import pprint
     # -------------------命令-------------------
-    # show_cmd = "show ip interface brief"
+    show_cmd = "show ip interface brief"
     # show_cmd = "show interface"
-    show_cmd = 'show version'
+    # show_cmd = 'show version'
 
     # -------------------控制textfsm-------------------
-    textfsm = False
-    # textfsm = True
+    # textfsm = False
+    textfsm = True
 
     # ----------------------ssh------------------------
     raw_result = netmiko_show_cred(device_ip,

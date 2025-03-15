@@ -1,7 +1,15 @@
 import pandas as pd
-from part_1_netmiko.netmiko_1_show_client import device_ip, username, password
-from part_1_netmiko.netmiko_3_config_1_basic import netmiko_config_cred
-from part_1_netmiko.excel_tools.excel_opts_2_insert import excel_file_with_cmd
+import sys
+from pathlib import Path
+
+# 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
+current_file = Path(__file__)
+current_dir = current_file.parent
+sys.path.append(str(current_dir))
+
+from netmiko_1_show_client import device_ip, username, password
+from netmiko_3_config_1_basic import netmiko_config_cred
+from excel_tools.excel_opts_2_insert import excel_file_with_cmd
 
 
 def config_from_excel(excel_file):

@@ -3,8 +3,15 @@ import yaml
 import os
 from jinja2 import Template
 from pprint import pprint
-
 import asyncio
+import sys
+from pathlib import Path
+
+# 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
+current_file = Path(__file__)
+current_dir = current_file.parent
+sys.path.append(str(current_dir))
+
 
 loop = asyncio.new_event_loop()
 asyncio.set_event_loop(loop)
@@ -40,10 +47,10 @@ async def netmiko_config_cred(host,
         return
 
 
-config_devices_info_dir = './config-devices-info'
+config_devices_info_dir = f'{current_dir}{os.sep}config-devices-info'
 devices_config_file_name = 'devices_config.yaml'
 
-config_template_dir = './config-template'
+config_template_dir = f'{current_dir}{os.sep}config-template'
 
 # 任务的列表
 tasks = []

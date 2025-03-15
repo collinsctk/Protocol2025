@@ -1,9 +1,16 @@
 import os
 from textfsm import clitable
-from netmiko_1_show_client import netmiko_show_cred
-from part_1_netmiko.netmiko_1_show_client import device_ip, username, password
+import sys
+from pathlib import Path
+
+# 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
+current_file = Path(__file__)
+current_dir = current_file.parent
+sys.path.append(str(current_dir))
+
+from netmiko_1_show_client import netmiko_show_cred, device_ip, username, password
 from ntc_templates.parse import parse_output
-from part_2_nornir.vault.python_script.vault_2_nonir import get_secret
+
 
 
 def clitable_to_dict(cli_table):
@@ -23,7 +30,7 @@ def netmiko_ntc_template(ip, username, password, cmd, device_type):
     ssh_output = netmiko_show_cred(ip, username, password, cmd, device_type)
 
     # 尝试加载自定义模板
-    custom_template_path = f'.{os.sep}ntc-template'
+    custom_template_path = f'{current_dir}{os.sep}ntc-template'
     cli_table = clitable.CliTable('index', custom_template_path)
 
     attributes = {'Command': cmd, 'Vendor': device_type}
@@ -48,15 +55,14 @@ def netmiko_ntc_template(ip, username, password, cmd, device_type):
 
 
 if __name__ == "__main__":
-    login_secret = get_secret()
     from pprint import pprint
     pprint(netmiko_ntc_template(device_ip,
-                                login_secret.get('username'),
-                                login_secret.get('password'),
-                                # 'show ip inter brie',
+                                'admin',
+                                'Cisc0123',
+                                'show ip inter brie',
                                 # 'show version',
                                 # 'show interface',
-                                "show run | in username",
+                                # "show run | in username",
                                 # 'show flash:',
                                 'cisco_ios')
            )

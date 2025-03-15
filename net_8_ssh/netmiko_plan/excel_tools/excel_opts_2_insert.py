@@ -2,7 +2,15 @@
 # pip install openpyxl
 import pandas as pd
 from pprint import pprint
-from part_1_netmiko.excel_tools.excel_opts_1_create import excel_dir, excel_file_path
+import sys
+from pathlib import Path
+
+# 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
+current_file = Path(__file__)
+current_dir = current_file.parent
+sys.path.append(str(current_dir))
+
+from excel_opts_1_create import excel_dir, excel_file_path
 
 # 保存到新的 Excel 文件
 excel_file_with_cmd = f'{excel_dir}users_with_cmds.xlsx'  # 输出文件名

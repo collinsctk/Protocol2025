@@ -3,7 +3,15 @@ from netmiko import Netmiko
 import yaml
 import os
 from jinja2 import Template
-from part_1_netmiko.netmiko_1_show_client import device_ip, username, password
+import sys
+from pathlib import Path
+
+# 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
+current_file = Path(__file__)
+current_dir = current_file.parent
+sys.path.append(str(current_dir))
+
+from netmiko_1_show_client import device_ip, username, password
 
 
 def netmiko_config_cred(host,
@@ -38,9 +46,9 @@ def netmiko_config_cred(host,
 
 
 def config_cmd_list(config_direction_name):
-    config_template_dir = './config-template'
+    config_template_dir = f'{current_dir}{os.sep}config-template'
     template_file_name = f'{config_direction_name}.jinja2'
-    config_data_dir = './config-data'
+    config_data_dir = f'{current_dir}{os.sep}/config-data'
     data_file_name = f'{config_direction_name}.yaml'
 
     with open(f'{config_data_dir}{os.sep}{data_file_name}') as data_f:
