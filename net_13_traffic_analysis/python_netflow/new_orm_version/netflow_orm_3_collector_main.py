@@ -10,7 +10,16 @@ import logging
 import sys
 import socketserver
 from datetime import datetime
-from net_13_traffic_analysis.python_netflow.new_orm_version.netflow_orm_2_v9_process_module import ExportPacket
+
+import sys
+from pathlib import Path
+
+# 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
+current_file = Path(__file__)
+current_dir = current_file.parent
+sys.path.append(str(current_dir))
+
+from netflow_orm_2_v9_process_module import ExportPacket
 
 logging.getLogger().setLevel(logging.INFO)
 ch = logging.StreamHandler(sys.stdout)

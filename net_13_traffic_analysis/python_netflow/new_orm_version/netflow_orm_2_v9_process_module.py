@@ -8,6 +8,14 @@
 
 import struct
 from sqlalchemy.orm import sessionmaker
+import sys
+from pathlib import Path
+
+# 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
+current_file = Path(__file__)
+current_dir = current_file.parent
+sys.path.append(str(current_dir))
+
 from netflow_orm_1_create_table import engine, Netflow
 
 Session = sessionmaker(bind=engine)

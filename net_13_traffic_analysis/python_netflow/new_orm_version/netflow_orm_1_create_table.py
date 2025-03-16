@@ -2,10 +2,15 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base
 from sqlalchemy import Column, String, Integer, DateTime
 import datetime
+from pathlib import Path
 
-db_dir = '../db_dir/'
+# 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
+current_file = Path(__file__)
+root_root = current_file.parent.parent
 
-engine = create_engine(f'sqlite:///{db_dir}sqlalchemy_sqlite3.db?check_same_thread=False',
+db_dir = root_root / 'db_dir' / 'netflow.sqlite'
+
+engine = create_engine(f'sqlite:///{db_dir}?check_same_thread=False',
                        # echo=True
                        )
 
@@ -33,4 +38,6 @@ class Netflow(Base):
 
 if __name__ == '__main__':
     # checkfirst=True，表示创建表前先检查该表是否存在，如同名表已存在则不再创建。其实默认就是True
+    if db_dir.exists():
+        db_dir.unlink()
     Base.metadata.create_all(engine, checkfirst=True)

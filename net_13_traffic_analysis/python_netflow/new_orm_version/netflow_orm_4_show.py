@@ -10,6 +10,14 @@ import sqlite3
 import datetime
 from matplotlib import pyplot as plt
 from sqlalchemy.orm import sessionmaker
+import sys
+from pathlib import Path
+
+# 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
+current_file = Path(__file__)
+current_dir = current_file.parent
+sys.path.append(str(current_dir))
+
 from netflow_orm_1_create_table import engine, Netflow
 from sqlalchemy import func
 
@@ -58,16 +66,17 @@ for x in application_list:
     protocol_port = str(x[1]) + '/' + str(x[0])
     # print(protocol_port)
     # print(bytes_sum)
-
-    # 通过拼接后的协议和端口号, 找到协议名称, 然后把协议名称放入protocol_list
-    protocol_list.append(protocol_map.get(protocol_port, protocol_port))
-    # 把协议总和字节数放入protocol_bytes
-    protocol_bytes.append(bytes_sum)
+    if protocol_map.get(protocol_port):
+        # 通过拼接后的协议和端口号, 找到协议名称, 然后把协议名称放入protocol_list
+        protocol_list.append(protocol_map.get(protocol_port))
+        # 把协议总和字节数放入protocol_bytes
+        protocol_bytes.append(bytes_sum)
 
 print(protocol_list)
 print(protocol_bytes)
 
-plt.rcParams['font.sans-serif'] = ['SimHei']  # 设置中文
+plt.rcParams['font.sans-serif'] = ['Noto Sans SC']
+plt.rcParams['font.family'] = 'sans-serif'
 # 调节图形大小，宽，高
 plt.figure(figsize=(6, 6))
 
@@ -98,4 +107,4 @@ for t in p_text:
 plt.title('NetFlow流量分布')  # 主题
 plt.axis('equal')
 plt.legend(loc='upper left')
-plt.show()
+plt.savefig(f"{current_dir}/images/netflow_traffic_distribution.png", dpi=300)
