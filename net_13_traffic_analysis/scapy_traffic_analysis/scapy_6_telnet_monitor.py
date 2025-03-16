@@ -11,8 +11,18 @@ import warnings
 logging.getLogger("kamene.runtime").setLevel(logging.ERROR)  # 清除报错
 warnings.filterwarnings("ignore")
 import re
-from kamene.all import *
+from kamene.all import Raw, sniff, wrpcap
 import hexdump
+
+import sys
+from pathlib import Path
+
+current_file = Path(__file__)
+current_root = current_file.parent
+root_root = current_file.parent.parent.parent
+
+sys.path.append(str(root_root))
+
 from tools.scapy_iface import scapy_iface
 from net_13_traffic_analysis.scapy_traffic_analysis.scapy_0_pcap_dir import pcap_dir
 
@@ -46,4 +56,4 @@ def telnet_monitor(user_filter, ifname):
 
 
 if __name__ == "__main__":
-    telnet_monitor('tcp port 23 and ip host 10.10.1.1', 'ens224')
+    telnet_monitor('tcp port 23 and ip host 196.21.5.231', 'ens35')

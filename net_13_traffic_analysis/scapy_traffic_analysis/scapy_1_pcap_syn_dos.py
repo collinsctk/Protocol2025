@@ -10,9 +10,17 @@ import logging
 import warnings
 logging.getLogger("kamene.runtime").setLevel(logging.ERROR)  # 清除报错
 warnings.filterwarnings("ignore")
-from kamene.all import *
+from kamene.all import TCP, IP, rdpcap
 from collections import defaultdict
-from net_13_traffic_analysis.scapy_traffic_analysis.scapy_0_pcap_dir import pcap_dir
+import sys
+import os
+from pathlib import Path
+
+current_file = Path(__file__)
+current_root = current_file.parent
+
+sys.path.append(current_root)
+from scapy_0_pcap_dir import pcap_dir
 
 
 def find_pcap_syn_dos(pcap_filename):
@@ -56,14 +64,16 @@ if __name__ == '__main__':
 
     fig = plt.figure(figsize=(10, 10))
     plt.barh(conn_list, num_list, height=0.5)
-
+    
     plt.yticks(rotation=30)  # 设置标签角度
     plt.yticks(fontsize=10)  # 设置字体大小
     plt.subplots_adjust(left=0.3)  # 设置标签和图的距离
     # ##########################添加注释###################################
-    plt.rcParams['font.sans-serif'] = ['SimHei']  # 设置中文
+    plt.rcParams['font.sans-serif'] = ['Noto Sans SC']
+    plt.rcParams['font.family'] = 'sans-serif'
     plt.title('SYN DoS分析')  # 主题
     plt.xlabel('数量')  # X轴注释
     plt.ylabel('连接')  # Y轴注释
     # ##########################添加注释###################################
-    plt.show()
+    plt.show()# transparent: False or True, 透明背景
+    plt.savefig(f"{current_root}/images/SYN_DoS_analysis.png", dpi=300)

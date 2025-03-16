@@ -13,7 +13,14 @@ warnings.filterwarnings("ignore")
 
 # 忽略特定类型的警告
 
-from kamene.all import *
+from kamene.all import TCP, IP, Ether, sendp, sniff
+import sys
+from pathlib import Path
+
+current_file = Path(__file__)
+root_root = current_file.parent.parent.parent
+
+sys.path.append(str(root_root))
 from tools.scapy_iface import scapy_iface
 
 
@@ -64,4 +71,6 @@ def tcp_reset(src_ip, dst_ip, dst_port, ifname, src_port=None):
 
 if __name__ == "__main__":
     # 使用Linux解释器 & WIN解释器
-    tcp_reset('10.10.1.100', '10.10.1.1', '23', 'ens224')
+    # 使用ens35网卡
+    # 使用196.21.5.231作为源IP，196.21.5.211作为目的IP，23作为目的端口
+    tcp_reset('196.21.5.231', '196.21.5.211', '23', 'ens35')

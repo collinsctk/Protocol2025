@@ -11,7 +11,16 @@ import warnings
 logging.getLogger("kamene.runtime").setLevel(logging.ERROR)  # 清除报错
 warnings.filterwarnings("ignore")
 import re
-from kamene.all import *
+from kamene.all import TCP, IP, Ether, sendp, sniff, wrpcap, Raw
+import sys
+from pathlib import Path
+
+current_file = Path(__file__)
+current_root = current_file.parent
+root_root = current_file.parent.parent.parent
+
+sys.path.append(str(root_root))
+
 from tools.scapy_iface import scapy_iface
 from net_13_traffic_analysis.scapy_traffic_analysis.scapy_0_pcap_dir import pcap_dir
 
@@ -44,6 +53,7 @@ def reset_tcp(pkt):
 
 
 def telnet_monitor_callback(pkt):
+    # pkt.show()
     # 通过对Telnet会话数据的拼接,判断是否出现show ver字段, 如果出现重置会话
     global qyt_string
     try:
@@ -61,14 +71,15 @@ def telnet_rst(user_filter, ifname):
     # 本代码主要任务: 使用过滤器捕获数据包, 把捕获的数据包交给telnet_monitor_callback进行处理
     global global_if
     global_if = scapy_iface(ifname)
+    print(f"开始在接口 {global_if} 上捕获流量，过滤条件: {user_filter}")
     ptks = sniff(prn=telnet_monitor_callback,
                  filter=user_filter,
                  store=1,
-                 iface=global_if,
-                 timeout=10)
+                 timeout=10,
+                 iface=global_if) 
     wrpcap(pcap_dir + "temp.cap", ptks)
     print(qyt_string)
 
 
 if __name__ == "__main__":
-    telnet_rst("tcp port 23 and ip host 10.10.1.1", "ens224")
+    telnet_rst("tcp port 23 and ip host 196.21.5.211", "ens35")

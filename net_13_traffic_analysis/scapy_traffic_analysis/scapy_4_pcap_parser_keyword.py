@@ -12,7 +12,14 @@ logging.getLogger("kamene.runtime").setLevel(logging.ERROR)  # 清除报错
 warnings.filterwarnings("ignore")
 from kamene.all import *
 import re
-from net_13_traffic_analysis.scapy_traffic_analysis.scapy_0_pcap_dir import pcap_dir
+import sys
+from pathlib import Path
+
+current_file = Path(__file__)
+current_root = current_file.parent
+
+sys.path.append(current_root)
+from scapy_0_pcap_dir import pcap_dir
 
 
 def pcap_parser(filename, keyword):
