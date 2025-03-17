@@ -14,7 +14,7 @@ def get_ifname(ifname):
 if __name__ == "__main__":
     import platform
     if platform.system() == "Linux":
-        print(get_ifname('ens224'))
+        print(get_ifname('ens35'))
     elif platform.system() == "Windows":
         print(get_ifname('VMware Network Adapter VMnet1'))
 

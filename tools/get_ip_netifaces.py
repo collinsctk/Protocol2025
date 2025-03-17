@@ -52,8 +52,8 @@ def get_ipv6_address(ifname):
 
 if __name__ == "__main__":
     if platform.system() == "Linux":
-        print(get_ip_address('ens224'))
-        print(get_ipv6_address('ens224'))
+        print(get_ip_address('ens35'))
+        print(get_ipv6_address('ens35'))
     elif platform.system() == "Windows":
         print(get_ip_address('VMware Network Adapter VMnet1'))
         print(get_ipv6_address('VMware Network Adapter VMnet1'))
