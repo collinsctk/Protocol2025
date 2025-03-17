@@ -17,7 +17,17 @@ import platform
 def get_ip_address(ifname):
     if platform.system() == "Linux":
         try:
-            # pprint(ifaddresses(ifname))
+            pprint(ifaddresses(ifname))
+            """
+            {2: [{'addr': '196.21.5.218',
+                'broadcast': '196.21.5.255',
+                'netmask': '255.255.255.0'}],
+            10: [{'addr': '2001:196:21:5:20c:29ff:fe4d:73b3',
+                'netmask': 'ffff:ffff:ffff:ffff::/64'},
+                {'addr': 'fe80::20c:29ff:fe4d:73b3%ens35',
+                'netmask': 'ffff:ffff:ffff:ffff::/64'}],
+            17: [{'addr': '00:0c:29:4d:73:b3', 'broadcast': 'ff:ff:ff:ff:ff:ff'}]}
+            """
             return ifaddresses(ifname)[AF_INET][0]['addr']
         except ValueError:
             return None
