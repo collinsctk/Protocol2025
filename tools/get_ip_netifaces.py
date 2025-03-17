@@ -9,9 +9,9 @@
 # windows安装netifaces需要安装 Build Tools for Visual Studio 2019
 # https://visualstudio.microsoft.com/zh-hant/visual-cpp-build-tools/
 
-from netifaces import interfaces, ifaddresses, AF_INET, AF_INET6
-import platform
+from netifaces import ifaddresses, AF_INET, AF_INET6
 from pprint import pprint
+import platform
 
 
 def get_ip_address(ifname):

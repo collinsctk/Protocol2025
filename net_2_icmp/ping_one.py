@@ -6,7 +6,8 @@
 # 教主VIP, 让我们聊点高级的
 # https://vip.qytang.com/
 import logging
-logging.getLogger("kamene.runtime").setLevel(logging.ERROR)
+import logging
+logging.getLogger("kamene.runtime").setLevel(logging.ERROR)  # 清除报错
 from kamene.all import ICMP, IP, sr1
 
 

@@ -22,10 +22,6 @@
 """
 
 import logging
-import sys
-import os
-
-
 logging.getLogger("kamene.runtime").setLevel(logging.ERROR)  # 清除报错
 
 from kamene.all import ARP, sr1

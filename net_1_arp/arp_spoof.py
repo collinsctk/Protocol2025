@@ -8,24 +8,25 @@
 
 # WINDOWS需要安装WINPCAP
 # https://www.winpcap.org/install/
-import logging
-logging.getLogger("kamene.runtime").setLevel(logging.ERROR)  # 清除报错
 from kamene.all import ARP, Ether, sendp
+import time
+import signal
 import sys
 from pathlib import Path
+import logging
+logging.getLogger("kamene.runtime").setLevel(logging.ERROR)  # 清除报错
 
 # 获取当前文件所在目录的父目录（项目根目录）并添加到Python路径
 current_file = Path(__file__)
 project_root = current_file.parent.parent
 sys.path.append(str(project_root))
 
+# 导入工具函数
 from tools.get_ip_netifaces import get_ip_address  # 导入获取本机IP地址方法
 from tools.get_mac_netifaces import get_mac_address  # 导入获取本机MAC地址方法
-from net_1_arp.arp_request import arp_request  # 导入之前创建的ARP请求脚本
 from tools.scapy_iface import scapy_iface  # 获取scapy iface的名字
-import time
-import signal
-
+# 导入ARP请求脚本
+from net_1_arp.arp_request import arp_request  # 导入之前创建的ARP请求脚本
 
 
 def arp_spoof(ip_1, ip_2, ifname):

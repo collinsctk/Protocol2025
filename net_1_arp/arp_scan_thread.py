@@ -8,6 +8,11 @@
 
 
 import logging
+# 清除kamene的报错
+logging.getLogger("kamene.runtime").setLevel(logging.ERROR)
+
+import ipaddress
+from multiprocessing.pool import ThreadPool
 import sys
 from pathlib import Path
 
@@ -16,9 +21,7 @@ current_file = Path(__file__)
 project_root = current_file.parent.parent
 sys.path.append(str(project_root))
 
-logging.getLogger("kamene.runtime").setLevel(logging.ERROR)
-import ipaddress
-from multiprocessing.pool import ThreadPool
+# 导入arp_request和time_decorator
 from net_1_arp.arp_request import arp_request
 from net_1_arp.time_decorator import run_time
 
