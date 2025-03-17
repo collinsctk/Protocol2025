@@ -10,6 +10,8 @@
 import sys
 import os
 from pathlib import Path
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
 
 # 获取当前文件的路径
 current_file_path = Path(__file__).resolve()
@@ -17,13 +19,12 @@ current_file_path = Path(__file__).resolve()
 current_dir = current_file_path.parent.parent
 sys.path.insert(1, current_dir)
 # 上一级目录的路径
-parent_dir = current_file_path.parent.parent
-sys.path.insert(1, f'{parent_dir}{os.sep}python_script')
+parent_dir = current_file_path.parent.parent.parent
+sys.path.insert(1, str(parent_dir))
 
-from snmp_v3_4_get_all import snmpv3_get_all
-from sqlalchemy.orm import sessionmaker
+from python_script.snmp_v3_4_get_all import snmpv3_get_all
 from orm_1_create_table import RouterMonitor, db_filename
-from sqlalchemy import create_engine
+
 
 
 engine = create_engine(f'sqlite:///{db_filename}?check_same_thread=False',

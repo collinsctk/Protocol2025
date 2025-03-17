@@ -7,6 +7,13 @@
 # https://vip.qytang.com/
 
 import asyncio
+from pathlib import Path
+import sys
+
+# 获取当前文件的路径
+current_file_path = Path(__file__).resolve()
+
+sys.path.insert(1, str(current_file_path.parent))
 from snmp_v3_1_get import snmpv3_get
 from snmp_v3_3_getbulk import snmpv3_getbulk
 

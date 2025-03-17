@@ -91,8 +91,10 @@ def snmpv2_get_all(ip_address, community):
 
     return {'device_ip': ip_address,
             'hostname': sys_name,
-            'cpu_usage_percent': cpu_usage,
+            'cpu_usage': cpu_usage,
             'mem_usage_percent': mem_percent,
+            'mem_usage': mem_used,
+            'mem_free': mem_free,
             'interface_list': interface_list
             }
 
