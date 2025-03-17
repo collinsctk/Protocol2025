@@ -1,0 +1,224 @@
+
+2025-02-23 13:49:08,164: %UNICON-INFO: +++ C8Kv2 logfile ./pyats_files/netdevops_ospf_nei_snapshot/connection_C8Kv2.txt +++
+
+2025-02-23 13:49:08,164: %UNICON-INFO: +++ Unicon plugin iosxe (unicon.plugins.iosxe) +++
+The authenticity of host '196.21.5.212 (196.21.5.212)' can't be established.
+RSA key fingerprint is SHA256:5yItTFm5wmRNMMkQKYIJPq8esI2oor0uxKs59ZIvzXU.
+This host key is known by the following other names/addresses:
+    ~/.ssh/known_hosts:2: 10.1.1.2
+Are you sure you want to continue connecting (yes/no/[fingerprint])? 
+
+2025-02-23 13:49:08,391: %UNICON-INFO: +++ connection to spawn: ssh -l admin 196.21.5.212, id: 139720777745872 +++
+
+2025-02-23 13:49:08,391: %UNICON-INFO: connection to C8Kv2
+yes
+Warning: Permanently added '196.21.5.212' (RSA) to the list of known hosts.
+(admin@196.21.5.212) Password: 
+
+
+
+C8Kv2#
+
+C8Kv2#
+
+2025-02-23 13:49:08,873: %UNICON-INFO: +++ C8Kv2 with via 'cli': executing command 'show version | include operating mode' +++
+show version | include operating mode
+Router operating mode: Autonomous
+C8Kv2#
+
+2025-02-23 13:49:09,025: %UNICON-INFO: +++ initializing handle +++
+
+2025-02-23 13:49:09,148: %UNICON-INFO: +++ C8Kv2 with via 'cli': executing command 'term length 0' +++
+term length 0
+C8Kv2#
+
+2025-02-23 13:49:09,406: %UNICON-INFO: +++ C8Kv2 with via 'cli': executing command 'term width 0' +++
+term width 0
+C8Kv2#
+
+2025-02-23 13:49:09,659: %UNICON-INFO: +++ C8Kv2 with via 'cli': executing command 'show version' +++
+show version
+Cisco IOS XE Software, Version 17.14.01a
+Cisco IOS Software [IOSXE], Virtual XE Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 17.14.1a, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2024 by Cisco Systems, Inc.
+Compiled Thu 25-Apr-24 18:53 by mcpre
+
+
+Cisco IOS-XE software, Copyright (c) 2005-2024 by cisco Systems, Inc.
+All rights reserved.  Certain components of Cisco IOS-XE software are
+licensed under the GNU General Public License ("GPL") Version 2.0.  The
+software code licensed under GPL Version 2.0 is free software that comes
+with ABSOLUTELY NO WARRANTY.  You can redistribute and/or modify such
+GPL code under the terms of GPL Version 2.0.  For more details, see the
+documentation or "License Notice" file accompanying the IOS-XE software,
+or the applicable URL provided on the flyer accompanying the IOS-XE
+software.
+
+
+ROM: IOS-XE ROMMON
+
+C8Kv2 uptime is 5 hours, 26 minutes
+Uptime for this control processor is 5 hours, 27 minutes
+System returned to ROM by reload
+System restarted at 08:22:58 GMT Sun Feb 23 2025
+System image file is "bootflash:packages.conf"
+Last reload reason: reload
+
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+License Level: network-premier
+License Type: Perpetual
+Next reload license Level: network-premier
+
+Addon License Level: dna-premier
+Addon License Type: Subscription
+Next reload addon license Level: dna-premier
+
+The current throughput level is 20000 kbps 
+
+
+Smart Licensing Status: Smart Licensing Using Policy
+
+cisco C8000V (VXE) processor (revision VXE) with 2016732K/3075K bytes of memory.
+Processor board ID 91BLQCORNOA
+Router operating mode: Autonomous
+3 Gigabit Ethernet interfaces
+32768K bytes of non-volatile configuration memory.
+3960304K bytes of physical memory.
+11526144K bytes of virtual hard disk at bootflash:.
+
+Configuration register is 0x2102
+
+C8Kv2#
+
+2025-02-23 13:49:10,168: %UNICON-INFO: +++ C8Kv2 with via 'cli': executing command 'show ip ospf neighbor' +++
+show ip ospf neighbor
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+1.1.1.1           1   FULL/DR         00:00:39    10.1.1.1        GigabitEthernet2
+C8Kv2#
+
+2025-02-23 13:53:54,766: %UNICON-INFO: +++ C8Kv2 logfile ./pyats_files/netdevops_ospf_nei_snapshot/connection_C8Kv2.txt +++
+
+2025-02-23 13:53:54,766: %UNICON-INFO: +++ Unicon plugin iosxe (unicon.plugins.iosxe) +++
+(admin@196.21.5.212) Password: 
+
+2025-02-23 13:53:55,032: %UNICON-INFO: +++ connection to spawn: ssh -l admin 196.21.5.212, id: 140078111384528 +++
+
+2025-02-23 13:53:55,032: %UNICON-INFO: connection to C8Kv2
+
+
+
+
+C8Kv2#
+
+C8Kv2#
+
+2025-02-23 13:53:55,219: %UNICON-INFO: +++ C8Kv2 with via 'cli': executing command 'show version | include operating mode' +++
+show version | include operating mode
+Router operating mode: Autonomous
+C8Kv2#
+
+2025-02-23 13:53:55,377: %UNICON-INFO: +++ initializing handle +++
+
+2025-02-23 13:53:55,499: %UNICON-INFO: +++ C8Kv2 with via 'cli': executing command 'term length 0' +++
+term length 0
+C8Kv2#
+
+2025-02-23 13:53:55,747: %UNICON-INFO: +++ C8Kv2 with via 'cli': executing command 'term width 0' +++
+term width 0
+C8Kv2#
+
+2025-02-23 13:53:55,992: %UNICON-INFO: +++ C8Kv2 with via 'cli': executing command 'show version' +++
+show version
+Cisco IOS XE Software, Version 17.14.01a
+Cisco IOS Software [IOSXE], Virtual XE Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 17.14.1a, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2024 by Cisco Systems, Inc.
+Compiled Thu 25-Apr-24 18:53 by mcpre
+
+
+Cisco IOS-XE software, Copyright (c) 2005-2024 by cisco Systems, Inc.
+All rights reserved.  Certain components of Cisco IOS-XE software are
+licensed under the GNU General Public License ("GPL") Version 2.0.  The
+software code licensed under GPL Version 2.0 is free software that comes
+with ABSOLUTELY NO WARRANTY.  You can redistribute and/or modify such
+GPL code under the terms of GPL Version 2.0.  For more details, see the
+documentation or "License Notice" file accompanying the IOS-XE software,
+or the applicable URL provided on the flyer accompanying the IOS-XE
+software.
+
+
+ROM: IOS-XE ROMMON
+
+C8Kv2 uptime is 5 hours, 30 minutes
+Uptime for this control processor is 5 hours, 32 minutes
+System returned to ROM by reload
+System restarted at 08:22:58 GMT Sun Feb 23 2025
+System image file is "bootflash:packages.conf"
+Last reload reason: reload
+
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+License Level: network-premier
+License Type: Perpetual
+Next reload license Level: network-premier
+
+Addon License Level: dna-premier
+Addon License Type: Subscription
+Next reload addon license Level: dna-premier
+
+The current throughput level is 20000 kbps 
+
+
+Smart Licensing Status: Smart Licensing Using Policy
+
+cisco C8000V (VXE) processor (revision VXE) with 2016732K/3075K bytes of memory.
+Processor board ID 91BLQCORNOA
+Router operating mode: Autonomous
+3 Gigabit Ethernet interfaces
+32768K bytes of non-volatile configuration memory.
+3960304K bytes of physical memory.
+11526144K bytes of virtual hard disk at bootflash:.
+
+Configuration register is 0x2102
+
+C8Kv2#
+
+2025-02-23 13:53:56,495: %UNICON-INFO: +++ C8Kv2 with via 'cli': executing command 'show ip ospf neighbor' +++
+show ip ospf neighbor
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+1.1.1.1           1   FULL/DR         00:00:37    10.1.1.1        GigabitEthernet2
+C8Kv2#

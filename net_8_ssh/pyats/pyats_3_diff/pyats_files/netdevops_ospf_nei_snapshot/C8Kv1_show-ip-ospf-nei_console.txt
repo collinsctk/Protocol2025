@@ -1,0 +1,6 @@
++++ C8Kv1 with via 'cli': executing command 'show ip ospf neighbor' +++
+show ip ospf neighbor
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+2.2.2.2           1   FULL/BDR        00:00:37    10.1.1.2        GigabitEthernet2
+C8Kv1#

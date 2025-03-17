@@ -1,0 +1,27 @@
+devices:
+  C8Kv1:
+    connections:
+      cli:
+        ip: 196.21.5.211
+        protocol: ssh
+    credentials:
+      default:
+        password: Cisc0123
+        username: admin
+      enable:
+        password: Cisc0123
+    os: iosxe
+    type: iosxe
+  C8Kv2:
+    connections:
+      cli:
+        ip: 196.21.5.212
+        protocol: ssh
+    credentials:
+      default:
+        password: Cisc0123
+        username: admin
+      enable:
+        password: Cisc0123
+    os: iosxe
+    type: iosxe

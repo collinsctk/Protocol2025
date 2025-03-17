@@ -1,0 +1,17 @@
+{
+  "_exclude": [
+    "dead_time"
+  ],
+  "interfaces": {
+    "GigabitEthernet2": {
+      "neighbors": {
+        "2.2.2.2": {
+          "address": "10.1.1.2",
+          "dead_time": "00:00:37",
+          "priority": 1,
+          "state": "FULL/BDR"
+        }
+      }
+    }
+  }
+}
