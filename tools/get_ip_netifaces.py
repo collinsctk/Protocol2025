@@ -17,7 +17,7 @@ import platform
 def get_ip_address(ifname):
     if platform.system() == "Linux":
         try:
-            pprint(ifaddresses(ifname))
+            # pprint(ifaddresses(ifname))
             """
             {2: [{'addr': '196.21.5.218',
                 'broadcast': '196.21.5.255',
