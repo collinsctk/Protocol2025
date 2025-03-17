@@ -20,8 +20,8 @@ s.bind(address)
 
 # 数据类型限制说明:
 # 整数 (i): 4字节，范围 -2,147,483,648 到 2,147,483,647
-# 短整数 (h): 2字节，范围 -32,768 到 32,767
 # 字符串 (ns): n表示字节数，客户端限制不超过100字节
+# 短整数 (h): 2字节，范围 -32,768 到 32,767
 # MD5哈希 (16s): 固定16字节
 
 print('UDP结构化数据服务器就绪!等待客户数据!')
@@ -54,12 +54,9 @@ while True:
             # 解析字符串
             string_data = struct.unpack(f'>{string_length}s', data[4:-18])[0].decode()
             
-            # 验证MD5哈希
-            md5_hash = hashlib.md5()
-            md5_hash.update(str(first_int).encode())
-            md5_hash.update(string_data.encode())
-            md5_hash.update(str(last_short).encode())
-            calculated_hash = md5_hash.digest()
+            # 验证MD5哈希 (将所有数据拼接在一起计算哈希)
+            combined_data = str(first_int).encode() + string_data.encode() + str(last_short).encode()
+            calculated_hash = hashlib.md5(combined_data).digest()
             
             hash_valid = (calculated_hash == received_hash)
             

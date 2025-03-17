@@ -17,8 +17,8 @@ s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 # 数据类型限制说明:
 # 整数 (i): 4字节，范围 -2,147,483,648 到 2,147,483,647
-# 短整数 (h): 2字节，范围 -32,768 到 32,767
 # 字符串 (ns): n表示字节数，建议不超过100字节
+# 短整数 (h): 2字节，范围 -32,768 到 32,767
 # MD5哈希 (16s): 固定16字节
 
 while True:
@@ -62,12 +62,9 @@ while True:
         # '16s' - 16字节MD5哈希
         text_bytes = text.encode()
         
-        # 计算MD5哈希值 (对字符串和两个整数的组合进行哈希)
-        md5_hash = hashlib.md5()
-        md5_hash.update(str(number).encode())
-        md5_hash.update(text_bytes)
-        md5_hash.update(str(extra).encode())
-        hash_value = md5_hash.digest()  # 获取二进制哈希值
+        # 计算MD5哈希值 (将所有数据拼接在一起计算哈希)
+        combined_data = str(number).encode() + text_bytes + str(extra).encode()
+        hash_value = hashlib.md5(combined_data).digest()  # 获取二进制哈希值
         
         # 打包所有数据，包括哈希值
         packed_data = struct.pack(f'>i{len(text_bytes)}sh16s', number, text_bytes, extra, hash_value)
