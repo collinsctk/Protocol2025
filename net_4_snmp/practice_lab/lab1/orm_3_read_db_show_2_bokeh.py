@@ -13,7 +13,10 @@ from pathlib import Path
 current_file_path = Path(__file__).resolve()
 # 当前目录的路径
 current_dir = current_file_path.parent
+project_dir = current_dir.parent.parent.parent
+print(project_dir)
 
+sys.path.insert(1, str(project_dir))
 sys.path.insert(1, str(current_dir))
 
 from sqlalchemy.orm import sessionmaker
