@@ -42,9 +42,9 @@ if __name__ == '__main__':
                  'Cisc0123',
                  f'{current_dir_path}/file_dir/upload_file.txt',
                  'upload_file.txt', port=22)
-    # ssh_sftp_get('196.21.5.218',
-    #              'root',
-    #              'Cisc0123',
-    #              'upload_file.txt',
-    #              f'{current_dir_path}/file_dir/download_file.txt', 
-    #              port=22)
+    ssh_sftp_get('196.21.5.218',
+                 'root',
+                 'Cisc0123',
+                 'upload_file.txt',
+                 f'{current_dir_path}/file_dir/download_file.txt', 
+                 port=22)
