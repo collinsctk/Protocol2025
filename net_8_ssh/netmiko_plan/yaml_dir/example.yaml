@@ -8,9 +8,9 @@ configs:
       process_id: 1
       router_id: 1.1.1.1
       network_list:
-        - network: 10.1.1.0
-          wildcard_mask: 0.0.0.255
-          area: 0
+        - network: 10.1.1.0  # 网络地址
+          wildcard_mask: 0.0.0.255  # 子网掩码
+          area: 0  # 区域号
   - config_direction: users
     config_data:
       users:

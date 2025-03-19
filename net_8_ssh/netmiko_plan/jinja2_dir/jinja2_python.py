@@ -10,6 +10,7 @@ with open(data_file) as df:
     # 从YAML读取数据
     data = yaml.safe_load(df.read())
     pprint(data)
+    print('-'*100)
     with open(template_file) as tf:
         # 读取并产生Jinja2模板
         jinja2_template = Template(tf.read())
