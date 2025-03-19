@@ -69,12 +69,12 @@ severity_level_dict = {0: 'EMERG',
 # <187>83: *Apr  4 00:03:12.969: %LINK-3-UPDOWN: Interface GigabitEthernet2, changed state to up
 # <189>574: Mar 15 03:00:01.275: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: admin]
 standard_pattern = re.compile(
-    r'^<(?P<priority>\d*)>'           # Priority value containing facility and severity
-    r'(?P<logid>\d*):\s*'            # Log ID
-    r'\*?(?P<timestamp>[^:]+):\s*'    # Timestamp with optional asterisk
-    r'%(?P<log_source>\w+)-'         # Log source
+    r'^<(?P<priority>\d+)>'           # Priority value containing facility and severity
+    r'(?P<logid>\d+):\s+'             # Log ID
+    r'\*?(?P<timestamp>\w+\s+\d+\s+\d+:\d+:\d+\.\d+)'    # Timestamp with optional asterisk
+    r':\s+%(?P<log_source>[A-Z_]+)-'  # Log source (corrected to capture uppercase letters and underscores)
     r'(?P<severity_level>\d)-'        # Severity level
-    r'(?P<description>\w+):\s*'       # Description
+    r'(?P<description>\w+):\s+'       # Description
     r'(?P<text>.*)$'                  # Message text
 )
 
@@ -84,10 +84,10 @@ standard_pattern = re.compile(
 # 下面的icmp的debug就是示例
 # <191>91: *Apr  4 00:12:29.616: ICMP: echo reply rcvd, src 10.1.1.80, dst 10.1.1.253, topology BASE, dscp 0 topoid 0
 alternate_pattern = re.compile(
-    r'^<(?P<priority>\d*)>'           # Priority value containing facility and severity
-    r'(?P<logid>\d*):\s*'            # Log ID
-    r'\*?(?P<timestamp>[^:]+):\s*'    # Timestamp with optional asterisk
-    r'(?P<log_source>\w+):\s*'        # Log source
+    r'^<(?P<priority>\d+)>'           # Priority value containing facility and severity
+    r'(?P<logid>\d+):\s+'             # Log ID
+    r'\*?(?P<timestamp>\w+\s+\d+\s+\d+:\d+:\d+\.\d+):\s+'    # Timestamp with optional asterisk
+    r'(?P<log_source>\w+):\s+'        # Log source
     r'(?P<text>.*)$'                  # Message text
 )
 

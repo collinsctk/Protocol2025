@@ -12,6 +12,17 @@
 
 import asyncio
 from pysnmp.hlapi.v3arch.asyncio import *
+from pathlib import Path
+import sys
+
+# 获取当前文件的路径
+current_file_path = Path(__file__).resolve()
+
+# 获取当前文件所在的目录路径
+current_dir = current_file_path.parent
+# 将根目录添加到Python路径
+sys.path.insert(1, str(current_dir))
+
 from snmp_v2_3_getbulk import snmpv2_getbulk
 
 

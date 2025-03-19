@@ -10,9 +10,22 @@
 import logging
 import socketserver
 import re
-from net_4_snmp.snmp_v2.snmpv2_get_if_oid import shutdown_if
+from pathlib import Path
+import sys
 
-log_file = './log_dir/pysyslog.log'
+# 获取当前文件的路径
+current_file_path = Path(__file__).resolve()
+# 获取当前文件所在的目录路径
+current_dir = current_file_path.parent
+# 获取当前文件所在的目录路径
+root_dir = current_file_path.parent.parent.parent
+# 将根目录添加到Python路径
+sys.path.insert(1, str(root_dir))
+print(root_dir)
+
+from net_4_snmp.python_script.snmp_v2_2_set import shutdown_if
+
+log_file = f'{current_dir}/log_dir/pysyslog.log'
 
 # 配置logging.info, 记录文件到本地
 # 日志模块的详细介绍
@@ -31,7 +44,7 @@ class SyslogUDPHandler(socketserver.BaseRequestHandler):
             if_name = re.match(r'.*%LINEPROTO-5-UPDOWN: Line protocol on Interface (\S+), changed state to down.*',
                                data).groups()[0]
             device_ip = self.client_address[0]
-            community = "tcpiprw"
+            community = "qytangrw"
             shutdown_if(device_ip, community, if_name, 1)
 
         # 把信息logging到本地, logging level为INFO

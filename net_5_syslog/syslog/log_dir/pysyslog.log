@@ -1,15 +1,14 @@
-2024/01/22 19:58:51 - source_ip: 10.10.1.1 - message: <190>236: *Jan 22 19:58:49.915: %SYS-6-TTY_EXPIRE_TIMER: (exec timer expired, tty 0 (0.0.0.0)), user
-2024/01/22 19:58:59 - source_ip: 10.10.1.1 - message: <189>237: *Jan 22 19:58:58.828: %SYS-5-CONFIG_I: Configured from console by admin on vty0 (10.10.1.100)
-2024/01/22 19:59:18 - source_ip: 10.10.1.1 - message: <187>238: *Jan 22 19:59:17.537: %LINK-3-UPDOWN: Interface GigabitEthernet2, changed state to up
-2024/01/22 19:59:18 - source_ip: 10.10.1.1 - message: <189>239: *Jan 22 19:59:18.537: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2, changed state to up
-2024/01/22 19:59:21 - source_ip: 10.10.1.1 - message: <189>240: *Jan 22 19:59:20.588: %SYS-5-CONFIG_I: Configured from console by admin on vty0 (10.10.1.100)
-2024/01/22 19:59:22 - source_ip: 10.10.1.1 - message: <189>241: *Jan 22 19:59:21.602: %LINK-5-CHANGED: Interface GigabitEthernet2, changed state to administratively down
-2024/01/22 19:59:23 - source_ip: 10.10.1.1 - message: <189>242: *Jan 22 19:59:22.601: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2, changed state to down
-2024/01/22 19:59:24 - source_ip: 10.10.1.1 - message: <189>243: *Jan 22 19:59:22.938: %SYS-5-CONFIG_I: Configured from 10.10.1.100 by snmp
-2024/01/22 19:59:28 - source_ip: 10.10.1.1 - message: <187>244: *Jan 22 19:59:27.537: %LINK-3-UPDOWN: Interface GigabitEthernet2, changed state to up
-2024/01/22 19:59:28 - source_ip: 10.10.1.1 - message: <189>245: *Jan 22 19:59:28.537: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2, changed state to up
-2024/01/22 20:06:32 - source_ip: 10.10.1.1 - message: <189>246: *Jan 22 20:06:30.906: %LINK-5-CHANGED: Interface GigabitEthernet2, changed state to administratively down
-2024/01/22 20:06:32 - source_ip: 10.10.1.1 - message: <189>247: *Jan 22 20:06:31.907: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2, changed state to down
-2024/01/22 20:06:33 - source_ip: 10.10.1.1 - message: <189>248: *Jan 22 20:06:32.228: %SYS-5-CONFIG_I: Configured from 10.10.1.100 by snmp
-2024/01/22 20:06:38 - source_ip: 10.10.1.1 - message: <187>249: *Jan 22 20:06:37.581: %LINK-3-UPDOWN: Interface GigabitEthernet2, changed state to up
-2024/01/22 20:06:38 - source_ip: 10.10.1.1 - message: <189>250: *Jan 22 20:06:38.582: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2, changed state to up
+2025/03/19 16:12:40 - source_ip: 196.21.5.211 - message: <187>126: Mar 19 08:12:39.258: %LINK-3-UPDOWN: Interface GigabitEthernet2, changed state to up
+2025/03/19 16:12:41 - source_ip: 196.21.5.211 - message: <189>127: Mar 19 08:12:40.257: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2, changed state to up
+2025/03/19 16:12:50 - source_ip: 196.21.5.211 - message: <189>128: Mar 19 08:12:49.021: %LINK-5-CHANGED: Interface GigabitEthernet2, changed state to administratively down
+2025/03/19 16:12:50 - source_ip: 196.21.5.211 - message: <189>129: Mar 19 08:12:50.020: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2, changed state to down
+2025/03/19 16:12:51 - source_ip: 196.21.5.211 - message: <189>130: Mar 19 08:12:50.157: %SYS-5-CONFIG_I: Configured from 196.21.5.218 by snmp
+2025/03/19 16:13:00 - source_ip: 196.21.5.211 - message: <187>131: Mar 19 08:12:59.257: %LINK-3-UPDOWN: Interface GigabitEthernet2, changed state to up
+2025/03/19 16:13:01 - source_ip: 196.21.5.211 - message: <189>132: Mar 19 08:13:00.257: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2, changed state to up
+2025/03/19 16:13:26 - source_ip: 196.21.5.211 - message: <189>133: Mar 19 08:13:25.502: %LINK-5-CHANGED: Interface GigabitEthernet2, changed state to administratively down
+2025/03/19 16:13:26 - source_ip: 196.21.5.211 - message: <189>134: Mar 19 08:13:26.503: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2, changed state to down
+2025/03/19 16:13:27 - source_ip: 196.21.5.211 - message: <189>135: Mar 19 08:13:26.712: %SYS-5-CONFIG_I: Configured from 196.21.5.218 by snmp
+2025/03/19 16:13:40 - source_ip: 196.21.5.211 - message: <187>136: Mar 19 08:13:39.257: %LINK-3-UPDOWN: Interface GigabitEthernet2, changed state to up
+2025/03/19 16:13:41 - source_ip: 196.21.5.211 - message: <189>137: Mar 19 08:13:40.257: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet2, changed state to up
+2025/03/19 16:13:50 - source_ip: 196.21.5.218 - message: <189>qytang syslog test
+2025/03/19 16:13:50 - source_ip: 196.21.5.218 - message: <189>qytang syslog test
